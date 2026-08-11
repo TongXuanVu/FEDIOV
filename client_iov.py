@@ -40,7 +40,7 @@ DEFAULT_DATA_DIR = r"C:\FederatedLearning\AFSIC-IOV\data\100client"
 class FedIoVClient(fl.client.NumPyClient):
     def __init__(self, client_id, data_dir, device, max_samples, batch_size,
                  task, lr, dropout, width, grid_size, spline_order,
-                 attack="none", attack_scale=5.0, seed=42):
+                 basis="fourier", attack="none", attack_scale=5.0, seed=42):
         self.cid = client_id
         self.device = device
         self.lr = lr
@@ -55,7 +55,7 @@ class FedIoVClient(fl.client.NumPyClient):
         self.n_samples = len(y)
 
         self.model = KANConvNet(INPUT_LEN, NUM_GLOBAL_CLASSES, dropout,
-                                width, grid_size, spline_order).to(device)
+                                width, grid_size, spline_order, basis).to(device)
         self.criterion = FocalLoss(alpha=C.make_focal_alpha(y).to(device), gamma=2.0)
         if attack != "none":
             logger.warning(f"[Client {self.cid}] DANG O CHE DO TAN CONG: {attack}")
@@ -118,6 +118,11 @@ def main():
     p.add_argument("--width", type=int, nargs=2, default=[16, 32])
     p.add_argument("--grid-size", type=int, default=5)
     p.add_argument("--spline-order", type=int, default=3)
+    p.add_argument("--basis", choices=["fourier", "spline"],
+                   default="fourier",
+                   help="Co so ham cua lop KAN. fourier = dung bai "
+                        "(Eq.16: 'a Fourier-based encoding'); "
+                        "spline = ban cu (efficient-kan)")
     p.add_argument("--attack", choices=["none", "signflip", "gauss", "label"],
                    default="none")
     p.add_argument("--attack-scale", type=float, default=5.0)
@@ -129,7 +134,7 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     client = FedIoVClient(args.client_id, args.data_dir, device, args.max_samples,
                           args.batch_size, args.task, args.lr, args.dropout,
-                          tuple(args.width), args.grid_size, args.spline_order,
+                          tuple(args.width), args.grid_size, args.spline_order, args.basis,
                           args.attack, args.attack_scale, args.seed)
     fl.client.start_client(server_address=args.server, client=client.to_client())
 

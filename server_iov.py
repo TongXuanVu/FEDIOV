@@ -193,6 +193,11 @@ def main():
     p.add_argument("--width", type=int, nargs=2, default=[16, 32])
     p.add_argument("--grid-size", type=int, default=5)
     p.add_argument("--spline-order", type=int, default=3)
+    p.add_argument("--basis", choices=["fourier", "spline"],
+                   default="fourier",
+                   help="Co so ham cua lop KAN. fourier = dung bai "
+                        "(Eq.16: 'a Fourier-based encoding'); "
+                        "spline = ban cu (efficient-kan)")
     p.add_argument("--data-dir", type=str, default=DEFAULT_DATA_DIR)
     p.add_argument("--out-dir", type=str, default=DEFAULT_OUT_DIR)
     p.add_argument("--address", type=str, default="0.0.0.0:8082")
