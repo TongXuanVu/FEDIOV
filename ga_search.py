@@ -4,8 +4,11 @@ Bai bao dung DEAP. O day cai GA thuan numpy (tournament + uniform crossover +
 mutation theo gene) de khong them phu thuoc; API giu tuong duong nen thay bang
 DEAP rat de neu can.
 
-Gene toi uu:
-  lr, batch_size, dropout, width (c1,c2), grid_size, spline_order
+Gene toi uu (Bang 3 cua bai, chep nguyen van):
+  lr, batch_size, epochs, momentum, dropout, optimizer, L2, personal_coef
+  + width, grid_size (khong co trong Bang 3, la tham so cua ta)
+
+TAT CA cac gen deu da noi vao main.py — dong lenh in ra o cuoi dung duoc ngay.
 
 Fitness = macro-F1 tren tap validation, do bang cach train tap trung NGAN
 (--proxy-epochs) tren du lieu gop cua vai client. Day la "proxy task": re hon
@@ -25,7 +28,6 @@ import time
 
 import numpy as np
 import torch
-import torch.optim as optim
 from sklearn.model_selection import train_test_split
 
 _P1 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "P1-VANFED-IDS")
@@ -35,6 +37,7 @@ if os.path.isdir(_P1) and _P1 not in sys.path:   # repo doc lap: khong co thu mu
 import common as C                               # noqa: E402
 from model_cnn1d import FocalLoss                # noqa: E402
 from model_kanconv import KANConvNet, INPUT_LEN, NUM_GLOBAL_CLASSES  # noqa: E402
+from client_iov import make_optimizer          # noqa: E402  (dung CHUNG voi client)
 
 logger = logging.getLogger(__name__)
 
@@ -99,21 +102,10 @@ def evaluate_individual(ind, data, device, proxy_epochs, seed):
     model = KANConvNet(INPUT_LEN, NUM_GLOBAL_CLASSES, hp["dropout"],
                        hp["width"], hp["grid_size"], 3, "fourier").to(device)
     crit = FocalLoss(alpha=C.make_focal_alpha(ytr).to(device), gamma=2.0)
-    ten_opt = hp.get("optimizer", "AdamW")
-    l2 = hp.get("l2", 0.0)
-    mo = hp.get("momentum", 0.9)
-    if ten_opt == "AdamW":
-        opt = optim.AdamW(model.parameters(), lr=hp["lr"], weight_decay=l2)
-    elif ten_opt == "RMSprop":
-        opt = optim.RMSprop(model.parameters(), lr=hp["lr"], momentum=mo,
-                            weight_decay=l2)
-    elif ten_opt == "AdaDelta":
-        opt = optim.Adadelta(model.parameters(), lr=hp["lr"], weight_decay=l2)
-    elif ten_opt == "SGD":
-        opt = optim.SGD(model.parameters(), lr=hp["lr"], momentum=mo,
-                        weight_decay=l2)
-    else:                                    # Nadam
-        opt = optim.NAdam(model.parameters(), lr=hp["lr"], weight_decay=l2)
+    # DUNG CHUNG ham voi client_iov.py — neu tach doi, GA se do mot thu va
+    # duong chay FL lai chay mot thu khac.
+    opt = make_optimizer(model.parameters(), hp.get("optimizer", "AdamW"),
+                         hp["lr"], hp.get("momentum", 0.9), hp.get("l2", 0.0))
     tr_loader = C.make_loader(xtr, ytr, hp["batch_size"], shuffle=True)
     va_loader = C.make_loader(xva, yva, 4096, shuffle=False)
 
@@ -229,15 +221,18 @@ def main():
     with open(path, "w", encoding="utf-8") as f:
         json.dump(out, f, indent=2)
     logger.info(f"Tot nhat: macro_f1={best_fit:.4f} | {hp}\nLuu -> {path}")
-    logger.info(
-        "Dung cho main.py:  --lr %s --batch_size %s --local_ep %s --dropout %s "
-        "--width %d %d --grid_size %s"
-        % (hp["lr"], hp["batch_size"], hp.get("epochs", 1), hp["dropout"],
-           hp["width"][0], hp["width"][1], hp["grid_size"]))
-    logger.info("Gen chi dung trong GA (chua noi vao main.py): optimizer=%s "
-                "momentum=%s l2=%s personal_coef=%s"
-                % (hp.get("optimizer"), hp.get("momentum"), hp.get("l2"),
-                   hp.get("personal_coef")))
+    lenh = (
+        f"--lr {hp['lr']} --batch_size {hp['batch_size']} "
+        f"--local_ep {hp.get('epochs', 1)} --dropout {hp['dropout']} "
+        f"--width {hp['width'][0]} {hp['width'][1]} "
+        f"--grid_size {hp['grid_size']} "
+        f"--optimizer {hp.get('optimizer', 'AdamW')} "
+        f"--momentum {hp.get('momentum', 0.9)} --l2 {hp.get('l2', 0.0)} "
+        f"--personal_coef {hp.get('personal_coef', 1.0)}")
+    out["main_py_args"] = lenh
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(out, f, indent=2)
+    logger.info(f"Dung cho main.py:  {lenh}")
 
 
 if __name__ == "__main__":

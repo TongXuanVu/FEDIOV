@@ -19,6 +19,13 @@ CHO LECH SO VOI BAI, phai ghi trong bao cao:
   3. Bang 3 cua bai cho KHONG GIAN TIM KIEM cua GA (lr, batch, epoch, momentum,
      dropout, optimizer, L2, he so ca nhan hoa, Pc, Pm) chu khong cho gia tri
      cuoi cung. Chay ga_search.py neu muon do lai; mac dinh o day khong chay GA.
+     Tat ca 10 gen deu da noi vao duong chay chinh (--optimizer, --momentum,
+     --l2, --personal_coef, ...) nen ket qua GA dung duoc ngay.
+  5. |C| trong Eq. (14) khong co trong bai (chi noi "C grows with N"). Mac dinh
+     |C| = round(sqrt(N)). Thuat toan gom cum cung khong co — ta cat theo thu
+     hang C_i. Xem cluster_by_rank() trong server_iov.py.
+  6. Eq. (15) can model cuc bo cua round TRUOC. Trong simulation, client bi tao
+     lai moi round nen trang thai duoc luu ra <out_dir>/client_state/.
   4. Bai mo phong bang OMNeT++ / Veins / SUMO de sinh do tre, mat goi. Ta khong
      co, nen phan "adaptive" theo trang thai mang khong tai hien duoc.
 
@@ -64,6 +71,26 @@ def main():
                    help="literal = dung chu Eq.7,8 (do duoc: GIU LAI ke tan cong). "
                         "consistency = theo y dinh mo ta bang loi (mac dinh)")
     p.add_argument("--topsis_keep", type=float, default=0.8)
+    p.add_argument("--clusters", type=int, default=0,
+                   help="|C| cua Eq.(14). 0 = tu tinh round(sqrt(N)); 1 = mot "
+                        "cum duy nhat (Multi-Krum phang, KHONG theo Eq.14)")
+    # --- toi uu cuc bo (Bang 3) + ca nhan hoa (Eq.15) ---
+    p.add_argument("--optimizer", default="AdamW",
+                   choices=["AdamW", "RMSprop", "AdaDelta", "SGD", "Nadam", "Adam"],
+                   help="omega trong Bang 3 cua bai")
+    p.add_argument("--momentum", type=float, default=0.9,
+                   help="mu trong Bang 3 (chi tac dung voi SGD/RMSprop)")
+    p.add_argument("--l2", type=float, default=0.0,
+                   help="lambda trong Bang 3 = weight_decay. Bai co hang ablation "
+                        "'w/o L2 Regularization'")
+    p.add_argument("--personal_coef", type=float, default=1.0,
+                   help="alpha cua Eq.(15): M_i = a*M_G + (1-a)*M_i. 1.0 = TAT "
+                        "ca nhan hoa (= hang 'w/o Personalization' Bang 6). Bai "
+                        "khong cong bo gia tri da dung; Bang 3 cho {0.15..0.95}")
+    p.add_argument("--local_val", type=float, default=0.0,
+                   help="Ty le shard client giu lam validation CUC BO. Dat >0 "
+                        "(vd 0.1) de do do chinh xac TUNG XE — day moi la thuoc "
+                        "do ma Bang 6 dung cho Eq.15. 0 = tat, chay nhanh hon")
     p.add_argument("--krum_m", type=int, default=5)
     p.add_argument("--byzantine", type=int, default=2,
                    help="So client doc ma Multi-Krum gia dinh")
@@ -104,6 +131,13 @@ def main():
         "--strategy", a.strategy,
         "--topsis-mode", a.topsis_mode,
         "--topsis-keep", str(a.topsis_keep),
+        "--clusters", str(a.clusters),
+        "--optimizer", a.optimizer,
+        "--momentum", str(a.momentum),
+        "--l2", str(a.l2),
+        "--personal-coef", str(a.personal_coef),
+        "--local-val", str(a.local_val),
+        "--fed-subdir", a.fed_subdir,
         "--krum-m", str(a.krum_m),
         "--byzantine", str(a.byzantine),
         "--attack", a.attack,
@@ -130,8 +164,15 @@ def main():
           f"grid={a.grid_size}")
     tang1 = "tat" if a.no_topsis else f"TOPSIS ({a.topsis_mode}, giu {a.topsis_keep:.0%})"
     print(f"  tong hop  : hai tang | tang 1 = {tang1}")
+    cum = ("tu tinh sqrt(N)" if a.clusters == 0 else
+           ("1 cum — KHONG theo Eq.14" if a.clusters == 1 else f"{a.clusters} cum"))
     print(f"              tang 2 = {a.strategy}"
-          f"{f' (m={a.krum_m}, byzantine={a.byzantine})' if a.strategy == 'multikrum' else ''}")
+          f"{f' (m={a.krum_m}, byzantine={a.byzantine})' if a.strategy == 'multikrum' else ''}"
+          f" | Eq.14: {cum}")
+    ca_nhan = ("TAT (= hang 'w/o Personalization' Bang 6)" if a.personal_coef >= 1.0
+               else f"alpha={a.personal_coef}")
+    print(f"  Eq.15     : {ca_nhan}")
+    print(f"  toi uu    : {a.optimizer} | momentum {a.momentum} | L2 {a.l2}")
     if a.attack != "none":
         print(f"  TAN CONG  : {a.attack} tren client {a.attack_ids or 'chua chi dinh'}")
     print("  LUU Y: sigma_Kolmogorov khong duoc bai dinh nghia bang cong thuc —")

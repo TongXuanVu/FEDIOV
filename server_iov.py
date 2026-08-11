@@ -19,6 +19,7 @@ Chay:
   python server_iov.py --mode test --ckpt out/checkpoints/latest.pth
 """
 import argparse
+import csv
 import logging
 import os
 import sys
@@ -129,13 +130,36 @@ def topsis_rank(updates: List[np.ndarray], mode: str = "consistency",
     return s_minus / (s_plus + s_minus + 1e-12)
 
 
+def cluster_by_rank(ci: np.ndarray, n_clusters: int) -> List[List[int]]:
+    """Gom cum theo thu hang C_i — TANG GIUA cua duong ong trong bai.
+
+    "The server groups the model updates into clusters of similar performance
+    and behavior, depending on the [ranking]" (ngay truoc Eq. 14).
+
+    Bai KHONG cho thuat toan gom cum, cung khong cho |C|. O day: sap theo C_i
+    giam dan roi cat thanh n_clusters doan lien tiep — cach doc sat nhat voi
+    "clusters of similar performance ... depending on the ranking". Day la
+    LUA CHON CAI DAT, phai ghi trong bao cao.
+    """
+    order = np.argsort(-ci)
+    return [g.tolist() for g in np.array_split(order, max(1, n_clusters))
+            if len(g) > 0]
+
+
+def auto_clusters(n: int) -> int:
+    """|C| khong co trong bai. Phan phan tich do phuc tap chi noi "C grows with
+    N", nen ta lay round(sqrt(N)) — cum to dan cham hon so client."""
+    return max(1, int(round(np.sqrt(max(n, 1)))))
+
+
 class MultiKrumStrategy(fl.server.strategy.FedAvg):
     """FedAvg + loc Byzantine bang Multi-Krum + checkpoint moi round."""
 
     def __init__(self, model, ckpt_dir: str, start_round: int = 0,
                  krum_m: int = 5, n_byzantine: int = 2, use_krum: bool = True,
                  use_topsis: bool = True, topsis_keep: float = 0.8,
-                 topsis_mode: str = "consistency", **kwargs):
+                 topsis_mode: str = "consistency", n_clusters: int = 0,
+                 **kwargs):
         super().__init__(**kwargs)
         self.model = model
         self.ckpt_dir = ckpt_dir
@@ -146,6 +170,7 @@ class MultiKrumStrategy(fl.server.strategy.FedAvg):
         self.use_topsis = use_topsis
         self.topsis_keep = topsis_keep
         self.topsis_mode = topsis_mode
+        self.n_clusters = n_clusters          # 0 = tu tinh theo auto_clusters()
 
     def aggregate_fit(
         self,
@@ -160,11 +185,16 @@ class MultiKrumStrategy(fl.server.strategy.FedAvg):
 
         metrics: Dict[str, Scalar] = {}
         kept = results
+        ci = None
+        n_cum = (self.n_clusters if self.n_clusters > 0
+                 else auto_clusters(len(results)))
 
         # ---- TANG 1: loc bang TOPSIS (Eq. 7, 8) ----
-        if self.use_topsis and len(results) > 2:
+        # Van tinh C_i khi tat TOPSIS neu con can thu hang de gom cum (Eq. 14).
+        if len(results) > 2 and (self.use_topsis or n_cum > 1):
             flats0 = [flatten(parameters_to_ndarrays(r.parameters)) for _, r in results]
             ci = topsis_rank(flats0, self.topsis_mode)
+        if self.use_topsis and ci is not None:
             k = max(2, int(round(self.topsis_keep * len(results))))
             keep_idx = sorted(np.argsort(-ci)[:k].tolist())
             flagged0 = [i for i, (_, r) in enumerate(results)
@@ -180,37 +210,86 @@ class MultiKrumStrategy(fl.server.strategy.FedAvg):
             logger.info(f"[Round {server_round}] TOPSIS giu {len(keep_idx)}/"
                         f"{len(results)} | C_i {ci.min():.4f}..{ci.max():.4f}{bat}")
             results = [results[i] for i in keep_idx]
+            ci = ci[keep_idx]
             kept = results
 
-        # ---- TANG 2: Multi-Krum ----
+        # ---- TANG 2: gom cum -> Multi-Krum trong tung cum -> Eq. 14 ----
+        params = None
         if self.use_krum and len(results) > 2:
             ndarrays = [parameters_to_ndarrays(r.parameters) for _, r in results]
-            chosen, scores = multi_krum_select(
-                [flatten(a) for a in ndarrays], self.n_byzantine, self.krum_m)
-            rejected = [i for i in range(len(results)) if i not in chosen]
-            kept = [results[i] for i in chosen]
-            # ai tu khai bao la doc hai (chi de do luong, khong dung de loc)
+            flats = [flatten(a) for a in ndarrays]
+            # RANG BUOC BAI KHONG NOI: Multi-Krum giu m update MOI CUM, nen
+            # cum phai DONG hon m, khong thi m >= |cum| va tang 2 khong loc gi
+            # het. Do duoc: |C|=4 tren 16 update (cum 4 nguoi, m=5) -> giu
+            # 16/16, ke tan cong con sot sau TOPSIS di thang vao model global
+            # (bat 0/1, trong khi mot cum duy nhat bat 1/1).
+            tran = max(1, len(results) // (self.krum_m + 1))
+            if n_cum > tran:
+                logger.info(f"[Round {server_round}] |C| {n_cum} -> {tran} "
+                            f"(cum phai > m={self.krum_m} thi Multi-Krum moi loc)")
+                n_cum = tran
+            cums = (cluster_by_rank(ci, n_cum) if (ci is not None and n_cum > 1)
+                    else [list(range(len(results)))])
+
+            chon_tat, diem_min, diem_max = [], np.inf, -np.inf
+            trung_binh_cum = []                  # M_k = (1/m) SUM_{i in S_k} M_i
+            for g in cums:
+                if len(g) > 2:
+                    f_byz = max(0, int(round(self.n_byzantine * len(g) / len(results))))
+                    m_g = max(1, min(self.krum_m, len(g)))
+                    loc, sc = multi_krum_select([flats[i] for i in g], f_byz, m_g)
+                    diem_min = min(diem_min, float(sc.min()))
+                    diem_max = max(diem_max, float(sc.max()))
+                else:
+                    loc = list(range(len(g)))
+                idx = [g[j] for j in loc]
+                chon_tat += idx
+                trung_binh_cum.append(
+                    [np.mean([ndarrays[i][li] for i in idx], axis=0)
+                     for li in range(len(ndarrays[0]))])
+
+            # Eq. (14): M_G = (1/|C|) SUM_k (1/m) SUM_{i in S_k} M_i
+            # Trung binh KHONG trong so — bai khong nhan theo so mau nhu FedAvg.
+            agg = [np.mean([tb[li] for tb in trung_binh_cum], axis=0)
+                   for li in range(len(ndarrays[0]))]
+            params = ndarrays_to_parameters(agg)
+
+            rejected = [i for i in range(len(results)) if i not in set(chon_tat)]
+            kept = [results[i] for i in chon_tat]
             flagged = [i for i, (_, r) in enumerate(results)
                        if r.metrics.get("attack", "none") != "none"]
             caught = len(set(flagged) & set(rejected))
-            metrics["krum_kept"] = len(chosen)
+            metrics["krum_kept"] = len(chon_tat)
             metrics["krum_rejected"] = len(rejected)
-            metrics["krum_score_min"] = float(scores.min())
-            metrics["krum_score_max"] = float(scores.max())
+            metrics["n_clusters"] = len(cums)
+            if np.isfinite(diem_min):
+                metrics["krum_score_min"] = diem_min
+                metrics["krum_score_max"] = diem_max
             if flagged:
                 metrics["byz_detection_rate"] = caught / len(flagged)
                 logger.info(f"[Round {server_round}] Multi-Krum bat duoc "
                             f"{caught}/{len(flagged)} client doc hai")
-            logger.info(f"[Round {server_round}] giu {len(chosen)}/{len(results)} "
-                        f"update | diem Krum {scores.min():.3e}..{scores.max():.3e}")
+            logger.info(f"[Round {server_round}] {len(cums)} cum (Eq.14) | giu "
+                        f"{len(chon_tat)}/{len(results)} update"
+                        + (f" | diem Krum {diem_min:.3e}..{diem_max:.3e}"
+                           if np.isfinite(diem_min) else ""))
 
-        params, agg_metrics = super().aggregate_fit(server_round, kept, [])
-        metrics.update(agg_metrics)
+        if params is None:                      # fedavg, hoac qua it client
+            params, agg_metrics = super().aggregate_fit(server_round, kept, [])
+            metrics.update(agg_metrics)
 
         losses = [(r.num_examples, r.metrics.get("train_loss", 0.0)) for _, r in kept]
         n_tot = sum(n for n, _ in losses) or 1
         metrics["train_loss"] = sum(n * l for n, l in losses) / n_tot
         metrics["num_clients"] = len(kept)
+        # Trong che do simulation, logger cua client nam trong Ray actor va
+        # KHONG chay ra file log cua server — nen Eq.15 phai duoc bao cao qua
+        # metrics thi moi kiem chung duoc.
+        n_ca_nhan = sum(int(r.metrics.get("personalized", 0)) for _, r in kept)
+        metrics["personalized_clients"] = n_ca_nhan
+        if n_ca_nhan:
+            logger.info(f"[Round {server_round}] Eq.15: {n_ca_nhan}/{len(kept)} "
+                        f"client tron voi model cuc bo round truoc")
 
         if params is not None:
             abs_round = self.start_round + server_round
@@ -219,6 +298,47 @@ class MultiKrumStrategy(fl.server.strategy.FedAvg):
                               extra={"train_loss": metrics.get("train_loss"),
                                      "krum_kept": metrics.get("krum_kept")})
         return params, metrics
+
+
+    def aggregate_evaluate(self, server_round, results, failures):
+        """Gop do chinh xac CUC BO tung xe — thuoc do cua Bang 6 cho Eq.15.
+
+        Bai bao cao ca do LECH giua cac xe ("Accuracy variance >4x across
+        vehicles" khi bo ca nhan hoa), nen ta ghi ca mean/std/min/max.
+        """
+        if not results:
+            return None, {}
+        acc = np.array([float(r.metrics.get("accuracy", 0.0)) for _, r in results])
+        n = np.array([max(r.num_examples, 0) for _, r in results], dtype=float)
+        if n.sum() == 0:
+            return None, {}
+        loss = float((n * np.array([r.loss for _, r in results])).sum() / n.sum())
+        m = {"local_acc_mean": float((acc * n).sum() / n.sum()),
+             "local_acc_std": float(acc.std()),
+             "local_acc_min": float(acc.min()),
+             "local_acc_max": float(acc.max())}
+        logger.info(f"[Round {server_round}] cuc bo tren {len(results)} xe: "
+                    f"acc {m['local_acc_mean']:.4f} +/- {m['local_acc_std']:.4f} "
+                    f"(min {m['local_acc_min']:.4f}, max {m['local_acc_max']:.4f})")
+        # Ghi rieng ra CSV: cot nay khong nam trong METRIC_KEYS cua metrics.csv
+        # nen khong lam hong collect_results.py.
+        # Viet truc tiep, KHONG dung C.append_csv_row: ham do co dinh
+        # CSV_HEADER cua metrics chung, va common.py la file dung chung ca 4
+        # repo — them tham so vao do se lam 4 ban lech nhau.
+        path = os.path.join(os.path.dirname(os.path.abspath(self.ckpt_dir)),
+                            "local_metrics.csv")
+        moi = not os.path.exists(path)
+        with open(path, "a", newline="", encoding="utf-8") as f:
+            w = csv.writer(f)
+            if moi:
+                w.writerow(["round", "n_clients", "local_loss", "acc_mean",
+                            "acc_std", "acc_min", "acc_max"])
+            w.writerow([self.start_round + server_round, len(results),
+                        round(loss, 6)]
+                       + [round(m[k], 6) for k in
+                          ("local_acc_mean", "local_acc_std",
+                           "local_acc_min", "local_acc_max")])
+        return loss, m
 
 
 # ----------------------------------------------------------------------------
@@ -278,6 +398,9 @@ def main():
                         "y dinh mo ta bang loi")
     p.add_argument("--topsis-keep", type=float, default=0.8,
                    help="Ty le update giu lai sau TOPSIS")
+    p.add_argument("--clusters", type=int, default=0,
+                   help="|C| cua Eq.14. 0 = tu tinh round(sqrt(N)). 1 = mot cum "
+                        "(Multi-Krum phang, KHONG theo Eq.14)")
     p.add_argument("--rounds", type=int, default=30)
     p.add_argument("--num-clients", type=int, default=10)
     p.add_argument("--fraction-fit", type=float, default=1.0)
@@ -353,6 +476,7 @@ def main():
         min_evaluate_clients=0,
         min_available_clients=args.num_clients,
         initial_parameters=ndarrays_to_parameters(C.get_model_parameters(model)),
+        n_clusters=args.clusters,
         on_fit_config_fn=fit_config_fn(args.local_epochs, args.lr),
         evaluate_fn=make_evaluate_fn(model, loader, nn.CrossEntropyLoss(), device,
                                      csv_file, args.out_dir, class_names,

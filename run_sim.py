@@ -89,7 +89,7 @@ else:
 
 
 def clients_with_data(data_dir, client_ids, task):
-    fed = os.path.join(data_dir, "federated_data")
+    fed = os.path.join(data_dir, C.FED_SUBDIR)
     ok = []
     for cid in client_ids:
         if task is None:
@@ -131,8 +131,10 @@ def make_client_fn(ids, args, task, device):
             atk = args.attackers.get(cid, "none")
             c = ClientCls(cid, args.data_dir, dev, args.max_samples,
                           args.batch_size, task, args.lr, args.dropout,
-                          tuple(args.width), args.grid_size, args.spline_order, args.basis,
-                          atk, args.attack_scale, args.seed)
+                          tuple(args.width), args.grid_size, args.spline_order,
+                          args.basis, atk, args.attack_scale, args.seed,
+                          args.optimizer, args.momentum, args.l2,
+                          args.personal_coef, args.state_dir, args.local_val)
         elif IS_P4:
             c = ClientCls(cid, args.data_dir, dev, args.max_samples,
                           args.batch_size, task, args.lr, args.dropout,
@@ -186,6 +188,20 @@ def main():
     p.add_argument("--topsis-mode", choices=["consistency", "literal"],
                    default="consistency")
     p.add_argument("--topsis-keep", type=float, default=0.8)
+    p.add_argument("--clusters", type=int, default=0,
+                   help="|C| cua Eq.14. 0 = tu tinh round(sqrt(N)), 1 = mot cum")
+    p.add_argument("--optimizer", type=str, default="AdamW",
+                   help="Bang 3: AdamW|RMSprop|AdaDelta|SGD|Nadam")
+    p.add_argument("--momentum", type=float, default=0.9)
+    p.add_argument("--l2", type=float, default=0.0, help="weight_decay")
+    p.add_argument("--personal-coef", type=float, default=1.0,
+                   help="alpha cua Eq.15 (1.0 = tat ca nhan hoa)")
+    p.add_argument("--fed-subdir", type=str, default="federated_data",
+                   help="Thu muc con chua shard: federated_data | "
+                        "federated_data_fewshot | federated_data_10shot")
+    p.add_argument("--local-val", type=float, default=0.0,
+                   help="Ty le shard client giu lam val cuc bo. >0 thi moi round "
+                        "se do them do chinh xac TUNG XE (thuoc do cua Eq.15)")
     p.add_argument("--attack-ids", type=int, nargs="*", default=[],
                    help="Client id bi bien thanh doc hai, de kiem chung Multi-Krum")
     p.add_argument("--attack", choices=["none", "signflip", "gauss", "label"],
@@ -208,6 +224,7 @@ def main():
     p.add_argument("--seed", type=int, default=42)
     args = p.parse_args()
 
+    C.set_fed_subdir(args.fed_subdir)      # phai goi TRUOC moi load_client_data
     if args.actor_gpus < 0:                 # tu chia GPU cho so actor song song
         n_gpu = torch.cuda.device_count()
         args.actor_gpus = (round(n_gpu / max(1, int(os.cpu_count() /
@@ -216,6 +233,14 @@ def main():
                 f"({torch.cuda.device_count()} GPU / {os.cpu_count()} CPU)")
 
     os.makedirs(args.out_dir, exist_ok=True)
+    # Trang thai cuc bo cho Eq.15 (P2). Ray tao lai client moi round nen phai
+    # luu ra dia; --restart phai xoa, khong thi round 1 cua lan chay moi se
+    # tron voi model cua lan chay CU.
+    args.state_dir = os.path.join(args.out_dir, "client_state")
+    if IS_P2 and args.restart and os.path.isdir(args.state_dir):
+        import shutil
+        shutil.rmtree(args.state_dir)
+        logger.info("--restart: da xoa trang thai cuc bo cua client")
     sfx_arch = f"_{args.arch}" if IS_P4 else ""
     C.setup_logging(os.path.join(args.out_dir, f"sim{sfx_arch}.log"))
     torch.manual_seed(args.seed)
@@ -278,11 +303,14 @@ def main():
         sfx = f"_task{task}" if task is not None else ""
         csv_file = os.path.join(args.out_dir, f"metrics{sfx_arch}{sfx}.csv")
 
+        do_cuc_bo = IS_P2 and args.local_val > 0
         common_kw = dict(
             model=model, ckpt_dir=ckpt_dir, start_round=start_round,
-            fraction_fit=args.fraction_fit, fraction_evaluate=0.0,
+            fraction_fit=args.fraction_fit,
+            fraction_evaluate=1.0 if do_cuc_bo else 0.0,
             min_fit_clients=max(1, int(len(ids) * args.fraction_fit)),
-            min_evaluate_clients=0, min_available_clients=len(ids),
+            min_evaluate_clients=len(ids) if do_cuc_bo else 0,
+            min_available_clients=len(ids),
             initial_parameters=ndarrays_to_parameters(C.get_model_parameters(model)),
             on_fit_config_fn=S.fit_config_fn(args.local_epochs, args.lr),
         )
@@ -294,6 +322,7 @@ def main():
                 use_topsis=not args.no_topsis,
                 topsis_mode=args.topsis_mode,
                 topsis_keep=args.topsis_keep,
+                n_clusters=args.clusters,
                 krum_m=args.krum_m, n_byzantine=args.byzantine,
                 use_krum=(args.strategy == "multikrum"), evaluate_fn=ev, **common_kw)
         elif IS_P4:
