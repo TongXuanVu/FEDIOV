@@ -1,0 +1,29 @@
+{
+  "macro_f1": 0.060956827336137685,
+  "hyperparameters": {
+    "lr": 0.005,
+    "batch_size": 24,
+    "epochs": 3,
+    "momentum": 0.998,
+    "dropout": 0.45,
+    "optimizer": "SGD",
+    "l2": 0.0005,
+    "personal_coef": 0.95,
+    "width": [
+      24,
+      48
+    ],
+    "grid_size": 5
+  },
+  "proxy": {
+    "clients": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "epochs": 1,
+    "n_train": 4800,
+    "n_val": 1200
+  }
+}

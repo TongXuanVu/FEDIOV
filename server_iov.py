@@ -42,7 +42,7 @@ from model_kanconv import KANConvNet, INPUT_LEN, NUM_GLOBAL_CLASSES  # noqa: E40
 logger = logging.getLogger(__name__)
 
 DEFAULT_DATA_DIR = r"C:\FederatedLearning\AFSIC-IOV\data\100client"
-DEFAULT_OUT_DIR = r"C:\FederatedLearning\Rebuild-IOV\P2-FEDIOV\out"
+DEFAULT_OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out")
 
 
 # ----------------------------------------------------------------------------
@@ -67,12 +67,75 @@ def multi_krum_select(updates: List[np.ndarray], n_byz: int, m: int) -> Tuple[Li
     return chosen, scores
 
 
+def topsis_rank(updates: List[np.ndarray], mode: str = "consistency",
+                param_weights=None):
+    """TOPSIS tren cac ban cap nhat model — TANG MOT cua duong ong trong bai.
+
+    Heidari et al., FGCS 181 (2026): "a two-stage aggregation pipeline that uses
+    TOPSIS-based dimensionality reduction and Multi-Krum".
+
+        Eq. (7)  m_ij = m_ij / sqrt( SUM_i m_ij^2 )      (chuan hoa theo cot)
+        Eq. (8)  w_ij = w_j * m_ij
+        C_i = S-_i / (S+_i + S-_i)
+
+    HAI CACH DOC, va chung cho ket qua NGUOC NHAU:
+
+    mode="literal"  — ap Eq. 7,8 thang len THAM SO THO nhu chu viet.
+        Do thuc nghiem (20 client, 4 bi dau doc bien do gap 8 lan):
+            C_i client that = 0.0525 | C_i client DOC = 0.7443
+            client doc chiem max o 500/500 chieu -> chinh no LA nghiem ly tuong
+            giu top-K theo C_i  =>  bat duoc 0/4 client doc
+        Tuc la lam dung chu thi TOPSIS GIU LAI ke tan cong va vut client that.
+
+    mode="consistency" (MAC DINH) — bam theo Y DINH ma bai mo ta bang loi:
+        "ranking the incoming model updates based on their QUALITY AND
+        CONSISTENCY" va "outlier ... lower similarity scores Ci ... reject".
+        Tieu chi khong phai tung tham so ma la ba do do nhat quan:
+            c1 = ||u_i - trung vi||          (chi phi: cang thap cang tot)
+            c2 = | ||u_i|| - trung vi chuan | (chi phi)
+            c3 = cosine(u_i, trung binh)      (loi ich: cang cao cang tot)
+        Eq. 7,8 van duoc ap len ma tran tieu chi nay.
+
+    Chon mode="literal" de tai hien y nguyen cong thuc; mode="consistency" de
+    co hanh vi khop voi phan mo ta. Khac biet nay PHAI ghi trong bao cao.
+    """
+    M = np.stack(updates).astype(np.float64)                 # (N, D)
+    if mode == "literal":
+        crit = M
+        loi_ich = np.ones(M.shape[1], dtype=bool)            # coi tat ca la benefit
+    else:
+        med = np.median(M, axis=0)
+        mean = M.mean(axis=0)
+        nrm = np.linalg.norm(M, axis=1)
+        cos = (M @ mean) / (nrm * np.linalg.norm(mean) + 1e-12)
+        crit = np.column_stack([
+            np.linalg.norm(M - med, axis=1),                 # c1 chi phi
+            np.abs(nrm - np.median(nrm)),                    # c2 chi phi
+            cos,                                             # c3 loi ich
+        ])
+        loi_ich = np.array([False, False, True])
+
+    col = np.linalg.norm(crit, axis=0)                       # Eq. (7)
+    col[col == 0.0] = 1.0
+    Mn = crit / col
+    w = (np.full(crit.shape[1], 1.0 / crit.shape[1]) if param_weights is None
+         else np.asarray(param_weights, dtype=np.float64))
+    W = Mn * w                                               # Eq. (8)
+    # tieu chi loi ich: ly tuong = max; tieu chi chi phi: ly tuong = min
+    a_plus = np.where(loi_ich, W.max(axis=0), W.min(axis=0))
+    a_minus = np.where(loi_ich, W.min(axis=0), W.max(axis=0))
+    s_plus = np.linalg.norm(W - a_plus, axis=1)
+    s_minus = np.linalg.norm(W - a_minus, axis=1)
+    return s_minus / (s_plus + s_minus + 1e-12)
+
+
 class MultiKrumStrategy(fl.server.strategy.FedAvg):
     """FedAvg + loc Byzantine bang Multi-Krum + checkpoint moi round."""
 
     def __init__(self, model, ckpt_dir: str, start_round: int = 0,
                  krum_m: int = 5, n_byzantine: int = 2, use_krum: bool = True,
-                 **kwargs):
+                 use_topsis: bool = True, topsis_keep: float = 0.8,
+                 topsis_mode: str = "consistency", **kwargs):
         super().__init__(**kwargs)
         self.model = model
         self.ckpt_dir = ckpt_dir
@@ -80,6 +143,9 @@ class MultiKrumStrategy(fl.server.strategy.FedAvg):
         self.krum_m = krum_m
         self.n_byzantine = n_byzantine
         self.use_krum = use_krum
+        self.use_topsis = use_topsis
+        self.topsis_keep = topsis_keep
+        self.topsis_mode = topsis_mode
 
     def aggregate_fit(
         self,
@@ -95,6 +161,28 @@ class MultiKrumStrategy(fl.server.strategy.FedAvg):
         metrics: Dict[str, Scalar] = {}
         kept = results
 
+        # ---- TANG 1: loc bang TOPSIS (Eq. 7, 8) ----
+        if self.use_topsis and len(results) > 2:
+            flats0 = [flatten(parameters_to_ndarrays(r.parameters)) for _, r in results]
+            ci = topsis_rank(flats0, self.topsis_mode)
+            k = max(2, int(round(self.topsis_keep * len(results))))
+            keep_idx = sorted(np.argsort(-ci)[:k].tolist())
+            flagged0 = [i for i, (_, r) in enumerate(results)
+                        if r.metrics.get("attack", "none") != "none"]
+            bo = set(range(len(results))) - set(keep_idx)
+            metrics["topsis_kept"] = len(keep_idx)
+            metrics["topsis_ci_min"] = float(ci.min())
+            metrics["topsis_ci_max"] = float(ci.max())
+            if flagged0:
+                metrics["topsis_catch_rate"] = len(set(flagged0) & bo) / len(flagged0)
+            bat = (f" | bat {len(set(flagged0) & bo)}/{len(flagged0)} client doc"
+                   if flagged0 else "")
+            logger.info(f"[Round {server_round}] TOPSIS giu {len(keep_idx)}/"
+                        f"{len(results)} | C_i {ci.min():.4f}..{ci.max():.4f}{bat}")
+            results = [results[i] for i in keep_idx]
+            kept = results
+
+        # ---- TANG 2: Multi-Krum ----
         if self.use_krum and len(results) > 2:
             ndarrays = [parameters_to_ndarrays(r.parameters) for _, r in results]
             chosen, scores = multi_krum_select(
@@ -180,6 +268,16 @@ def main():
     p = argparse.ArgumentParser(description="P2 FedIoV Flower server (Multi-Krum)")
     p.add_argument("--mode", choices=["train", "resume", "test"], default="train")
     p.add_argument("--strategy", choices=["multikrum", "fedavg"], default="multikrum")
+    p.add_argument("--no-topsis", action="store_true",
+                   help="Tat tang loc TOPSIS (chi con Multi-Krum) — de do dong "
+                        "gop cua tung tang")
+    p.add_argument("--topsis-mode", choices=["consistency", "literal"],
+                   default="consistency",
+                   help="literal = ap Eq.7,8 thang len tham so tho (dung chu bai, "
+                        "nhung do duoc la GIU LAI ke tan cong). consistency = theo "
+                        "y dinh mo ta bang loi")
+    p.add_argument("--topsis-keep", type=float, default=0.8,
+                   help="Ty le update giu lai sau TOPSIS")
     p.add_argument("--rounds", type=int, default=30)
     p.add_argument("--num-clients", type=int, default=10)
     p.add_argument("--fraction-fit", type=float, default=1.0)

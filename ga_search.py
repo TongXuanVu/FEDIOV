@@ -39,17 +39,27 @@ from model_kanconv import KANConvNet, INPUT_LEN, NUM_GLOBAL_CLASSES  # noqa: E40
 logger = logging.getLogger(__name__)
 
 DEFAULT_DATA_DIR = r"C:\FederatedLearning\AFSIC-IOV\data\100client"
-DEFAULT_OUT_DIR = r"C:\FederatedLearning\Rebuild-IOV\P2-FEDIOV\out"
+DEFAULT_OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out")
 
 # Khong gian tim kiem: moi gene la chi so vao danh sach ben duoi
+# Bang 3 cua bai (Heidari et al., FGCS 181 (2026) 108448) — chep NGUYEN VAN.
+# Ban truoc dung gia tri tu nghi, khong mot con so nao trung voi bai.
 SPACE = {
-    "lr":           [1e-4, 3e-4, 5e-4, 1e-3, 3e-3],
-    "batch_size":   [64, 128, 256, 512],
-    "dropout":      [0.0, 0.1, 0.15, 0.25, 0.35],
-    "width":        [(8, 16), (16, 32), (24, 48), (32, 64)],
-    "grid_size":    [3, 5, 8, 12],
-    "spline_order": [2, 3, 4],
+    "lr":            [0.00005, 0.0005, 0.005, 0.02, 0.05],      # alpha
+    "batch_size":    [12, 24, 48, 96, 192],                     # beta
+    "epochs":        [3, 7, 15, 30, 60],                        # e
+    "momentum":      [0.2, 0.6, 0.85, 0.95, 0.998],             # mu
+    "dropout":       [0.02, 0.08, 0.25, 0.45, 0.65],            # delta
+    "optimizer":     ["AdamW", "RMSprop", "AdaDelta", "SGD", "Nadam"],   # omega
+    "l2":            [0.00005, 0.0005, 0.005, 0.05],            # lambda
+    "personal_coef": [0.15, 0.35, 0.55, 0.75, 0.95],            # alpha (local)
+    # Bai KHONG cho width / grid_size trong Bang 3 -> giu lai nhu tham so cua ta
+    "width":         [(8, 16), (16, 32), (24, 48), (32, 64)],
+    "grid_size":     [3, 5, 8, 12],
 }
+# Pc, Pm cua Bang 3 la tham so CUA GA, khong phai gen -> dat o dong lenh
+PC_VALUES = [0.65, 0.75, 0.85]
+PM_VALUES = [0.02, 0.06, 0.12]
 GENES = list(SPACE.keys())
 
 
@@ -87,9 +97,23 @@ def evaluate_individual(ind, data, device, proxy_epochs, seed):
     torch.manual_seed(seed)
 
     model = KANConvNet(INPUT_LEN, NUM_GLOBAL_CLASSES, hp["dropout"],
-                       hp["width"], hp["grid_size"], hp["spline_order"]).to(device)
+                       hp["width"], hp["grid_size"], 3, "fourier").to(device)
     crit = FocalLoss(alpha=C.make_focal_alpha(ytr).to(device), gamma=2.0)
-    opt = optim.Adam(model.parameters(), lr=hp["lr"])
+    ten_opt = hp.get("optimizer", "AdamW")
+    l2 = hp.get("l2", 0.0)
+    mo = hp.get("momentum", 0.9)
+    if ten_opt == "AdamW":
+        opt = optim.AdamW(model.parameters(), lr=hp["lr"], weight_decay=l2)
+    elif ten_opt == "RMSprop":
+        opt = optim.RMSprop(model.parameters(), lr=hp["lr"], momentum=mo,
+                            weight_decay=l2)
+    elif ten_opt == "AdaDelta":
+        opt = optim.Adadelta(model.parameters(), lr=hp["lr"], weight_decay=l2)
+    elif ten_opt == "SGD":
+        opt = optim.SGD(model.parameters(), lr=hp["lr"], momentum=mo,
+                        weight_decay=l2)
+    else:                                    # Nadam
+        opt = optim.NAdam(model.parameters(), lr=hp["lr"], weight_decay=l2)
     tr_loader = C.make_loader(xtr, ytr, hp["batch_size"], shuffle=True)
     va_loader = C.make_loader(xva, yva, 4096, shuffle=False)
 
@@ -205,10 +229,15 @@ def main():
     with open(path, "w", encoding="utf-8") as f:
         json.dump(out, f, indent=2)
     logger.info(f"Tot nhat: macro_f1={best_fit:.4f} | {hp}\nLuu -> {path}")
-    logger.info("Dung cho server/client:  --lr %s --batch-size %s --dropout %s "
-                "--width %d %d --grid-size %s --spline-order %s"
-                % (hp["lr"], hp["batch_size"], hp["dropout"], hp["width"][0],
-                   hp["width"][1], hp["grid_size"], hp["spline_order"]))
+    logger.info(
+        "Dung cho main.py:  --lr %s --batch_size %s --local_ep %s --dropout %s "
+        "--width %d %d --grid_size %s"
+        % (hp["lr"], hp["batch_size"], hp.get("epochs", 1), hp["dropout"],
+           hp["width"][0], hp["width"][1], hp["grid_size"]))
+    logger.info("Gen chi dung trong GA (chua noi vao main.py): optimizer=%s "
+                "momentum=%s l2=%s personal_coef=%s"
+                % (hp.get("optimizer"), hp.get("momentum"), hp.get("l2"),
+                   hp.get("personal_coef")))
 
 
 if __name__ == "__main__":

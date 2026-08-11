@@ -182,6 +182,10 @@ def main():
     p.add_argument("--krum-m", type=int, default=5)
     p.add_argument("--byzantine", type=int, default=2)
     p.add_argument("--strategy", choices=["multikrum", "fedavg"], default="multikrum")
+    p.add_argument("--no-topsis", action="store_true")
+    p.add_argument("--topsis-mode", choices=["consistency", "literal"],
+                   default="consistency")
+    p.add_argument("--topsis-keep", type=float, default=0.8)
     p.add_argument("--attack-ids", type=int, nargs="*", default=[],
                    help="Client id bi bien thanh doc hai, de kiem chung Multi-Krum")
     p.add_argument("--attack", choices=["none", "signflip", "gauss", "label"],
@@ -287,6 +291,9 @@ def main():
                                     csv_file, args.out_dir, class_names, remaining,
                                     start_round, task, args.cm_every)
             strategy = S.MultiKrumStrategy(
+                use_topsis=not args.no_topsis,
+                topsis_mode=args.topsis_mode,
+                topsis_keep=args.topsis_keep,
                 krum_m=args.krum_m, n_byzantine=args.byzantine,
                 use_krum=(args.strategy == "multikrum"), evaluate_fn=ev, **common_kw)
         elif IS_P4:

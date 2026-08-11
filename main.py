@@ -57,6 +57,13 @@ def main():
     # --- tong hop ben vung ---
     p.add_argument("--strategy", choices=["multikrum", "fedavg"],
                    default="multikrum", help="multikrum = dung bai")
+    p.add_argument("--no_topsis", action="store_true",
+                   help="Tat tang loc TOPSIS, chi con Multi-Krum")
+    p.add_argument("--topsis_mode", choices=["consistency", "literal"],
+                   default="consistency",
+                   help="literal = dung chu Eq.7,8 (do duoc: GIU LAI ke tan cong). "
+                        "consistency = theo y dinh mo ta bang loi (mac dinh)")
+    p.add_argument("--topsis_keep", type=float, default=0.8)
     p.add_argument("--krum_m", type=int, default=5)
     p.add_argument("--byzantine", type=int, default=2,
                    help="So client doc ma Multi-Krum gia dinh")
@@ -95,6 +102,8 @@ def main():
         "--width", str(a.width[0]), str(a.width[1]),
         "--grid-size", str(a.grid_size),
         "--strategy", a.strategy,
+        "--topsis-mode", a.topsis_mode,
+        "--topsis-keep", str(a.topsis_keep),
         "--krum-m", str(a.krum_m),
         "--byzantine", str(a.byzantine),
         "--attack", a.attack,
@@ -102,6 +111,8 @@ def main():
         "--actor-gpus", str(a.actor_gpus),
         "--actor-cpus", str(a.actor_cpus),
     ]
+    if a.no_topsis:
+        argv.append("--no-topsis")
     if a.attack_ids:
         argv += ["--attack-ids"] + [str(i) for i in a.attack_ids]
     if a.restart:
@@ -117,7 +128,9 @@ def main():
              else "B-spline (ban cu, KHONG theo bai)")
     print(f"  KANConvNet: co so {co_so}, width={tuple(a.width)}, "
           f"grid={a.grid_size}")
-    print(f"  tong hop  : {a.strategy}"
+    tang1 = "tat" if a.no_topsis else f"TOPSIS ({a.topsis_mode}, giu {a.topsis_keep:.0%})"
+    print(f"  tong hop  : hai tang | tang 1 = {tang1}")
+    print(f"              tang 2 = {a.strategy}"
           f"{f' (m={a.krum_m}, byzantine={a.byzantine})' if a.strategy == 'multikrum' else ''}")
     if a.attack != "none":
         print(f"  TAN CONG  : {a.attack} tren client {a.attack_ids or 'chua chi dinh'}")
