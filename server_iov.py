@@ -401,6 +401,9 @@ def main():
     p.add_argument("--clusters", type=int, default=0,
                    help="|C| cua Eq.14. 0 = tu tinh round(sqrt(N)). 1 = mot cum "
                         "(Multi-Krum phang, KHONG theo Eq.14)")
+    p.add_argument("--local-eval", action="store_true",
+                   help="Hoi client do do chinh xac CUC BO moi round (thuoc do "
+                        "cua Eq.15). Client phai chay voi --local-val > 0")
     p.add_argument("--rounds", type=int, default=30)
     p.add_argument("--num-clients", type=int, default=10)
     p.add_argument("--fraction-fit", type=float, default=1.0)
@@ -470,10 +473,16 @@ def main():
         krum_m=args.krum_m,
         n_byzantine=args.byzantine,
         use_krum=(args.strategy == "multikrum"),
+        # BA CO NAY TRUOC DAY KHONG DUOC TRUYEN VAO -> --no-topsis,
+        # --topsis-mode, --topsis-keep bi bo qua AM THAM o duong gRPC
+        # (chi duong simulation moi doc chung).
+        use_topsis=not args.no_topsis,
+        topsis_mode=args.topsis_mode,
+        topsis_keep=args.topsis_keep,
         fraction_fit=args.fraction_fit,
-        fraction_evaluate=0.0,
+        fraction_evaluate=1.0 if args.local_eval else 0.0,
         min_fit_clients=max(1, int(args.num_clients * args.fraction_fit)),
-        min_evaluate_clients=0,
+        min_evaluate_clients=args.num_clients if args.local_eval else 0,
         min_available_clients=args.num_clients,
         initial_parameters=ndarrays_to_parameters(C.get_model_parameters(model)),
         n_clusters=args.clusters,
