@@ -1,0 +1,340 @@
+2026-08-18 03:56:50,700 - INFO - Thiet bi: cuda | pool 100 client | 30 round/task | Flower simulation (Ray)
+2026-08-18 03:56:50,700 - INFO - Client co du lieu tung task: task0=50, task1=60, task2=70, task3=80, task4=100
+2026-08-18 03:56:51,008 - INFO - Nap global test: /kaggle/input/datasets/tongxuanvu/100clientiov/global_test_data.pt
+2026-08-18 03:57:08,706 - INFO - Global test goc: n=42048683
+2026-08-18 03:57:10,417 - INFO - Task 0: loc ve lop 0-2 -> n=41858134
+2026-08-18 03:57:10,417 - INFO - Danh gia moi round tren n=41858134 mau (dtype=float16)
+2026-08-18 03:57:10,420 - INFO - ===== Task 0: 50 client, 30 round =====
+2026-08-18 03:57:12,434 - INFO - setup plugin alembic.autogenerate.schemas
+2026-08-18 03:57:12,434 - INFO - setup plugin alembic.autogenerate.tables
+2026-08-18 03:57:12,434 - INFO - setup plugin alembic.autogenerate.types
+2026-08-18 03:57:12,434 - INFO - setup plugin alembic.autogenerate.constraints
+2026-08-18 03:57:12,434 - INFO - setup plugin alembic.autogenerate.defaults
+2026-08-18 03:57:12,434 - INFO - setup plugin alembic.autogenerate.comments
+2026-08-18 03:57:27,543 - WARNING - DEPRECATED FEATURE: flwr.simulation.start_simulation() is deprecated.
+	Instead, use the `flwr run` CLI command to start a local simulation in your Flower app, as shown for example below:
+
+		$ flwr new  # Create a new Flower app from a template
+
+		$ flwr run  # Run the Flower app in Simulation Mode
+
+	Using `start_simulation()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+2026-08-18 03:57:27,544 - INFO - Starting Flower simulation, config: num_rounds=30, no round_timeout
+2026-08-18 03:57:36,935 - INFO - Flower VCE: Ray initialized with resources: {'accelerator_type:T4': 1.0, 'CPU': 4.0, 'GPU': 2.0, 'memory': 19751243367.0, 'node:__internal_head__': 1.0, 'node:172.19.2.2': 1.0, 'object_store_memory': 8464818585.0}
+2026-08-18 03:57:36,935 - INFO - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+2026-08-18 03:57:36,935 - INFO - Flower VCE: Resources for each Virtual Client: {'num_cpus': 1.0, 'num_gpus': 0.5}
+2026-08-18 03:57:36,966 - INFO - Flower VCE: Creating VirtualClientEngineActorPool with 4 actors
+2026-08-18 03:57:36,967 - INFO - [INIT]
+2026-08-18 03:57:36,967 - INFO - Using initial global parameters provided by strategy
+2026-08-18 03:57:36,967 - INFO - Starting evaluation of initial global parameters
+2026-08-18 03:57:36,972 - INFO - Evaluation returned no results (`None`)
+2026-08-18 03:57:36,972 - INFO - 
+2026-08-18 03:57:36,972 - INFO - [ROUND 1]
+2026-08-18 03:57:36,973 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 04:14:58,732 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 04:14:58,837 - INFO - [Round 1] TOPSIS giu 40/50 | C_i 0.1826..0.9970
+2026-08-18 04:14:58,899 - INFO - [Round 1] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 04:14:58,916 - INFO - [Round 1] 6 cum (Eq.14) | giu 30/40 update | diem Krum 8.933e+00..5.779e+07
+2026-08-18 04:14:58,922 - INFO - [Round 1] luu checkpoint -> out_full/checkpoints/round_001.pth
+2026-08-18 04:29:00,719 - INFO - [Round 1] loss=2.0041 acc=0.9962 | micro P/R/F1=0.9962/0.9962/0.9962 | macro P/R/F1=0.3321/0.3333/0.3327 | weighted P/R/F1=0.9925/0.9962/0.9944
+2026-08-18 04:29:00,721 - INFO - fit progress: (1, 2.004085037001425, {'accuracy': 0.9962362870738576, 'micro_precision': 0.9962362870738576, 'micro_recall': 0.9962362870738576, 'micro_f1': 0.9962362870738576, 'macro_precision': 0.33207876235795253, 'macro_recall': 0.3333333333333333, 'macro_f1': 0.33270486515874675, 'weighted_precision': 0.9924867396827056, 'weighted_recall': 0.9962362870738576, 'weighted_f1': 0.994357978671475}, 1883.7488287980002)
+2026-08-18 04:29:00,721 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 04:29:00,721 - INFO - 
+2026-08-18 04:29:00,721 - INFO - [ROUND 2]
+2026-08-18 04:29:00,722 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 04:45:33,312 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 04:45:33,393 - INFO - [Round 2] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 04:45:33,446 - INFO - [Round 2] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 04:45:33,459 - INFO - [Round 2] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.122e+01..1.933e+07
+2026-08-18 04:45:33,464 - INFO - [Round 2] luu checkpoint -> out_full/checkpoints/round_002.pth
+2026-08-18 04:59:31,633 - INFO - [Round 2] loss=1.3372 acc=0.9784 | micro P/R/F1=0.9784/0.9784/0.9784 | macro P/R/F1=0.3321/0.3274/0.3297 | weighted P/R/F1=0.9924/0.9784/0.9853
+2026-08-18 04:59:31,634 - INFO - fit progress: (2, 1.3372454242580325, {'accuracy': 0.9783545773922937, 'micro_precision': 0.9783545773922937, 'micro_recall': 0.9783545773922937, 'micro_f1': 0.9783545773922937, 'macro_precision': 0.3320559200240119, 'macro_recall': 0.3273502448118722, 'macro_f1': 0.32968629202350613, 'weighted_precision': 0.9924184705968462, 'weighted_recall': 0.9783545773922937, 'weighted_f1': 0.9853363423939359}, 3714.6619007279996)
+2026-08-18 04:59:31,634 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 04:59:31,634 - INFO - 
+2026-08-18 04:59:31,634 - INFO - [ROUND 3]
+2026-08-18 04:59:31,634 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 05:17:27,943 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 05:17:28,024 - INFO - [Round 3] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 05:17:28,077 - INFO - [Round 3] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 05:17:28,089 - INFO - [Round 3] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.151e+01..1.933e+07
+2026-08-18 05:17:28,094 - INFO - [Round 3] luu checkpoint -> out_full/checkpoints/round_003.pth
+2026-08-18 05:31:27,148 - INFO - [Round 3] loss=0.6882 acc=0.8759 | micro P/R/F1=0.8759/0.8759/0.8759 | macro P/R/F1=0.3330/0.3252/0.3131 | weighted P/R/F1=0.9924/0.8759/0.9303
+2026-08-18 05:31:27,150 - INFO - fit progress: (3, 0.6881992778024562, {'accuracy': 0.8759041671566152, 'micro_precision': 0.8759041671566152, 'micro_recall': 0.8759041671566152, 'micro_f1': 0.8759041671566152, 'macro_precision': 0.33296004099039633, 'macro_recall': 0.32524723440186887, 'macro_f1': 0.3130739865090302, 'weighted_precision': 0.9923652620601467, 'weighted_recall': 0.8759041671566152, 'weighted_f1': 0.9303297694537158}, 5630.177745234)
+2026-08-18 05:31:27,150 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 05:31:27,150 - INFO - 
+2026-08-18 05:31:27,150 - INFO - [ROUND 4]
+2026-08-18 05:31:27,150 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 05:48:04,461 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 05:48:04,543 - INFO - [Round 4] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 05:48:04,599 - INFO - [Round 4] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 05:48:04,612 - INFO - [Round 4] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.176e+01..1.933e+07
+2026-08-18 05:48:04,618 - INFO - [Round 4] luu checkpoint -> out_full/checkpoints/round_004.pth
+2026-08-18 06:02:08,255 - INFO - [Round 4] loss=0.3858 acc=0.9957 | micro P/R/F1=0.9957/0.9957/0.9957 | macro P/R/F1=0.4636/0.4224/0.4391 | weighted P/R/F1=0.9948/0.9957/0.9952
+2026-08-18 06:02:08,256 - INFO - fit progress: (4, 0.38580870693385483, {'accuracy': 0.9957330873851185, 'micro_precision': 0.9957330873851185, 'micro_recall': 0.9957330873851185, 'micro_f1': 0.9957330873851185, 'macro_precision': 0.46362178032556917, 'macro_recall': 0.4224447230649571, 'macro_f1': 0.4391065947144552, 'weighted_precision': 0.9947734604458097, 'weighted_recall': 0.9957330873851185, 'weighted_f1': 0.9952119446936095}, 7471.284055105999)
+2026-08-18 06:02:08,256 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 06:02:08,256 - INFO - 
+2026-08-18 06:02:08,256 - INFO - [ROUND 5]
+2026-08-18 06:02:08,257 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 06:18:51,213 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 06:18:51,295 - INFO - [Round 5] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 06:18:51,350 - INFO - [Round 5] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 06:18:51,362 - INFO - [Round 5] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.159e+01..1.933e+07
+2026-08-18 06:18:51,367 - INFO - [Round 5] luu checkpoint -> out_full/checkpoints/round_005.pth
+2026-08-18 06:32:52,269 - INFO - [Round 5] loss=0.6286 acc=0.6730 | micro P/R/F1=0.6730/0.6730/0.6730 | macro P/R/F1=0.3349/0.4446/0.2726 | weighted P/R/F1=0.9941/0.6730/0.8011
+2026-08-18 06:32:55,070 - INFO - Luu out_full/confusion_matrix_task0.csv
+2026-08-18 06:32:55,070 - INFO - Luu out_full/confusion_matrix_task0_normalized.csv
+2026-08-18 06:33:04,231 - INFO - Luu out_full/classification_report_task0.txt
+              precision    recall  f1-score   support
+
+      Benign     0.9978    0.6733    0.8040  41700592
+         DoS     0.0070    0.6604    0.0138    145129
+      double     0.0000    0.0000    0.0000     12413
+
+    accuracy                         0.6730  41858134
+   macro avg     0.3349    0.4446    0.2726  41858134
+weighted avg     0.9941    0.6730    0.8011  41858134
+
+2026-08-18 06:33:04,417 - INFO - Luu out_full/confusion_matrix_task0.png
+2026-08-18 06:33:04,418 - INFO - fit progress: (5, 0.6286195687410183, {'accuracy': 0.6730385305756821, 'micro_precision': 0.6730385305756821, 'micro_recall': 0.6730385305756821, 'micro_f1': 0.6730385305756821, 'macro_precision': 0.33493791644441195, 'macro_recall': 0.4445673809415915, 'macro_f1': 0.27262179301056066, 'weighted_precision': 0.9940969446918818, 'weighted_recall': 0.6730385305756821, 'weighted_f1': 0.8010623919818436}, 9327.446388547001)
+2026-08-18 06:33:04,419 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 06:33:04,419 - INFO - 
+2026-08-18 06:33:04,419 - INFO - [ROUND 6]
+2026-08-18 06:33:04,419 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 06:49:44,663 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 06:49:44,747 - INFO - [Round 6] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 06:49:44,804 - INFO - [Round 6] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 06:49:44,817 - INFO - [Round 6] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.189e+01..1.933e+07
+2026-08-18 06:49:44,822 - INFO - [Round 6] luu checkpoint -> out_full/checkpoints/round_006.pth
+2026-08-18 07:03:47,616 - INFO - [Round 6] loss=0.3426 acc=0.9138 | micro P/R/F1=0.9138/0.9138/0.9138 | macro P/R/F1=0.3396/0.4790/0.3318 | weighted P/R/F1=0.9942/0.9138/0.9515
+2026-08-18 07:03:47,618 - INFO - fit progress: (6, 0.3426245431100436, {'accuracy': 0.9138233204566644, 'micro_precision': 0.9138233204566644, 'micro_recall': 0.9138233204566644, 'micro_f1': 0.9138233204566644, 'macro_precision': 0.3396410542557125, 'macro_recall': 0.47900344877539475, 'macro_f1': 0.3317663530207799, 'weighted_precision': 0.9942330528913854, 'weighted_recall': 0.9138233204566644, 'weighted_f1': 0.9514576568579216}, 11170.645641708)
+2026-08-18 07:03:47,618 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 07:03:47,618 - INFO - 
+2026-08-18 07:03:47,618 - INFO - [ROUND 7]
+2026-08-18 07:03:47,618 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 07:21:30,363 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 07:21:30,450 - INFO - [Round 7] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 07:21:30,505 - INFO - [Round 7] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 07:21:30,518 - INFO - [Round 7] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.207e+01..1.933e+07
+2026-08-18 07:21:30,523 - INFO - [Round 7] luu checkpoint -> out_full/checkpoints/round_007.pth
+2026-08-18 07:35:31,858 - INFO - [Round 7] loss=0.5736 acc=0.6986 | micro P/R/F1=0.6986/0.6986/0.6986 | macro P/R/F1=0.3349/0.4375/0.2787 | weighted P/R/F1=0.9939/0.6986/0.8191
+2026-08-18 07:35:31,859 - INFO - fit progress: (7, 0.5735971692606894, {'accuracy': 0.6985695301180889, 'micro_precision': 0.6985695301180889, 'micro_recall': 0.6985695301180889, 'micro_f1': 0.6985695301180889, 'macro_precision': 0.33490769605908866, 'macro_recall': 0.43751617773062135, 'macro_f1': 0.27867670265314387, 'weighted_precision': 0.9939479608546478, 'weighted_recall': 0.6985695301180889, 'weighted_f1': 0.8190550479995671}, 13074.886936183)
+2026-08-18 07:35:31,859 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 07:35:31,859 - INFO - 
+2026-08-18 07:35:31,859 - INFO - [ROUND 8]
+2026-08-18 07:35:31,860 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 07:52:46,617 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 07:52:46,698 - INFO - [Round 8] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 07:52:46,752 - INFO - [Round 8] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 07:52:46,765 - INFO - [Round 8] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.203e+01..1.933e+07
+2026-08-18 07:52:46,770 - INFO - [Round 8] luu checkpoint -> out_full/checkpoints/round_008.pth
+2026-08-18 08:06:47,082 - INFO - [Round 8] loss=0.3093 acc=0.9161 | micro P/R/F1=0.9161/0.9161/0.9161 | macro P/R/F1=0.3406/0.4970/0.3338 | weighted P/R/F1=0.9944/0.9161/0.9527
+2026-08-18 08:06:47,083 - INFO - fit progress: (8, 0.30926024860131995, {'accuracy': 0.9161015156576259, 'micro_precision': 0.9161015156576259, 'micro_recall': 0.9161015156576259, 'micro_f1': 0.9161015156576259, 'macro_precision': 0.3405798605291864, 'macro_recall': 0.49704168206459975, 'macro_f1': 0.3338450727697955, 'weighted_precision': 0.9944345816739613, 'weighted_recall': 0.9161015156576259, 'weighted_f1': 0.9527033441822332}, 14950.111017471001)
+2026-08-18 08:06:47,083 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 08:06:47,083 - INFO - 
+2026-08-18 08:06:47,083 - INFO - [ROUND 9]
+2026-08-18 08:06:47,084 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 08:24:34,160 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 08:24:34,241 - INFO - [Round 9] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 08:24:34,295 - INFO - [Round 9] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 08:24:34,307 - INFO - [Round 9] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.219e+01..1.933e+07
+2026-08-18 08:24:34,312 - INFO - [Round 9] luu checkpoint -> out_full/checkpoints/round_009.pth
+2026-08-18 08:38:42,055 - INFO - [Round 9] loss=0.5747 acc=0.6907 | micro P/R/F1=0.6907/0.6907/0.6907 | macro P/R/F1=0.3340/0.3834/0.2756 | weighted P/R/F1=0.9931/0.6907/0.8136
+2026-08-18 08:38:42,057 - INFO - fit progress: (9, 0.5746638747241982, {'accuracy': 0.6906508063641824, 'micro_precision': 0.6906508063641824, 'micro_recall': 0.6906508063641824, 'micro_f1': 0.6906508063641824, 'macro_precision': 0.33400841478865634, 'macro_recall': 0.38335458950550233, 'macro_f1': 0.2756223024216472, 'weighted_precision': 0.9931439628757802, 'weighted_recall': 0.6906508063641824, 'weighted_f1': 0.8136484058647964}, 16865.084884484)
+2026-08-18 08:38:42,057 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 08:38:42,057 - INFO - 
+2026-08-18 08:38:42,057 - INFO - [ROUND 10]
+2026-08-18 08:38:42,058 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 08:55:08,815 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 08:55:08,899 - INFO - [Round 10] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 08:55:08,956 - INFO - [Round 10] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 08:55:08,969 - INFO - [Round 10] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.208e+01..1.933e+07
+2026-08-18 08:55:08,974 - INFO - [Round 10] luu checkpoint -> out_full/checkpoints/round_010.pth
+2026-08-18 09:09:24,227 - INFO - [Round 10] loss=0.2548 acc=0.9466 | micro P/R/F1=0.9466/0.9466/0.9466 | macro P/R/F1=0.3446/0.5002/0.3466 | weighted P/R/F1=0.9944/0.9466/0.9691
+2026-08-18 09:09:27,053 - INFO - Luu out_full/confusion_matrix_task0.csv
+2026-08-18 09:09:27,054 - INFO - Luu out_full/confusion_matrix_task0_normalized.csv
+2026-08-18 09:09:35,361 - INFO - Luu out_full/classification_report_task0.txt
+              precision    recall  f1-score   support
+
+      Benign     0.9981    0.9482    0.9725  41700592
+         DoS     0.0358    0.5523    0.0672    145129
+      double     0.0000    0.0000    0.0000     12413
+
+    accuracy                         0.9466  41858134
+   macro avg     0.3446    0.5002    0.3466  41858134
+weighted avg     0.9944    0.9466    0.9691  41858134
+
+2026-08-18 09:09:35,486 - INFO - Luu out_full/confusion_matrix_task0.png
+2026-08-18 09:09:35,487 - INFO - fit progress: (10, 0.2547954372106641, {'accuracy': 0.9465661799448585, 'micro_precision': 0.9465661799448585, 'micro_recall': 0.9465661799448585, 'micro_f1': 0.9465661799448585, 'macro_precision': 0.34461604821745745, 'macro_recall': 0.5001739443208991, 'macro_f1': 0.3465698713743485, 'weighted_precision': 0.9944375336100784, 'weighted_recall': 0.9465661799448585, 'weighted_f1': 0.9690793826962586}, 18718.515451314)
+2026-08-18 09:09:35,488 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 09:09:35,488 - INFO - 
+2026-08-18 09:09:35,488 - INFO - [ROUND 11]
+2026-08-18 09:09:35,488 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 09:26:54,026 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 09:26:54,113 - INFO - [Round 11] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 09:26:54,168 - INFO - [Round 11] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 09:26:54,182 - INFO - [Round 11] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.233e+01..1.933e+07
+2026-08-18 09:26:54,187 - INFO - [Round 11] luu checkpoint -> out_full/checkpoints/round_011.pth
+2026-08-18 09:41:07,530 - INFO - [Round 11] loss=0.4292 acc=0.7628 | micro P/R/F1=0.7628/0.7628/0.7628 | macro P/R/F1=0.3345/0.4020/0.2927 | weighted P/R/F1=0.9934/0.7628/0.8620
+2026-08-18 09:41:07,531 - INFO - fit progress: (11, 0.4291994414793477, {'accuracy': 0.7627918387379619, 'micro_precision': 0.7627918387379619, 'micro_recall': 0.7627918387379619, 'micro_f1': 0.7627918387379619, 'macro_precision': 0.33452424427907274, 'macro_recall': 0.4019695407694836, 'macro_f1': 0.29265804051686717, 'weighted_precision': 0.9933665171730116, 'weighted_recall': 0.7627918387379619, 'weighted_f1': 0.861997329241025}, 20610.559327854)
+2026-08-18 09:41:07,532 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 09:41:07,532 - INFO - 
+2026-08-18 09:41:07,532 - INFO - [ROUND 12]
+2026-08-18 09:41:07,532 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 09:59:13,909 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 09:59:13,996 - INFO - [Round 12] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 09:59:14,051 - INFO - [Round 12] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 09:59:14,063 - INFO - [Round 12] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.221e+01..1.933e+07
+2026-08-18 09:59:14,068 - INFO - [Round 12] luu checkpoint -> out_full/checkpoints/round_012.pth
+2026-08-18 10:13:32,522 - INFO - [Round 12] loss=0.2620 acc=0.9227 | micro P/R/F1=0.9227/0.9227/0.9227 | macro P/R/F1=0.3406/0.4855/0.3352 | weighted P/R/F1=0.9943/0.9227/0.9563
+2026-08-18 10:13:32,523 - INFO - fit progress: (12, 0.26201819946402555, {'accuracy': 0.9227476074303742, 'micro_precision': 0.9227476074303742, 'micro_recall': 0.9227476074303742, 'micro_f1': 0.9227476074303742, 'macro_precision': 0.34061776320900705, 'macro_recall': 0.4855027786047564, 'macro_f1': 0.3351657179383014, 'weighted_precision': 0.9942858622893632, 'weighted_recall': 0.9227476074303742, 'weighted_f1': 0.9563086169430338}, 22555.551269951)
+2026-08-18 10:13:32,523 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 10:13:32,524 - INFO - 
+2026-08-18 10:13:32,524 - INFO - [ROUND 13]
+2026-08-18 10:13:32,524 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 10:30:32,609 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 10:30:32,696 - INFO - [Round 13] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 10:30:32,756 - INFO - [Round 13] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 10:30:32,770 - INFO - [Round 13] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.237e+01..1.933e+07
+2026-08-18 10:30:32,775 - INFO - [Round 13] luu checkpoint -> out_full/checkpoints/round_013.pth
+2026-08-18 10:44:52,056 - INFO - [Round 13] loss=0.5288 acc=0.7112 | micro P/R/F1=0.7112/0.7112/0.7112 | macro P/R/F1=0.3342/0.3904/0.2806 | weighted P/R/F1=0.9932/0.7112/0.8278
+2026-08-18 10:44:52,058 - INFO - fit progress: (13, 0.5288463103065518, {'accuracy': 0.711188511174435, 'micro_precision': 0.711188511174435, 'micro_recall': 0.711188511174435, 'micro_f1': 0.711188511174435, 'macro_precision': 0.334162672007601, 'macro_recall': 0.39036139446878587, 'macro_f1': 0.2806071110110483, 'weighted_precision': 0.9932360891584834, 'weighted_recall': 0.711188511174435, 'weighted_f1': 0.8278254980764393}, 24435.085572348)
+2026-08-18 10:44:52,058 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 10:44:52,058 - INFO - 
+2026-08-18 10:44:52,058 - INFO - [ROUND 14]
+2026-08-18 10:44:52,058 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 11:01:27,480 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 11:01:27,562 - INFO - [Round 14] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 11:01:27,618 - INFO - [Round 14] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 11:01:27,630 - INFO - [Round 14] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.239e+01..1.933e+07
+2026-08-18 11:01:27,635 - INFO - [Round 14] luu checkpoint -> out_full/checkpoints/round_014.pth
+2026-08-18 11:15:40,339 - INFO - [Round 14] loss=0.2024 acc=0.9496 | micro P/R/F1=0.9496/0.9496/0.9496 | macro P/R/F1=0.3446/0.4910/0.3471 | weighted P/R/F1=0.9943/0.9496/0.9707
+2026-08-18 11:15:40,341 - INFO - fit progress: (14, 0.20240251861964653, {'accuracy': 0.9495880776720721, 'micro_precision': 0.9495880776720721, 'micro_recall': 0.9495880776720721, 'micro_f1': 0.9495880776720721, 'macro_precision': 0.3446407992953473, 'macro_recall': 0.4909700734538485, 'macro_f1': 0.3471297235866091, 'weighted_precision': 0.994328127091692, 'weighted_recall': 0.9495880776720721, 'weighted_f1': 0.9706700153952356}, 26283.369071781002)
+2026-08-18 11:15:40,341 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 11:15:40,341 - INFO - 
+2026-08-18 11:15:40,341 - INFO - [ROUND 15]
+2026-08-18 11:15:40,342 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 11:32:06,713 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 11:32:06,797 - INFO - [Round 15] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 11:32:06,853 - INFO - [Round 15] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 11:32:06,865 - INFO - [Round 15] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.269e+01..1.933e+07
+2026-08-18 11:32:06,870 - INFO - [Round 15] luu checkpoint -> out_full/checkpoints/round_015.pth
+2026-08-18 11:46:14,197 - INFO - [Round 15] loss=0.4605 acc=0.7299 | micro P/R/F1=0.7299/0.7299/0.7299 | macro P/R/F1=0.3343/0.3945/0.2850 | weighted P/R/F1=0.9933/0.7299/0.8405
+2026-08-18 11:46:17,001 - INFO - Luu out_full/confusion_matrix_task0.csv
+2026-08-18 11:46:17,001 - INFO - Luu out_full/confusion_matrix_task0_normalized.csv
+2026-08-18 11:46:26,027 - INFO - Luu out_full/classification_report_task0.txt
+              precision    recall  f1-score   support
+
+      Benign     0.9970    0.7311    0.8436  41700592
+         DoS     0.0058    0.4525    0.0115    145129
+      double     0.0000    0.0000    0.0000     12413
+
+    accuracy                         0.7299  41858134
+   macro avg     0.3343    0.3945    0.2850  41858134
+weighted avg     0.9933    0.7299    0.8405  41858134
+
+2026-08-18 11:46:26,147 - INFO - Luu out_full/confusion_matrix_task0.png
+2026-08-18 11:46:26,148 - INFO - fit progress: (15, 0.4604580462343422, {'accuracy': 0.7299081464070998, 'micro_precision': 0.7299081464070998, 'micro_recall': 0.7299081464070998, 'micro_f1': 0.7299081464070998, 'macro_precision': 0.33427982610123225, 'macro_recall': 0.39453515979254394, 'macro_f1': 0.2850298471554686, 'weighted_precision': 0.9932851087789818, 'weighted_recall': 0.7299081464070998, 'weighted_f1': 0.8404581319595278}, 28129.176251354)
+2026-08-18 11:46:26,148 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 11:46:26,149 - INFO - 
+2026-08-18 11:46:26,149 - INFO - [ROUND 16]
+2026-08-18 11:46:26,149 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 12:03:08,880 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 12:03:08,962 - INFO - [Round 16] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 12:03:09,017 - INFO - [Round 16] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 12:03:09,030 - INFO - [Round 16] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.222e+01..1.933e+07
+2026-08-18 12:03:09,035 - INFO - [Round 16] luu checkpoint -> out_full/checkpoints/round_016.pth
+2026-08-18 12:17:13,642 - INFO - [Round 16] loss=0.2458 acc=0.9191 | micro P/R/F1=0.9191/0.9191/0.9191 | macro P/R/F1=0.3401/0.4808/0.3336 | weighted P/R/F1=0.9943/0.9191/0.9544
+2026-08-18 12:17:13,643 - INFO - fit progress: (16, 0.24580611600203406, {'accuracy': 0.919138201430575, 'micro_precision': 0.919138201430575, 'micro_recall': 0.919138201430575, 'micro_f1': 0.919138201430575, 'macro_precision': 0.34010673229739324, 'macro_recall': 0.48078176885296103, 'macro_f1': 0.333582398726052, 'weighted_precision': 0.9942533086216017, 'weighted_recall': 0.919138201430575, 'weighted_f1': 0.9543569873689878}, 29976.671231402)
+2026-08-18 12:17:13,643 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 12:17:13,644 - INFO - 
+2026-08-18 12:17:13,644 - INFO - [ROUND 17]
+2026-08-18 12:17:13,644 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 12:34:13,061 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 12:34:13,141 - INFO - [Round 17] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 12:34:13,201 - INFO - [Round 17] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 12:34:13,214 - INFO - [Round 17] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.245e+01..1.933e+07
+2026-08-18 12:34:13,219 - INFO - [Round 17] luu checkpoint -> out_full/checkpoints/round_017.pth
+2026-08-18 12:49:01,876 - INFO - [Round 17] loss=0.4351 acc=0.7533 | micro P/R/F1=0.7533/0.7533/0.7533 | macro P/R/F1=0.3346/0.4094/0.2907 | weighted P/R/F1=0.9935/0.7533/0.8559
+2026-08-18 12:49:01,877 - INFO - fit progress: (17, 0.4351168125204436, {'accuracy': 0.7533010429944154, 'micro_precision': 0.7533010429944154, 'micro_recall': 0.7533010429944154, 'micro_f1': 0.7533010429944154, 'macro_precision': 0.33462693852401476, 'macro_recall': 0.4093705985127644, 'macro_f1': 0.290730878337569, 'weighted_precision': 0.9934820340457162, 'weighted_recall': 0.7533010429944154, 'weighted_f1': 0.8558528770746783}, 31884.905302863997)
+2026-08-18 12:49:01,878 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 12:49:01,878 - INFO - 
+2026-08-18 12:49:01,878 - INFO - [ROUND 18]
+2026-08-18 12:49:01,878 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 13:07:29,867 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 13:07:29,949 - INFO - [Round 18] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 13:07:30,003 - INFO - [Round 18] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 13:07:30,016 - INFO - [Round 18] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.211e+01..1.933e+07
+2026-08-18 13:07:30,021 - INFO - [Round 18] luu checkpoint -> out_full/checkpoints/round_018.pth
+2026-08-18 13:21:37,207 - INFO - [Round 18] loss=0.1991 acc=0.9472 | micro P/R/F1=0.9472/0.9472/0.9472 | macro P/R/F1=0.3457/0.5149/0.3486 | weighted P/R/F1=0.9946/0.9472/0.9694
+2026-08-18 13:21:37,209 - INFO - fit progress: (18, 0.19908575941744733, {'accuracy': 0.9472301846995855, 'micro_precision': 0.9472301846995855, 'micro_recall': 0.9472301846995855, 'micro_f1': 0.9472301846995855, 'macro_precision': 0.34569843005378575, 'macro_recall': 0.514882017440177, 'macro_f1': 0.348609325626873, 'weighted_precision': 0.9946051589195617, 'weighted_recall': 0.9472301846995855, 'weighted_f1': 0.969443555727638}, 33840.236651157)
+2026-08-18 13:21:37,209 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 13:21:37,209 - INFO - 
+2026-08-18 13:21:37,209 - INFO - [ROUND 19]
+2026-08-18 13:21:37,209 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 13:38:16,583 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 13:38:16,667 - INFO - [Round 19] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 13:38:16,725 - INFO - [Round 19] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 13:38:16,738 - INFO - [Round 19] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.254e+01..1.933e+07
+2026-08-18 13:38:16,744 - INFO - [Round 19] luu checkpoint -> out_full/checkpoints/round_019.pth
+2026-08-18 13:52:43,779 - INFO - [Round 19] loss=0.2007 acc=0.9332 | micro P/R/F1=0.9332/0.9332/0.9332 | macro P/R/F1=0.3345/0.3552/0.3263 | weighted P/R/F1=0.9927/0.9332/0.9619
+2026-08-18 13:52:43,780 - INFO - fit progress: (19, 0.20073800876138845, {'accuracy': 0.9332114040248426, 'micro_precision': 0.9332114040248426, 'micro_recall': 0.9332114040248426, 'micro_f1': 0.9332114040248426, 'macro_precision': 0.33449488887472234, 'macro_recall': 0.35524790318533817, 'macro_f1': 0.3262527508514456, 'weighted_precision': 0.9927373170403921, 'weighted_recall': 0.9332114040248426, 'weighted_f1': 0.9618506573291431}, 35706.808056989)
+2026-08-18 13:52:43,780 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 13:52:43,780 - INFO - 
+2026-08-18 13:52:43,781 - INFO - [ROUND 20]
+2026-08-18 13:52:43,781 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 14:09:17,134 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 14:09:17,218 - INFO - [Round 20] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 14:09:17,273 - INFO - [Round 20] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 14:09:17,288 - INFO - [Round 20] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.207e+01..1.933e+07
+2026-08-18 14:09:17,293 - INFO - [Round 20] luu checkpoint -> out_full/checkpoints/round_020.pth
+2026-08-18 14:24:16,779 - INFO - [Round 20] loss=0.1618 acc=0.9402 | micro P/R/F1=0.9402/0.9402/0.9402 | macro P/R/F1=0.3428/0.4878/0.3421 | weighted P/R/F1=0.9943/0.9402/0.9657
+2026-08-18 14:24:19,795 - INFO - Luu out_full/confusion_matrix_task0.csv
+2026-08-18 14:24:19,796 - INFO - Luu out_full/confusion_matrix_task0_normalized.csv
+2026-08-18 14:24:28,270 - INFO - Luu out_full/classification_report_task0.txt
+              precision    recall  f1-score   support
+
+      Benign     0.9980    0.9419    0.9691  41700592
+         DoS     0.0303    0.5215    0.0573    145129
+      double     0.0000    0.0000    0.0000     12413
+
+    accuracy                         0.9402  41858134
+   macro avg     0.3428    0.4878    0.3421  41858134
+weighted avg     0.9943    0.9402    0.9657  41858134
+
+2026-08-18 14:24:28,400 - INFO - Luu out_full/confusion_matrix_task0.png
+2026-08-18 14:24:28,401 - INFO - fit progress: (20, 0.1617803912259886, {'accuracy': 0.9402100437635371, 'micro_precision': 0.9402100437635371, 'micro_recall': 0.9402100437635371, 'micro_f1': 0.9402100437635371, 'macro_precision': 0.34275276207795974, 'macro_recall': 0.48783225229294036, 'macro_f1': 0.3421395078581138, 'weighted_precision': 0.9943059302498962, 'weighted_recall': 0.9402100437635371, 'weighted_f1': 0.9656943592800106}, 37611.428864209)
+2026-08-18 14:24:28,401 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 14:24:28,401 - INFO - 
+2026-08-18 14:24:28,401 - INFO - [ROUND 21]
+2026-08-18 14:24:28,401 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 14:42:25,926 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 14:42:26,012 - INFO - [Round 21] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 14:42:26,069 - INFO - [Round 21] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 14:42:26,083 - INFO - [Round 21] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.265e+01..1.933e+07
+2026-08-18 14:42:26,089 - INFO - [Round 21] luu checkpoint -> out_full/checkpoints/round_021.pth
+2026-08-18 14:57:08,267 - INFO - [Round 21] loss=0.3001 acc=0.8458 | micro P/R/F1=0.8458/0.8458/0.8458 | macro P/R/F1=0.3358/0.4320/0.3121 | weighted P/R/F1=0.9937/0.8458/0.9130
+2026-08-18 14:57:08,269 - INFO - fit progress: (21, 0.30006877050977454, {'accuracy': 0.8458357699366149, 'micro_precision': 0.8458357699366149, 'micro_recall': 0.8458357699366149, 'micro_f1': 0.8458357699366149, 'macro_precision': 0.33584494862665526, 'macro_recall': 0.43202364366998847, 'macro_f1': 0.31205309409301557, 'weighted_precision': 0.993684747821288, 'weighted_recall': 0.8458357699366149, 'weighted_f1': 0.9129640662953725}, 39571.296673992)
+2026-08-18 14:57:08,269 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 14:57:08,269 - INFO - 
+2026-08-18 14:57:08,269 - INFO - [ROUND 22]
+2026-08-18 14:57:08,269 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 15:13:53,271 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 15:13:53,360 - INFO - [Round 22] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 15:13:53,426 - INFO - [Round 22] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 15:13:53,440 - INFO - [Round 22] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.225e+01..1.933e+07
+2026-08-18 15:13:53,446 - INFO - [Round 22] luu checkpoint -> out_full/checkpoints/round_022.pth
+2026-08-18 15:28:20,154 - INFO - [Round 22] loss=0.1093 acc=0.9717 | micro P/R/F1=0.9717/0.9717/0.9717 | macro P/R/F1=0.3540/0.4984/0.3666 | weighted P/R/F1=0.9945/0.9717/0.9823
+2026-08-18 15:28:20,156 - INFO - fit progress: (22, 0.10926142503341583, {'accuracy': 0.9716675138934765, 'micro_precision': 0.9716675138934765, 'micro_recall': 0.9716675138934765, 'micro_f1': 0.9716675138934765, 'macro_precision': 0.35404113126884557, 'macro_recall': 0.49835769039703254, 'macro_f1': 0.3666029229905791, 'weighted_precision': 0.9944719305831775, 'weighted_recall': 0.9716675138934765, 'weighted_f1': 0.9822989162604161}, 41443.183692139)
+2026-08-18 15:28:20,156 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-18 15:28:20,156 - INFO - 
+2026-08-18 15:28:20,156 - INFO - [ROUND 23]
+2026-08-18 15:28:20,156 - INFO - configure_fit: strategy sampled 50 clients (out of 50)
+2026-08-18 15:45:55,782 - INFO - aggregate_fit: received 50 results and 0 failures
+2026-08-18 15:45:55,866 - INFO - [Round 23] TOPSIS giu 40/50 | C_i 0.0000..1.0000
+2026-08-18 15:45:55,925 - INFO - [Round 23] |C| 7 -> 6 (cum phai > m=5 thi Multi-Krum moi loc)
+2026-08-18 15:45:55,938 - INFO - [Round 23] 6 cum (Eq.14) | giu 30/40 update | diem Krum 1.269e+01..1.933e+07
+2026-08-18 15:45:55,944 - INFO - [Round 23] luu checkpoint -> out_full/checkpoints/round_023.pth
