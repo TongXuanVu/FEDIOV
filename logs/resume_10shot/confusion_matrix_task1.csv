@@ -1,0 +1,7 @@
+true\pred,Benign,DoS,double,force-neutral,fuzzing,interval
+Benign,40001899,1297952,0,0,400741,0
+DoS,69437,75692,0,0,0,0
+double,10516,1716,0,0,181,0
+force-neutral,5744,0,0,0,0,0
+fuzzing,58930,4895,0,0,3496,0
+interval,40164,378,0,0,0,0
