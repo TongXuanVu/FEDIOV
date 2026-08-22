@@ -1,0 +1,10 @@
+true\pred,Benign,DoS,double,force-neutral,fuzzing,interval,rpm,rpm-accessory,speed
+Benign,34935539,6746404,0,0,18649,0,0,0,0
+DoS,67094,78035,0,0,0,0,0,0,0
+double,8279,4134,0,0,0,0,0,0,0
+force-neutral,2047,3697,0,0,0,0,0,0,0
+fuzzing,61428,5873,0,0,20,0,0,0,0
+interval,39063,1479,0,0,0,0,0,0,0
+rpm,3849,1194,0,0,0,0,0,0,0
+rpm-accessory,3126,20,0,0,0,0,0,0,0
+speed,4417,3054,0,0,0,0,0,0,0
