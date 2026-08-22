@@ -1855,3 +1855,1301 @@ force-neutral     0.0000    0.0000    0.0000      5744
 2026-08-19 04:55:32,249 - INFO - [Round 4] TOPSIS giu 56/70 | C_i 0.0000..1.0000
 2026-08-19 04:55:32,350 - INFO - [Round 4] 8 cum (Eq.14) | giu 40/56 update | diem Krum 1.887e-02..8.342e-01
 2026-08-19 04:55:32,355 - INFO - [Round 65] luu checkpoint -> out_full/checkpoints/round_065.pth
+2026-08-19 16:24:53,356 - INFO - Thiet bi: cuda | pool 100 client | 30 round/task | Flower simulation (Ray)
+2026-08-19 16:24:53,356 - INFO - Client co du lieu tung task: task0=50, task1=60, task2=70, task3=80, task4=100
+2026-08-19 16:24:53,787 - INFO - Chay tiep tu checkpoint round 65
+2026-08-19 16:24:53,787 - INFO - Tiep tuc: task0=30/30, task1=30/30, task2=3/30
+2026-08-19 16:24:53,807 - INFO - [task 0] da xong 30/30 round — bo qua
+2026-08-19 16:24:53,808 - INFO - [task 1] da xong 30/30 round — bo qua
+2026-08-19 16:24:53,808 - INFO - Nap global test: /kaggle/input/datasets/tongxuanvu/100clientiov/global_test_data.pt
+2026-08-19 16:25:23,045 - INFO - Global test goc: n=42048683
+2026-08-19 16:25:24,743 - INFO - Task 2: loc ve lop 0-8 -> n=41987401
+2026-08-19 16:25:24,743 - INFO - Danh gia moi round tren n=41987401 mau (dtype=float16)
+2026-08-19 16:25:24,747 - INFO - ===== Task 2: 70 client, 27 round =====
+2026-08-19 16:25:27,209 - INFO - setup plugin alembic.autogenerate.schemas
+2026-08-19 16:25:27,210 - INFO - setup plugin alembic.autogenerate.tables
+2026-08-19 16:25:27,210 - INFO - setup plugin alembic.autogenerate.types
+2026-08-19 16:25:27,210 - INFO - setup plugin alembic.autogenerate.constraints
+2026-08-19 16:25:27,210 - INFO - setup plugin alembic.autogenerate.defaults
+2026-08-19 16:25:27,210 - INFO - setup plugin alembic.autogenerate.comments
+2026-08-19 16:25:50,796 - WARNING - DEPRECATED FEATURE: flwr.simulation.start_simulation() is deprecated.
+	Instead, use the `flwr run` CLI command to start a local simulation in your Flower app, as shown for example below:
+
+		$ flwr new  # Create a new Flower app from a template
+
+		$ flwr run  # Run the Flower app in Simulation Mode
+
+	Using `start_simulation()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+2026-08-19 16:25:50,797 - INFO - Starting Flower simulation, config: num_rounds=27, no round_timeout
+2026-08-19 16:26:01,925 - INFO - Flower VCE: Ray initialized with resources: {'CPU': 4.0, 'memory': 19741004596.0, 'node:172.19.2.2': 1.0, 'object_store_memory': 8460430540.0, 'node:__internal_head__': 1.0, 'GPU': 2.0, 'accelerator_type:T4': 1.0}
+2026-08-19 16:26:01,925 - INFO - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+2026-08-19 16:26:01,925 - INFO - Flower VCE: Resources for each Virtual Client: {'num_cpus': 1.0, 'num_gpus': 0.5}
+2026-08-19 16:26:01,962 - INFO - Flower VCE: Creating VirtualClientEngineActorPool with 4 actors
+2026-08-19 16:26:01,965 - INFO - [INIT]
+2026-08-19 16:26:01,965 - INFO - Using initial global parameters provided by strategy
+2026-08-19 16:26:01,965 - INFO - Starting evaluation of initial global parameters
+2026-08-19 16:26:01,967 - INFO - Evaluation returned no results (`None`)
+2026-08-19 16:26:01,967 - INFO - 
+2026-08-19 16:26:01,968 - INFO - [ROUND 1]
+2026-08-19 16:26:01,969 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 16:26:26,877 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 16:26:27,012 - INFO - [Round 1] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 16:26:27,122 - INFO - [Round 1] 8 cum (Eq.14) | giu 40/56 update | diem Krum 1.960e-02..8.308e-01
+2026-08-19 16:26:27,131 - INFO - [Round 66] luu checkpoint -> out_full/checkpoints/round_066.pth
+2026-08-19 16:40:35,440 - INFO - [Round 66] loss=0.5395 acc=0.8164 | micro P/R/F1=0.8164/0.8164/0.8164 | macro P/R/F1=0.1127/0.1491/0.1040 | weighted P/R/F1=0.9883/0.8164/0.8934
+2026-08-19 16:40:35,442 - INFO - fit progress: (1, 0.5394935718124383, {'accuracy': 0.8163914217981723, 'micro_precision': 0.8163914217981723, 'micro_recall': 0.8163914217981723, 'micro_f1': 0.8163914217981723, 'macro_precision': 0.11268899431141782, 'macro_recall': 0.1490826423425507, 'macro_f1': 0.10401341244400869, 'weighted_precision': 0.988302982312404, 'weighted_recall': 0.8163914217981723, 'weighted_f1': 0.8933680333366895}, 873.474271107)
+2026-08-19 16:40:35,442 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 16:40:35,442 - INFO - 
+2026-08-19 16:40:35,442 - INFO - [ROUND 2]
+2026-08-19 16:40:35,442 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 16:40:36,452 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 16:40:36,558 - INFO - [Round 2] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 16:40:36,651 - INFO - [Round 2] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.029e-02..8.437e-01
+2026-08-19 16:40:36,657 - INFO - [Round 67] luu checkpoint -> out_full/checkpoints/round_067.pth
+2026-08-19 16:54:44,348 - INFO - [Round 67] loss=0.4970 acc=0.8613 | micro P/R/F1=0.8613/0.8613/0.8613 | macro P/R/F1=0.1122/0.1333/0.1061 | weighted P/R/F1=0.9874/0.8613/0.9196
+2026-08-19 16:54:44,349 - INFO - fit progress: (2, 0.4970362469104776, {'accuracy': 0.8613264488554555, 'micro_precision': 0.8613264488554555, 'micro_recall': 0.8613264488554555, 'micro_f1': 0.8613264488554555, 'macro_precision': 0.11217497510142167, 'macro_recall': 0.13334125067621808, 'macro_f1': 0.10613091548706845, 'weighted_precision': 0.9873736479261344, 'weighted_recall': 0.8613264488554555, 'weighted_f1': 0.9195838995824204}, 1722.3814868969998)
+2026-08-19 16:54:44,349 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 16:54:44,349 - INFO - 
+2026-08-19 16:54:44,349 - INFO - [ROUND 3]
+2026-08-19 16:54:44,349 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 16:54:45,383 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 16:54:45,490 - INFO - [Round 3] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 16:54:45,580 - INFO - [Round 3] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.434e-02..8.220e-01
+2026-08-19 16:54:45,585 - INFO - [Round 68] luu checkpoint -> out_full/checkpoints/round_068.pth
+2026-08-19 17:08:52,384 - INFO - [Round 68] loss=0.4713 acc=0.8813 | micro P/R/F1=0.8813/0.8813/0.8813 | macro P/R/F1=0.1137/0.1606/0.1102 | weighted P/R/F1=0.9883/0.8813/0.9309
+2026-08-19 17:08:52,385 - INFO - fit progress: (3, 0.4712576086422767, {'accuracy': 0.881335165279699, 'micro_precision': 0.881335165279699, 'micro_recall': 0.881335165279699, 'micro_f1': 0.881335165279699, 'macro_precision': 0.11374525503236294, 'macro_recall': 0.16058658336651835, 'macro_f1': 0.1101911568138402, 'weighted_precision': 0.988254970527163, 'weighted_recall': 0.881335165279699, 'weighted_f1': 0.9308635686733926}, 2570.417842224)
+2026-08-19 17:08:52,386 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 17:08:52,386 - INFO - 
+2026-08-19 17:08:52,386 - INFO - [ROUND 4]
+2026-08-19 17:08:52,386 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 17:08:53,355 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 17:08:53,467 - INFO - [Round 4] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 17:08:53,565 - INFO - [Round 4] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.240e-02..8.541e-01
+2026-08-19 17:08:53,570 - INFO - [Round 69] luu checkpoint -> out_full/checkpoints/round_069.pth
+2026-08-19 17:22:56,730 - INFO - [Round 69] loss=0.4222 acc=0.9239 | micro P/R/F1=0.9239/0.9239/0.9239 | macro P/R/F1=0.1149/0.1570/0.1149 | weighted P/R/F1=0.9880/0.9239/0.9542
+2026-08-19 17:22:56,732 - INFO - fit progress: (4, 0.42222370884701305, {'accuracy': 0.9239003862134739, 'micro_precision': 0.9239003862134739, 'micro_recall': 0.9239003862134739, 'micro_f1': 0.9239003862134739, 'macro_precision': 0.11492975908550612, 'macro_recall': 0.15704916207536523, 'macro_f1': 0.11487779919232828, 'weighted_precision': 0.9879648030031402, 'weighted_recall': 0.9239003862134739, 'weighted_f1': 0.954182660448371}, 3414.764115778)
+2026-08-19 17:22:56,732 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 17:22:56,732 - INFO - 
+2026-08-19 17:22:56,732 - INFO - [ROUND 5]
+2026-08-19 17:22:56,732 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 17:22:57,690 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 17:22:57,799 - INFO - [Round 5] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 17:22:57,892 - INFO - [Round 5] 8 cum (Eq.14) | giu 40/56 update | diem Krum 1.828e-02..8.037e-01
+2026-08-19 17:22:57,897 - INFO - [Round 70] luu checkpoint -> out_full/checkpoints/round_070.pth
+2026-08-19 17:36:58,934 - INFO - [Round 70] loss=0.4345 acc=0.9052 | micro P/R/F1=0.9052/0.9052/0.9052 | macro P/R/F1=0.1139/0.1622/0.1120 | weighted P/R/F1=0.9882/0.9052/0.9440
+2026-08-19 17:37:01,786 - INFO - Luu out_full/confusion_matrix_task2.csv
+2026-08-19 17:37:01,786 - INFO - Luu out_full/confusion_matrix_task2_normalized.csv
+2026-08-19 17:37:10,543 - INFO - Luu out_full/classification_report_task2.txt
+               precision    recall  f1-score   support
+
+       Benign     0.9949    0.9096    0.9503  41700592
+          DoS     0.0287    0.5215    0.0545    145129
+       double     0.0000    0.0000    0.0000     12413
+force-neutral     0.0000    0.0000    0.0000      5744
+      fuzzing     0.0016    0.0284    0.0029     67321
+     interval     0.0000    0.0000    0.0000     40542
+          rpm     0.0000    0.0000    0.0000      5043
+rpm-accessory     0.0000    0.0000    0.0000      3146
+        speed     0.0000    0.0000    0.0000      7471
+
+     accuracy                         0.9052  41987401
+    macro avg     0.1139    0.1622    0.1120  41987401
+ weighted avg     0.9882    0.9052    0.9440  41987401
+
+2026-08-19 17:37:10,988 - INFO - Luu out_full/confusion_matrix_task2.png
+2026-08-19 17:37:10,988 - INFO - fit progress: (5, 0.4344773972578693, {'accuracy': 0.9052174484436415, 'micro_precision': 0.9052174484436415, 'micro_recall': 0.9052174484436415, 'micro_f1': 0.9052174484436415, 'macro_precision': 0.11391236594882621, 'macro_recall': 0.1621703802430606, 'macro_f1': 0.11197303163851974, 'weighted_precision': 0.9882270769029804, 'weighted_recall': 0.9052174484436415, 'weighted_f1': 0.9440412989358672}, 4269.020994774)
+2026-08-19 17:37:10,989 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 17:37:10,989 - INFO - 
+2026-08-19 17:37:10,989 - INFO - [ROUND 6]
+2026-08-19 17:37:10,989 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 17:37:11,989 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 17:37:12,097 - INFO - [Round 6] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 17:37:12,190 - INFO - [Round 6] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.182e-02..8.489e-01
+2026-08-19 17:37:12,195 - INFO - [Round 71] luu checkpoint -> out_full/checkpoints/round_071.pth
+2026-08-19 17:51:18,119 - INFO - [Round 71] loss=0.4048 acc=0.9322 | micro P/R/F1=0.9322/0.9322/0.9322 | macro P/R/F1=0.1151/0.1641/0.1156 | weighted P/R/F1=0.9883/0.9322/0.9587
+2026-08-19 17:51:18,121 - INFO - fit progress: (6, 0.4047920456160314, {'accuracy': 0.9321997567794206, 'micro_precision': 0.9321997567794206, 'micro_recall': 0.9321997567794206, 'micro_f1': 0.9321997567794206, 'macro_precision': 0.11505280402269519, 'macro_recall': 0.16414267963196272, 'macro_f1': 0.11559219718203341, 'weighted_precision': 0.9883260823131059, 'weighted_recall': 0.9321997567794206, 'weighted_f1': 0.9586613329172168}, 5116.1534037500005)
+2026-08-19 17:51:18,121 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 17:51:18,121 - INFO - 
+2026-08-19 17:51:18,121 - INFO - [ROUND 7]
+2026-08-19 17:51:18,121 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 17:51:19,153 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 17:51:19,270 - INFO - [Round 7] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 17:51:19,367 - INFO - [Round 7] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.479e-02..8.051e-01
+2026-08-19 17:51:19,373 - INFO - [Round 72] luu checkpoint -> out_full/checkpoints/round_072.pth
+2026-08-19 18:05:26,846 - INFO - [Round 72] loss=0.4115 acc=0.9128 | micro P/R/F1=0.9128/0.9128/0.9128 | macro P/R/F1=0.1136/0.1616/0.1119 | weighted P/R/F1=0.9883/0.9128/0.9482
+2026-08-19 18:05:26,847 - INFO - fit progress: (7, 0.4114536580900113, {'accuracy': 0.9127527564756865, 'micro_precision': 0.9127527564756865, 'micro_recall': 0.9127527564756865, 'micro_f1': 0.9127527564756865, 'macro_precision': 0.11362375889832875, 'macro_recall': 0.1615550896800203, 'macro_f1': 0.11188018126077474, 'weighted_precision': 0.9883243533627248, 'weighted_recall': 0.9127527564756865, 'weighted_f1': 0.9481810595745538}, 5964.87982129)
+2026-08-19 18:05:26,848 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 18:05:26,848 - INFO - 
+2026-08-19 18:05:26,848 - INFO - [ROUND 8]
+2026-08-19 18:05:26,848 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 18:05:27,779 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 18:05:27,884 - INFO - [Round 8] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 18:05:27,974 - INFO - [Round 8] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.010e-02..8.450e-01
+2026-08-19 18:05:27,979 - INFO - [Round 73] luu checkpoint -> out_full/checkpoints/round_073.pth
+2026-08-19 18:19:30,262 - INFO - [Round 73] loss=0.3771 acc=0.9343 | micro P/R/F1=0.9343/0.9343/0.9343 | macro P/R/F1=0.1145/0.1631/0.1146 | weighted P/R/F1=0.9884/0.9343/0.9598
+2026-08-19 18:19:30,263 - INFO - fit progress: (8, 0.3771323610597582, {'accuracy': 0.9342938611513487, 'micro_precision': 0.9342938611513487, 'micro_recall': 0.9342938611513487, 'micro_f1': 0.9342938611513487, 'macro_precision': 0.11445927519180782, 'macro_recall': 0.16311144563835392, 'macro_f1': 0.11464972525960432, 'weighted_precision': 0.9883671509827843, 'weighted_recall': 0.9342938611513487, 'weighted_f1': 0.9597770204047374}, 6808.295756743)
+2026-08-19 18:19:30,263 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 18:19:30,264 - INFO - 
+2026-08-19 18:19:30,264 - INFO - [ROUND 9]
+2026-08-19 18:19:30,264 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 18:19:31,239 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 18:19:31,347 - INFO - [Round 9] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 18:19:31,440 - INFO - [Round 9] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.473e-02..8.048e-01
+2026-08-19 18:19:31,446 - INFO - [Round 74] luu checkpoint -> out_full/checkpoints/round_074.pth
+2026-08-19 18:33:38,844 - INFO - [Round 74] loss=0.3960 acc=0.9076 | micro P/R/F1=0.9076/0.9076/0.9076 | macro P/R/F1=0.1132/0.1600/0.1107 | weighted P/R/F1=0.9883/0.9076/0.9454
+2026-08-19 18:33:38,845 - INFO - fit progress: (9, 0.39602278382001815, {'accuracy': 0.9076215505694196, 'micro_precision': 0.9076215505694196, 'micro_recall': 0.9076215505694196, 'micro_f1': 0.9076215505694196, 'macro_precision': 0.1131528571015349, 'macro_recall': 0.16004837801048505, 'macro_f1': 0.11068622118676835, 'weighted_precision': 0.9882622697544078, 'weighted_recall': 0.9076215505694196, 'weighted_f1': 0.9453536932350957}, 7656.877786543)
+2026-08-19 18:33:38,846 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 18:33:38,846 - INFO - 
+2026-08-19 18:33:38,846 - INFO - [ROUND 10]
+2026-08-19 18:33:38,846 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 18:33:39,939 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 18:33:40,058 - INFO - [Round 10] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 18:33:40,156 - INFO - [Round 10] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.407e-02..8.572e-01
+2026-08-19 18:33:40,161 - INFO - [Round 75] luu checkpoint -> out_full/checkpoints/round_075.pth
+2026-08-19 18:47:49,547 - INFO - [Round 75] loss=0.3527 acc=0.9389 | micro P/R/F1=0.9389/0.9389/0.9389 | macro P/R/F1=0.1144/0.1631/0.1148 | weighted P/R/F1=0.9884/0.9389/0.9623
+2026-08-19 18:47:52,283 - INFO - Luu out_full/confusion_matrix_task2.csv
+2026-08-19 18:47:52,283 - INFO - Luu out_full/confusion_matrix_task2_normalized.csv
+2026-08-19 18:48:00,720 - INFO - Luu out_full/classification_report_task2.txt
+               precision    recall  f1-score   support
+
+       Benign     0.9951    0.9435    0.9686  41700592
+          DoS     0.0339    0.5215    0.0636    145129
+       double     0.0000    0.0000    0.0000     12413
+force-neutral     0.0000    0.0000    0.0000      5744
+      fuzzing     0.0008    0.0027    0.0013     67321
+     interval     0.0000    0.0000    0.0000     40542
+          rpm     0.0000    0.0000    0.0000      5043
+rpm-accessory     0.0000    0.0000    0.0000      3146
+        speed     0.0000    0.0000    0.0000      7471
+
+     accuracy                         0.9389  41987401
+    macro avg     0.1144    0.1631    0.1148  41987401
+ weighted avg     0.9884    0.9389    0.9623  41987401
+
+2026-08-19 18:48:01,035 - INFO - Luu out_full/confusion_matrix_task2.png
+2026-08-19 18:48:01,037 - INFO - fit progress: (10, 0.3526699060597614, {'accuracy': 0.9389041965231427, 'micro_precision': 0.9389041965231427, 'micro_recall': 0.9389041965231427, 'micro_f1': 0.9389041965231427, 'macro_precision': 0.11442757457284289, 'macro_recall': 0.16308510121868042, 'macro_f1': 0.11483929154217581, 'weighted_precision': 0.9884496354460938, 'weighted_recall': 0.9389041965231427, 'weighted_f1': 0.9622545078099927}, 8519.069541036)
+2026-08-19 18:48:01,037 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 18:48:01,037 - INFO - 
+2026-08-19 18:48:01,038 - INFO - [ROUND 11]
+2026-08-19 18:48:01,038 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 18:48:01,983 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 18:48:02,089 - INFO - [Round 11] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 18:48:02,180 - INFO - [Round 11] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.493e-02..7.947e-01
+2026-08-19 18:48:02,185 - INFO - [Round 76] luu checkpoint -> out_full/checkpoints/round_076.pth
+2026-08-19 19:02:07,912 - INFO - [Round 76] loss=0.3658 acc=0.9098 | micro P/R/F1=0.9098/0.9098/0.9098 | macro P/R/F1=0.1131/0.1598/0.1106 | weighted P/R/F1=0.9882/0.9098/0.9465
+2026-08-19 19:02:07,913 - INFO - fit progress: (11, 0.365825500163017, {'accuracy': 0.9097525707771243, 'micro_precision': 0.9097525707771243, 'micro_recall': 0.9097525707771243, 'micro_f1': 0.9097525707771243, 'macro_precision': 0.1130558785303387, 'macro_recall': 0.15978420669905413, 'macro_f1': 0.11061482977292864, 'weighted_precision': 0.9882322653101752, 'weighted_recall': 0.9097525707771243, 'weighted_f1': 0.946499386191372}, 9365.945838769001)
+2026-08-19 19:02:07,914 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 19:02:07,914 - INFO - 
+2026-08-19 19:02:07,914 - INFO - [ROUND 12]
+2026-08-19 19:02:07,914 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 19:02:08,872 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 19:02:09,007 - INFO - [Round 12] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 19:02:09,102 - INFO - [Round 12] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.181e-02..8.498e-01
+2026-08-19 19:02:09,107 - INFO - [Round 77] luu checkpoint -> out_full/checkpoints/round_077.pth
+2026-08-19 19:16:09,528 - INFO - [Round 77] loss=0.3385 acc=0.9445 | micro P/R/F1=0.9445/0.9445/0.9445 | macro P/R/F1=0.1147/0.1635/0.1156 | weighted P/R/F1=0.9885/0.9445/0.9652
+2026-08-19 19:16:09,529 - INFO - fit progress: (12, 0.3385417709064744, {'accuracy': 0.9445151892111636, 'micro_precision': 0.9445151892111636, 'micro_recall': 0.9445151892111636, 'micro_f1': 0.9445151892111636, 'macro_precision': 0.11465627791623954, 'macro_recall': 0.16353651787819742, 'macro_f1': 0.11555230678156264, 'weighted_precision': 0.9885053092253203, 'weighted_recall': 0.9445151892111636, 'weighted_f1': 0.9652398095508442}, 10207.561818784001)
+2026-08-19 19:16:09,530 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 19:16:09,530 - INFO - 
+2026-08-19 19:16:09,530 - INFO - [ROUND 13]
+2026-08-19 19:16:09,530 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 19:16:10,470 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 19:16:10,578 - INFO - [Round 13] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 19:16:10,679 - INFO - [Round 13] 8 cum (Eq.14) | giu 40/56 update | diem Krum 1.518e-02..8.973e-01
+2026-08-19 19:16:10,684 - INFO - [Round 78] luu checkpoint -> out_full/checkpoints/round_078.pth
+2026-08-19 19:30:10,849 - INFO - [Round 78] loss=0.3524 acc=0.9111 | micro P/R/F1=0.9111/0.9111/0.9111 | macro P/R/F1=0.1130/0.1598/0.1106 | weighted P/R/F1=0.9883/0.9111/0.9473
+2026-08-19 19:30:10,850 - INFO - fit progress: (13, 0.3523564228629754, {'accuracy': 0.9110711091643896, 'micro_precision': 0.9110711091643896, 'micro_recall': 0.9110711091643896, 'micro_f1': 0.9110711091643896, 'macro_precision': 0.11301609541064875, 'macro_recall': 0.15977023391609335, 'macro_f1': 0.11061249111916828, 'weighted_precision': 0.9883178751997801, 'weighted_recall': 0.9110711091643896, 'weighted_f1': 0.9472547150144365}, 11048.882436356)
+2026-08-19 19:30:10,850 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 19:30:10,850 - INFO - 
+2026-08-19 19:30:10,850 - INFO - [ROUND 14]
+2026-08-19 19:30:10,850 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 19:30:11,790 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 19:30:11,894 - INFO - [Round 14] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 19:30:11,980 - INFO - [Round 14] 8 cum (Eq.14) | giu 40/56 update | diem Krum 1.881e-02..8.571e-01
+2026-08-19 19:30:11,986 - INFO - [Round 79] luu checkpoint -> out_full/checkpoints/round_079.pth
+2026-08-19 19:45:59,360 - INFO - [Round 79] loss=0.3238 acc=0.9449 | micro P/R/F1=0.9449/0.9449/0.9449 | macro P/R/F1=0.1146/0.1635/0.1154 | weighted P/R/F1=0.9885/0.9449/0.9654
+2026-08-19 19:45:59,362 - INFO - fit progress: (14, 0.3238201448160571, {'accuracy': 0.9449034723535281, 'micro_precision': 0.9449034723535281, 'micro_recall': 0.9449034723535281, 'micro_f1': 0.9449034723535281, 'macro_precision': 0.11457226890870402, 'macro_recall': 0.16351074945727037, 'macro_f1': 0.11541938233661482, 'weighted_precision': 0.988506924083595, 'weighted_recall': 0.9449034723535281, 'weighted_f1': 0.9654413654536462}, 11997.394183667)
+2026-08-19 19:45:59,362 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 19:45:59,362 - INFO - 
+2026-08-19 19:45:59,362 - INFO - [ROUND 15]
+2026-08-19 19:45:59,362 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 19:46:00,448 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 19:46:00,576 - INFO - [Round 15] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 19:46:00,687 - INFO - [Round 15] 8 cum (Eq.14) | giu 40/56 update | diem Krum 1.725e-02..8.510e-01
+2026-08-19 19:46:00,693 - INFO - [Round 80] luu checkpoint -> out_full/checkpoints/round_080.pth
+2026-08-19 20:02:04,792 - INFO - [Round 80] loss=0.3427 acc=0.9077 | micro P/R/F1=0.9077/0.9077/0.9077 | macro P/R/F1=0.1129/0.1593/0.1102 | weighted P/R/F1=0.9884/0.9077/0.9455
+2026-08-19 20:02:08,051 - INFO - Luu out_full/confusion_matrix_task2.csv
+2026-08-19 20:02:08,051 - INFO - Luu out_full/confusion_matrix_task2_normalized.csv
+2026-08-19 20:02:17,832 - INFO - Luu out_full/classification_report_task2.txt
+               precision    recall  f1-score   support
+
+       Benign     0.9952    0.9121    0.9518  41700592
+          DoS     0.0203    0.5215    0.0392    145129
+       double     0.0000    0.0000    0.0000     12413
+force-neutral     0.0000    0.0000    0.0000      5744
+      fuzzing     0.0006    0.0004    0.0005     67321
+     interval     0.0000    0.0000    0.0000     40542
+          rpm     0.0000    0.0000    0.0000      5043
+rpm-accessory     0.0000    0.0000    0.0000      3146
+        speed     0.0000    0.0000    0.0000      7471
+
+     accuracy                         0.9077  41987401
+    macro avg     0.1129    0.1593    0.1102  41987401
+ weighted avg     0.9884    0.9077    0.9455  41987401
+
+2026-08-19 20:02:18,225 - INFO - Luu out_full/confusion_matrix_task2.png
+2026-08-19 20:02:18,226 - INFO - fit progress: (15, 0.34269140980416024, {'accuracy': 0.9076899758572816, 'micro_precision': 0.9076899758572816, 'micro_recall': 0.9076899758572816, 'micro_f1': 0.9076899758572816, 'macro_precision': 0.11290741652362914, 'macro_recall': 0.15934583009011824, 'macro_f1': 0.11016922693735673, 'weighted_precision': 0.9884491651068337, 'weighted_recall': 0.9076899758572816, 'weighted_f1': 0.9454722013662975}, 12976.258734712)
+2026-08-19 20:02:18,226 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 20:02:18,227 - INFO - 
+2026-08-19 20:02:18,227 - INFO - [ROUND 16]
+2026-08-19 20:02:18,227 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 20:02:19,359 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 20:02:19,486 - INFO - [Round 16] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 20:02:19,588 - INFO - [Round 16] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.439e-02..8.669e-01
+2026-08-19 20:02:19,594 - INFO - [Round 81] luu checkpoint -> out_full/checkpoints/round_081.pth
+2026-08-19 20:19:16,582 - INFO - [Round 81] loss=0.3119 acc=0.9341 | micro P/R/F1=0.9341/0.9341/0.9341 | macro P/R/F1=0.1138/0.1623/0.1134 | weighted P/R/F1=0.9885/0.9341/0.9597
+2026-08-19 20:19:16,584 - INFO - fit progress: (16, 0.3118697556664032, {'accuracy': 0.9340882280377393, 'micro_precision': 0.9340882280377393, 'micro_recall': 0.9340882280377393, 'micro_f1': 0.9340882280377393, 'macro_precision': 0.11381913115670894, 'macro_recall': 0.16226618675595417, 'macro_f1': 0.11344550877969255, 'weighted_precision': 0.9884962430514823, 'weighted_recall': 0.9340882280377393, 'weighted_f1': 0.9597103608511292}, 13994.616065731001)
+2026-08-19 20:19:16,584 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 20:19:16,584 - INFO - 
+2026-08-19 20:19:16,584 - INFO - [ROUND 17]
+2026-08-19 20:19:16,584 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 20:19:17,716 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 20:19:17,845 - INFO - [Round 17] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 20:19:17,958 - INFO - [Round 17] 8 cum (Eq.14) | giu 40/56 update | diem Krum 1.428e-02..8.408e-01
+2026-08-19 20:19:17,965 - INFO - [Round 82] luu checkpoint -> out_full/checkpoints/round_082.pth
+2026-08-19 20:36:16,152 - INFO - [Round 82] loss=0.3374 acc=0.9081 | micro P/R/F1=0.9081/0.9081/0.9081 | macro P/R/F1=0.1129/0.1594/0.1102 | weighted P/R/F1=0.9887/0.9081/0.9458
+2026-08-19 20:36:16,153 - INFO - fit progress: (17, 0.3374296469538866, {'accuracy': 0.9081149843020767, 'micro_precision': 0.9081149843020767, 'micro_recall': 0.9081149843020767, 'micro_f1': 0.9081149843020767, 'macro_precision': 0.1129121995307305, 'macro_recall': 0.15937195660603745, 'macro_f1': 0.11018575174085506, 'weighted_precision': 0.9886958213406252, 'weighted_recall': 0.9081149843020767, 'weighted_f1': 0.9458164414893641}, 15014.185988337)
+2026-08-19 20:36:16,154 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 20:36:16,154 - INFO - 
+2026-08-19 20:36:16,154 - INFO - [ROUND 18]
+2026-08-19 20:36:16,154 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 20:36:17,334 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 20:36:17,464 - INFO - [Round 18] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 20:36:17,575 - INFO - [Round 18] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.234e-02..8.418e-01
+2026-08-19 20:36:17,581 - INFO - [Round 83] luu checkpoint -> out_full/checkpoints/round_083.pth
+2026-08-19 20:53:22,604 - INFO - [Round 83] loss=0.3148 acc=0.9366 | micro P/R/F1=0.9366/0.9366/0.9366 | macro P/R/F1=0.1140/0.1625/0.1138 | weighted P/R/F1=0.9888/0.9366/0.9612
+2026-08-19 20:53:22,606 - INFO - fit progress: (18, 0.31483797435091365, {'accuracy': 0.9366108419046942, 'micro_precision': 0.9366108419046942, 'micro_recall': 0.9366108419046942, 'micro_f1': 0.9366108419046942, 'macro_precision': 0.11395303554267461, 'macro_recall': 0.1625418137602948, 'macro_f1': 0.11380860588921718, 'weighted_precision': 0.9887512267779813, 'weighted_recall': 0.9366108419046942, 'weighted_f1': 0.9611699463637117}, 16040.638496907)
+2026-08-19 20:53:22,606 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 20:53:22,606 - INFO - 
+2026-08-19 20:53:22,607 - INFO - [ROUND 19]
+2026-08-19 20:53:22,607 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 20:53:23,727 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 20:53:23,862 - INFO - [Round 19] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 20:53:23,973 - INFO - [Round 19] 8 cum (Eq.14) | giu 40/56 update | diem Krum 1.486e-02..8.220e-01
+2026-08-19 20:53:23,979 - INFO - [Round 84] luu checkpoint -> out_full/checkpoints/round_084.pth
+2026-08-19 21:10:26,371 - INFO - [Round 84] loss=0.3342 acc=0.9100 | micro P/R/F1=0.9100/0.9100/0.9100 | macro P/R/F1=0.1129/0.1596/0.1104 | weighted P/R/F1=0.9886/0.9100/0.9468
+2026-08-19 21:10:26,373 - INFO - fit progress: (19, 0.3341531785156492, {'accuracy': 0.9100218658449472, 'micro_precision': 0.9100218658449472, 'micro_recall': 0.9100218658449472, 'micro_f1': 0.9100218658449472, 'macro_precision': 0.11292914917457142, 'macro_recall': 0.15956881154696775, 'macro_f1': 0.11037009624469805, 'weighted_precision': 0.9886492534439771, 'weighted_recall': 0.9100218658449472, 'weighted_f1': 0.9468342656312795}, 17064.405435111)
+2026-08-19 21:10:26,373 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 21:10:26,373 - INFO - 
+2026-08-19 21:10:26,373 - INFO - [ROUND 20]
+2026-08-19 21:10:26,374 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 21:10:27,541 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 21:10:27,672 - INFO - [Round 20] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 21:10:27,785 - INFO - [Round 20] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.130e-02..8.323e-01
+2026-08-19 21:10:27,790 - INFO - [Round 85] luu checkpoint -> out_full/checkpoints/round_085.pth
+2026-08-19 21:27:34,899 - INFO - [Round 85] loss=0.3138 acc=0.9326 | micro P/R/F1=0.9326/0.9326/0.9326 | macro P/R/F1=0.1137/0.1621/0.1132 | weighted P/R/F1=0.9887/0.9326/0.9590
+2026-08-19 21:27:38,224 - INFO - Luu out_full/confusion_matrix_task2.csv
+2026-08-19 21:27:38,224 - INFO - Luu out_full/confusion_matrix_task2_normalized.csv
+2026-08-19 21:27:48,094 - INFO - Luu out_full/classification_report_task2.txt
+               precision    recall  f1-score   support
+
+       Benign     0.9954    0.9372    0.9655  41700592
+          DoS     0.0280    0.5215    0.0531    145129
+       double     0.0000    0.0000    0.0000     12413
+force-neutral     0.0000    0.0000    0.0000      5744
+      fuzzing     0.0002    0.0001    0.0001     67321
+     interval     0.0000    0.0000    0.0000     40542
+          rpm     0.0000    0.0000    0.0000      5043
+rpm-accessory     0.0000    0.0000    0.0000      3146
+        speed     0.0000    0.0000    0.0000      7471
+
+     accuracy                         0.9326  41987401
+    macro avg     0.1137    0.1621    0.1132  41987401
+ weighted avg     0.9887    0.9326    0.9590  41987401
+
+2026-08-19 21:27:48,526 - INFO - Luu out_full/confusion_matrix_task2.png
+2026-08-19 21:27:48,528 - INFO - fit progress: (20, 0.31382317185756603, {'accuracy': 0.9326176678570793, 'micro_precision': 0.9326176678570793, 'micro_recall': 0.9326176678570793, 'micro_f1': 0.9326176678570793, 'macro_precision': 0.11373533822915055, 'macro_recall': 0.16209178055862078, 'macro_f1': 0.11318771303863347, 'weighted_precision': 0.9887383526688115, 'weighted_recall': 0.9326176678570793, 'weighted_f1': 0.959040860228328}, 18106.560359884)
+2026-08-19 21:27:48,528 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 21:27:48,528 - INFO - 
+2026-08-19 21:27:48,528 - INFO - [ROUND 21]
+2026-08-19 21:27:48,529 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 21:27:49,733 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 21:27:49,865 - INFO - [Round 21] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 21:27:49,979 - INFO - [Round 21] 8 cum (Eq.14) | giu 40/56 update | diem Krum 3.019e-02..8.011e-01
+2026-08-19 21:27:49,985 - INFO - [Round 86] luu checkpoint -> out_full/checkpoints/round_086.pth
+2026-08-19 21:44:50,917 - INFO - [Round 86] loss=0.3372 acc=0.9000 | micro P/R/F1=0.9000/0.9000/0.9000 | macro P/R/F1=0.1127/0.1584/0.1093 | weighted P/R/F1=0.9887/0.9000/0.9413
+2026-08-19 21:44:50,919 - INFO - fit progress: (21, 0.337178872563341, {'accuracy': 0.8999745899966516, 'micro_precision': 0.8999745899966516, 'micro_recall': 0.8999745899966516, 'micro_f1': 0.8999745899966516, 'macro_precision': 0.11269652493646547, 'macro_recall': 0.1584480650233936, 'macro_f1': 0.10931309835221084, 'weighted_precision': 0.9886629537123357, 'weighted_recall': 0.8999745899966516, 'weighted_f1': 0.9413425454487505}, 19128.951470984)
+2026-08-19 21:44:50,919 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 21:44:50,919 - INFO - 
+2026-08-19 21:44:50,919 - INFO - [ROUND 22]
+2026-08-19 21:44:50,920 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 21:44:52,074 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 21:44:52,200 - INFO - [Round 22] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 21:44:52,317 - INFO - [Round 22] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.151e-02..8.144e-01
+2026-08-19 21:44:52,323 - INFO - [Round 87] luu checkpoint -> out_full/checkpoints/round_087.pth
+2026-08-19 22:01:47,990 - INFO - [Round 87] loss=0.3178 acc=0.9265 | micro P/R/F1=0.9265/0.9265/0.9265 | macro P/R/F1=0.1135/0.1614/0.1123 | weighted P/R/F1=0.9890/0.9265/0.9559
+2026-08-19 22:01:47,992 - INFO - fit progress: (22, 0.31781164935630374, {'accuracy': 0.9265479899553678, 'micro_precision': 0.9265479899553678, 'micro_recall': 0.9265479899553678, 'micro_f1': 0.9265479899553678, 'macro_precision': 0.11348908768123683, 'macro_recall': 0.16141438124704632, 'macro_f1': 0.11234235365381388, 'weighted_precision': 0.9889730871505763, 'weighted_recall': 0.9265479899553678, 'weighted_f1': 0.9559083315194746}, 20146.024325197)
+2026-08-19 22:01:47,992 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 22:01:47,992 - INFO - 
+2026-08-19 22:01:47,992 - INFO - [ROUND 23]
+2026-08-19 22:01:47,992 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 22:01:49,176 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 22:01:49,302 - INFO - [Round 23] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 22:01:49,414 - INFO - [Round 23] 8 cum (Eq.14) | giu 40/56 update | diem Krum 1.862e-02..8.019e-01
+2026-08-19 22:01:49,420 - INFO - [Round 88] luu checkpoint -> out_full/checkpoints/round_088.pth
+2026-08-19 22:18:40,816 - INFO - [Round 88] loss=0.3354 acc=0.8953 | micro P/R/F1=0.8953/0.8953/0.8953 | macro P/R/F1=0.1126/0.1579/0.1088 | weighted P/R/F1=0.9886/0.8953/0.9387
+2026-08-19 22:18:40,817 - INFO - fit progress: (23, 0.3353608826400826, {'accuracy': 0.8952875173197788, 'micro_precision': 0.8952875173197788, 'micro_recall': 0.8952875173197788, 'micro_f1': 0.8952875173197788, 'macro_precision': 0.11258067166129601, 'macro_recall': 0.1579154582869583, 'macro_f1': 0.10882926633910377, 'weighted_precision': 0.9886169669863043, 'weighted_recall': 0.8952875173197788, 'weighted_f1': 0.9387375428131464}, 21158.849872714)
+2026-08-19 22:18:40,818 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 22:18:40,818 - INFO - 
+2026-08-19 22:18:40,818 - INFO - [ROUND 24]
+2026-08-19 22:18:40,818 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 22:18:41,909 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 22:18:42,030 - INFO - [Round 24] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 22:18:42,137 - INFO - [Round 24] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.269e-02..8.056e-01
+2026-08-19 22:18:42,143 - INFO - [Round 89] luu checkpoint -> out_full/checkpoints/round_089.pth
+2026-08-19 22:35:37,847 - INFO - [Round 89] loss=0.3189 acc=0.9220 | micro P/R/F1=0.9220/0.9220/0.9220 | macro P/R/F1=0.1133/0.1609/0.1118 | weighted P/R/F1=0.9889/0.9220/0.9534
+2026-08-19 22:35:37,849 - INFO - fit progress: (24, 0.31892822868340703, {'accuracy': 0.9219626620852288, 'micro_precision': 0.9219626620852288, 'micro_recall': 0.9219626620852288, 'micro_f1': 0.9219626620852288, 'macro_precision': 0.11331019101106832, 'macro_recall': 0.16090139625686253, 'macro_f1': 0.11175443056360725, 'weighted_precision': 0.9888987723881449, 'weighted_recall': 0.9219626620852288, 'weighted_f1': 0.9534118241733093}, 22175.881332269)
+2026-08-19 22:35:37,849 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 22:35:37,849 - INFO - 
+2026-08-19 22:35:37,849 - INFO - [ROUND 25]
+2026-08-19 22:35:37,850 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 22:35:39,023 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 22:35:39,158 - INFO - [Round 25] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 22:35:39,270 - INFO - [Round 25] 8 cum (Eq.14) | giu 40/56 update | diem Krum 1.900e-02..7.084e-01
+2026-08-19 22:35:39,276 - INFO - [Round 90] luu checkpoint -> out_full/checkpoints/round_090.pth
+2026-08-19 22:52:34,805 - INFO - [Round 90] loss=0.3446 acc=0.8893 | micro P/R/F1=0.8893/0.8893/0.8893 | macro P/R/F1=0.1125/0.1572/0.1083 | weighted P/R/F1=0.9886/0.8893/0.9354
+2026-08-19 22:52:38,003 - INFO - Luu out_full/confusion_matrix_task2.csv
+2026-08-19 22:52:38,003 - INFO - Luu out_full/confusion_matrix_task2_normalized.csv
+2026-08-19 22:52:47,973 - INFO - Luu out_full/classification_report_task2.txt
+               precision    recall  f1-score   support
+
+       Benign     0.9954    0.8936    0.9418  41700592
+          DoS     0.0167    0.5215    0.0325    145129
+       double     0.0000    0.0000    0.0000     12413
+force-neutral     0.0000    0.0000    0.0000      5744
+      fuzzing     0.0001    0.0000    0.0001     67321
+     interval     0.0000    0.0000    0.0000     40542
+          rpm     0.0000    0.0000    0.0000      5043
+rpm-accessory     0.0000    0.0000    0.0000      3146
+        speed     0.0000    0.0000    0.0000      7471
+
+     accuracy                         0.8893  41987401
+    macro avg     0.1125    0.1572    0.1083  41987401
+ weighted avg     0.9886    0.8893    0.9354  41987401
+
+2026-08-19 22:52:48,385 - INFO - Luu out_full/confusion_matrix_task2.png
+2026-08-19 22:52:48,387 - INFO - fit progress: (25, 0.3445694367747902, {'accuracy': 0.889326133808568, 'micro_precision': 0.889326133808568, 'micro_recall': 0.889326133808568, 'micro_f1': 0.889326133808568, 'macro_precision': 0.1124706777598518, 'macro_recall': 0.1572468788385403, 'macro_f1': 0.10825346853360956, 'weighted_precision': 0.9886487354255504, 'weighted_recall': 0.889326133808568, 'weighted_f1': 0.9354470004360198}, 23206.419363918)
+2026-08-19 22:52:48,387 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 22:52:48,387 - INFO - 
+2026-08-19 22:52:48,387 - INFO - [ROUND 26]
+2026-08-19 22:52:48,387 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 22:52:49,554 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 22:52:49,682 - INFO - [Round 26] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 22:52:49,800 - INFO - [Round 26] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.298e-02..8.005e-01
+2026-08-19 22:52:49,806 - INFO - [Round 91] luu checkpoint -> out_full/checkpoints/round_091.pth
+2026-08-19 23:09:46,744 - INFO - [Round 91] loss=0.3194 acc=0.9131 | micro P/R/F1=0.9131/0.9131/0.9131 | macro P/R/F1=0.1130/0.1599/0.1107 | weighted P/R/F1=0.9888/0.9131/0.9486
+2026-08-19 23:09:46,746 - INFO - fit progress: (26, 0.3193796684760348, {'accuracy': 0.9130585148625894, 'micro_precision': 0.9130585148625894, 'micro_recall': 0.9130585148625894, 'micro_f1': 0.9130585148625894, 'macro_precision': 0.11302368875368425, 'macro_recall': 0.15990524200029413, 'macro_f1': 0.11069007247877743, 'weighted_precision': 0.9888379252042893, 'weighted_recall': 0.9130585148625894, 'weighted_f1': 0.948571099650134}, 24224.778590884)
+2026-08-19 23:09:46,746 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 23:09:46,747 - INFO - 
+2026-08-19 23:09:46,747 - INFO - [ROUND 27]
+2026-08-19 23:09:46,747 - INFO - configure_fit: strategy sampled 70 clients (out of 70)
+2026-08-19 23:09:47,889 - INFO - aggregate_fit: received 70 results and 0 failures
+2026-08-19 23:09:48,010 - INFO - [Round 27] TOPSIS giu 56/70 | C_i 0.0000..1.0000
+2026-08-19 23:09:48,119 - INFO - [Round 27] 8 cum (Eq.14) | giu 40/56 update | diem Krum 2.367e-02..6.892e-01
+2026-08-19 23:09:48,125 - INFO - [Round 92] luu checkpoint -> out_full/checkpoints/round_092.pth
+2026-08-19 23:26:47,301 - INFO - [Round 92] loss=0.3467 acc=0.8875 | micro P/R/F1=0.8875/0.8875/0.8875 | macro P/R/F1=0.1124/0.1570/0.1081 | weighted P/R/F1=0.9886/0.8875/0.9344
+2026-08-19 23:26:50,484 - INFO - Luu out_full/confusion_matrix_task2.csv
+2026-08-19 23:26:50,485 - INFO - Luu out_full/confusion_matrix_task2_normalized.csv
+2026-08-19 23:27:00,243 - INFO - Luu out_full/classification_report_task2.txt
+               precision    recall  f1-score   support
+
+       Benign     0.9953    0.8918    0.9407  41700592
+          DoS     0.0165    0.5215    0.0319    145129
+       double     0.0000    0.0000    0.0000     12413
+force-neutral     0.0000    0.0000    0.0000      5744
+      fuzzing     0.0001    0.0001    0.0001     67321
+     interval     0.0000    0.0000    0.0000     40542
+          rpm     0.0000    0.0000    0.0000      5043
+rpm-accessory     0.0000    0.0000    0.0000      3146
+        speed     0.0000    0.0000    0.0000      7471
+
+     accuracy                         0.8875  41987401
+    macro avg     0.1124    0.1570    0.1081  41987401
+ weighted avg     0.9886    0.8875    0.9344  41987401
+
+2026-08-19 23:27:00,633 - INFO - Luu out_full/confusion_matrix_task2.png
+2026-08-19 23:27:00,634 - INFO - fit progress: (27, 0.3466887528280458, {'accuracy': 0.8874960133874444, 'micro_precision': 0.8874960133874444, 'micro_recall': 0.8874960133874444, 'micro_f1': 0.8874960133874444, 'macro_precision': 0.11243905691252773, 'macro_recall': 0.15704378134662986, 'macro_f1': 0.10808261804035281, 'weighted_precision': 0.988606457678755, 'weighted_recall': 0.8874960133874444, 'weighted_f1': 0.9344094608886276}, 25258.666990529)
+2026-08-19 23:27:00,635 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 23:27:00,635 - INFO - 
+2026-08-19 23:27:00,635 - INFO - [SUMMARY]
+2026-08-19 23:27:00,635 - INFO - Run finished 27 round(s) in 25258.67s
+2026-08-19 23:27:00,641 - INFO - 	History (loss, centralized):
+2026-08-19 23:27:00,642 - INFO - 		round 1: 0.5394935718124383
+2026-08-19 23:27:00,642 - INFO - 		round 2: 0.4970362469104776
+2026-08-19 23:27:00,642 - INFO - 		round 3: 0.4712576086422767
+2026-08-19 23:27:00,642 - INFO - 		round 4: 0.42222370884701305
+2026-08-19 23:27:00,642 - INFO - 		round 5: 0.4344773972578693
+2026-08-19 23:27:00,642 - INFO - 		round 6: 0.4047920456160314
+2026-08-19 23:27:00,642 - INFO - 		round 7: 0.4114536580900113
+2026-08-19 23:27:00,642 - INFO - 		round 8: 0.3771323610597582
+2026-08-19 23:27:00,642 - INFO - 		round 9: 0.39602278382001815
+2026-08-19 23:27:00,642 - INFO - 		round 10: 0.3526699060597614
+2026-08-19 23:27:00,642 - INFO - 		round 11: 0.365825500163017
+2026-08-19 23:27:00,643 - INFO - 		round 12: 0.3385417709064744
+2026-08-19 23:27:00,643 - INFO - 		round 13: 0.3523564228629754
+2026-08-19 23:27:00,643 - INFO - 		round 14: 0.3238201448160571
+2026-08-19 23:27:00,643 - INFO - 		round 15: 0.34269140980416024
+2026-08-19 23:27:00,643 - INFO - 		round 16: 0.3118697556664032
+2026-08-19 23:27:00,643 - INFO - 		round 17: 0.3374296469538866
+2026-08-19 23:27:00,643 - INFO - 		round 18: 0.31483797435091365
+2026-08-19 23:27:00,643 - INFO - 		round 19: 0.3341531785156492
+2026-08-19 23:27:00,643 - INFO - 		round 20: 0.31382317185756603
+2026-08-19 23:27:00,643 - INFO - 		round 21: 0.337178872563341
+2026-08-19 23:27:00,643 - INFO - 		round 22: 0.31781164935630374
+2026-08-19 23:27:00,643 - INFO - 		round 23: 0.3353608826400826
+2026-08-19 23:27:00,643 - INFO - 		round 24: 0.31892822868340703
+2026-08-19 23:27:00,643 - INFO - 		round 25: 0.3445694367747902
+2026-08-19 23:27:00,643 - INFO - 		round 26: 0.3193796684760348
+2026-08-19 23:27:00,643 - INFO - 		round 27: 0.3466887528280458
+2026-08-19 23:27:00,643 - INFO - 	History (metrics, distributed, fit):
+2026-08-19 23:27:00,643 - INFO - 	{'krum_kept': [(1, 40),
+2026-08-19 23:27:00,644 - INFO - 	               (2, 40),
+2026-08-19 23:27:00,644 - INFO - 	               (3, 40),
+2026-08-19 23:27:00,644 - INFO - 	               (4, 40),
+2026-08-19 23:27:00,644 - INFO - 	               (5, 40),
+2026-08-19 23:27:00,644 - INFO - 	               (6, 40),
+2026-08-19 23:27:00,644 - INFO - 	               (7, 40),
+2026-08-19 23:27:00,644 - INFO - 	               (8, 40),
+2026-08-19 23:27:00,644 - INFO - 	               (9, 40),
+2026-08-19 23:27:00,644 - INFO - 	               (10, 40),
+2026-08-19 23:27:00,644 - INFO - 	               (11, 40),
+2026-08-19 23:27:00,644 - INFO - 	               (12, 40),
+2026-08-19 23:27:00,644 - INFO - 	               (13, 40),
+2026-08-19 23:27:00,644 - INFO - 	               (14, 40),
+2026-08-19 23:27:00,645 - INFO - 	               (15, 40),
+2026-08-19 23:27:00,645 - INFO - 	               (16, 40),
+2026-08-19 23:27:00,645 - INFO - 	               (17, 40),
+2026-08-19 23:27:00,645 - INFO - 	               (18, 40),
+2026-08-19 23:27:00,645 - INFO - 	               (19, 40),
+2026-08-19 23:27:00,645 - INFO - 	               (20, 40),
+2026-08-19 23:27:00,645 - INFO - 	               (21, 40),
+2026-08-19 23:27:00,645 - INFO - 	               (22, 40),
+2026-08-19 23:27:00,645 - INFO - 	               (23, 40),
+2026-08-19 23:27:00,645 - INFO - 	               (24, 40),
+2026-08-19 23:27:00,645 - INFO - 	               (25, 40),
+2026-08-19 23:27:00,645 - INFO - 	               (26, 40),
+2026-08-19 23:27:00,645 - INFO - 	               (27, 40)],
+2026-08-19 23:27:00,645 - INFO - 	 'krum_rejected': [(1, 16),
+2026-08-19 23:27:00,645 - INFO - 	                   (2, 16),
+2026-08-19 23:27:00,646 - INFO - 	                   (3, 16),
+2026-08-19 23:27:00,646 - INFO - 	                   (4, 16),
+2026-08-19 23:27:00,646 - INFO - 	                   (5, 16),
+2026-08-19 23:27:00,646 - INFO - 	                   (6, 16),
+2026-08-19 23:27:00,646 - INFO - 	                   (7, 16),
+2026-08-19 23:27:00,646 - INFO - 	                   (8, 16),
+2026-08-19 23:27:00,646 - INFO - 	                   (9, 16),
+2026-08-19 23:27:00,646 - INFO - 	                   (10, 16),
+2026-08-19 23:27:00,646 - INFO - 	                   (11, 16),
+2026-08-19 23:27:00,646 - INFO - 	                   (12, 16),
+2026-08-19 23:27:00,646 - INFO - 	                   (13, 16),
+2026-08-19 23:27:00,646 - INFO - 	                   (14, 16),
+2026-08-19 23:27:00,646 - INFO - 	                   (15, 16),
+2026-08-19 23:27:00,646 - INFO - 	                   (16, 16),
+2026-08-19 23:27:00,646 - INFO - 	                   (17, 16),
+2026-08-19 23:27:00,646 - INFO - 	                   (18, 16),
+2026-08-19 23:27:00,647 - INFO - 	                   (19, 16),
+2026-08-19 23:27:00,647 - INFO - 	                   (20, 16),
+2026-08-19 23:27:00,647 - INFO - 	                   (21, 16),
+2026-08-19 23:27:00,647 - INFO - 	                   (22, 16),
+2026-08-19 23:27:00,647 - INFO - 	                   (23, 16),
+2026-08-19 23:27:00,647 - INFO - 	                   (24, 16),
+2026-08-19 23:27:00,647 - INFO - 	                   (25, 16),
+2026-08-19 23:27:00,647 - INFO - 	                   (26, 16),
+2026-08-19 23:27:00,647 - INFO - 	                   (27, 16)],
+2026-08-19 23:27:00,647 - INFO - 	 'krum_score_max': [(1, 0.8307933807373047),
+2026-08-19 23:27:00,647 - INFO - 	                    (2, 0.8437495231628418),
+2026-08-19 23:27:00,647 - INFO - 	                    (3, 0.8219695091247559),
+2026-08-19 23:27:00,647 - INFO - 	                    (4, 0.8540763854980469),
+2026-08-19 23:27:00,647 - INFO - 	                    (5, 0.8037261962890625),
+2026-08-19 23:27:00,647 - INFO - 	                    (6, 0.8489112854003906),
+2026-08-19 23:27:00,647 - INFO - 	                    (7, 0.8051495552062988),
+2026-08-19 23:27:00,647 - INFO - 	                    (8, 0.8449983596801758),
+2026-08-19 23:27:00,647 - INFO - 	                    (9, 0.8047933578491211),
+2026-08-19 23:27:00,647 - INFO - 	                    (10, 0.8572258949279785),
+2026-08-19 23:27:00,647 - INFO - 	                    (11, 0.7946600914001465),
+2026-08-19 23:27:00,647 - INFO - 	                    (12, 0.8497977256774902),
+2026-08-19 23:27:00,647 - INFO - 	                    (13, 0.897273063659668),
+2026-08-19 23:27:00,647 - INFO - 	                    (14, 0.8570890426635742),
+2026-08-19 23:27:00,647 - INFO - 	                    (15, 0.8510313034057617),
+2026-08-19 23:27:00,648 - INFO - 	                    (16, 0.8668713569641113),
+2026-08-19 23:27:00,648 - INFO - 	                    (17, 0.8408236503601074),
+2026-08-19 23:27:00,648 - INFO - 	                    (18, 0.8418192863464355),
+2026-08-19 23:27:00,648 - INFO - 	                    (19, 0.8219904899597168),
+2026-08-19 23:27:00,648 - INFO - 	                    (20, 0.8322687149047852),
+2026-08-19 23:27:00,648 - INFO - 	                    (21, 0.801058292388916),
+2026-08-19 23:27:00,648 - INFO - 	                    (22, 0.814363956451416),
+2026-08-19 23:27:00,648 - INFO - 	                    (23, 0.8019323348999023),
+2026-08-19 23:27:00,648 - INFO - 	                    (24, 0.8055758476257324),
+2026-08-19 23:27:00,648 - INFO - 	                    (25, 0.7083916664123535),
+2026-08-19 23:27:00,648 - INFO - 	                    (26, 0.8005342483520508),
+2026-08-19 23:27:00,648 - INFO - 	                    (27, 0.6891903877258301)],
+2026-08-19 23:27:00,648 - INFO - 	 'krum_score_min': [(1, 0.01959514617919922),
+2026-08-19 23:27:00,648 - INFO - 	                    (2, 0.020285606384277344),
+2026-08-19 23:27:00,648 - INFO - 	                    (3, 0.024335861206054688),
+2026-08-19 23:27:00,648 - INFO - 	                    (4, 0.022402286529541016),
+2026-08-19 23:27:00,648 - INFO - 	                    (5, 0.018284320831298828),
+2026-08-19 23:27:00,648 - INFO - 	                    (6, 0.02182292938232422),
+2026-08-19 23:27:00,648 - INFO - 	                    (7, 0.02479410171508789),
+2026-08-19 23:27:00,649 - INFO - 	                    (8, 0.02010059356689453),
+2026-08-19 23:27:00,649 - INFO - 	                    (9, 0.024728775024414062),
+2026-08-19 23:27:00,649 - INFO - 	                    (10, 0.024067401885986328),
+2026-08-19 23:27:00,649 - INFO - 	                    (11, 0.024933815002441406),
+2026-08-19 23:27:00,649 - INFO - 	                    (12, 0.021814346313476562),
+2026-08-19 23:27:00,649 - INFO - 	                    (13, 0.015182018280029297),
+2026-08-19 23:27:00,649 - INFO - 	                    (14, 0.01881122589111328),
+2026-08-19 23:27:00,649 - INFO - 	                    (15, 0.01724529266357422),
+2026-08-19 23:27:00,649 - INFO - 	                    (16, 0.02438831329345703),
+2026-08-19 23:27:00,649 - INFO - 	                    (17, 0.014276981353759766),
+2026-08-19 23:27:00,649 - INFO - 	                    (18, 0.02234029769897461),
+2026-08-19 23:27:00,649 - INFO - 	                    (19, 0.014856815338134766),
+2026-08-19 23:27:00,649 - INFO - 	                    (20, 0.021297454833984375),
+2026-08-19 23:27:00,649 - INFO - 	                    (21, 0.030187129974365234),
+2026-08-19 23:27:00,649 - INFO - 	                    (22, 0.02150869369506836),
+2026-08-19 23:27:00,649 - INFO - 	                    (23, 0.018618106842041016),
+2026-08-19 23:27:00,649 - INFO - 	                    (24, 0.02268838882446289),
+2026-08-19 23:27:00,649 - INFO - 	                    (25, 0.018999576568603516),
+2026-08-19 23:27:00,649 - INFO - 	                    (26, 0.022983551025390625),
+2026-08-19 23:27:00,649 - INFO - 	                    (27, 0.023670196533203125)],
+2026-08-19 23:27:00,649 - INFO - 	 'n_clusters': [(1, 8),
+2026-08-19 23:27:00,649 - INFO - 	                (2, 8),
+2026-08-19 23:27:00,649 - INFO - 	                (3, 8),
+2026-08-19 23:27:00,649 - INFO - 	                (4, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (5, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (6, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (7, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (8, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (9, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (10, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (11, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (12, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (13, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (14, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (15, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (16, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (17, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (18, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (19, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (20, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (21, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (22, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (23, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (24, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (25, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (26, 8),
+2026-08-19 23:27:00,650 - INFO - 	                (27, 8)],
+2026-08-19 23:27:00,650 - INFO - 	 'num_clients': [(1, 40),
+2026-08-19 23:27:00,650 - INFO - 	                 (2, 40),
+2026-08-19 23:27:00,650 - INFO - 	                 (3, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (4, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (5, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (6, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (7, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (8, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (9, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (10, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (11, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (12, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (13, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (14, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (15, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (16, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (17, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (18, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (19, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (20, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (21, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (22, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (23, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (24, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (25, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (26, 40),
+2026-08-19 23:27:00,651 - INFO - 	                 (27, 40)],
+2026-08-19 23:27:00,652 - INFO - 	 'personalized_clients': [(1, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (2, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (3, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (4, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (5, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (6, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (7, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (8, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (9, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (10, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (11, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (12, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (13, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (14, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (15, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (16, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (17, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (18, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (19, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (20, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (21, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (22, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (23, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (24, 0),
+2026-08-19 23:27:00,652 - INFO - 	                          (25, 0),
+2026-08-19 23:27:00,653 - INFO - 	                          (26, 0),
+2026-08-19 23:27:00,653 - INFO - 	                          (27, 0)],
+2026-08-19 23:27:00,653 - INFO - 	 'topsis_ci_max': [(1, 0.9999999634862411),
+2026-08-19 23:27:00,653 - INFO - 	                   (2, 0.9999999769647948),
+2026-08-19 23:27:00,653 - INFO - 	                   (3, 0.9999999419341961),
+2026-08-19 23:27:00,653 - INFO - 	                   (4, 0.9999999935973853),
+2026-08-19 23:27:00,653 - INFO - 	                   (5, 0.9999999999976344),
+2026-08-19 23:27:00,653 - INFO - 	                   (6, 0.9999999769423744),
+2026-08-19 23:27:00,653 - INFO - 	                   (7, 0.9999999685056645),
+2026-08-19 23:27:00,653 - INFO - 	                   (8, 0.9999999440275497),
+2026-08-19 23:27:00,653 - INFO - 	                   (9, 0.9999999012642985),
+2026-08-19 23:27:00,653 - INFO - 	                   (10, 0.9999999301476838),
+2026-08-19 23:27:00,653 - INFO - 	                   (11, 0.9999997968300857),
+2026-08-19 23:27:00,653 - INFO - 	                   (12, 0.9999999091130672),
+2026-08-19 23:27:00,653 - INFO - 	                   (13, 0.9999996556989987),
+2026-08-19 23:27:00,653 - INFO - 	                   (14, 0.9999998054801678),
+2026-08-19 23:27:00,653 - INFO - 	                   (15, 0.9999996735566955),
+2026-08-19 23:27:00,653 - INFO - 	                   (16, 0.999999631763629),
+2026-08-19 23:27:00,653 - INFO - 	                   (17, 0.9999996000464447),
+2026-08-19 23:27:00,653 - INFO - 	                   (18, 0.9999995300921819),
+2026-08-19 23:27:00,653 - INFO - 	                   (19, 0.9999995134438433),
+2026-08-19 23:27:00,653 - INFO - 	                   (20, 0.9999994661630196),
+2026-08-19 23:27:00,653 - INFO - 	                   (21, 0.999999411916012),
+2026-08-19 23:27:00,653 - INFO - 	                   (22, 0.9999993661839488),
+2026-08-19 23:27:00,653 - INFO - 	                   (23, 0.999999310128684),
+2026-08-19 23:27:00,654 - INFO - 	                   (24, 0.9999992093142559),
+2026-08-19 23:27:00,654 - INFO - 	                   (25, 0.9999991766461848),
+2026-08-19 23:27:00,654 - INFO - 	                   (26, 0.9999992161080161),
+2026-08-19 23:27:00,654 - INFO - 	                   (27, 0.9999992405823677)],
+2026-08-19 23:27:00,654 - INFO - 	 'topsis_ci_min': [(1, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (2, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (3, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (4, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (5, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (6, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (7, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (8, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (9, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (10, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (11, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (12, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (13, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (14, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (15, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (16, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (17, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (18, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (19, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (20, 0.0),
+2026-08-19 23:27:00,654 - INFO - 	                   (21, 0.0),
+2026-08-19 23:27:00,655 - INFO - 	                   (22, 0.0),
+2026-08-19 23:27:00,655 - INFO - 	                   (23, 0.0),
+2026-08-19 23:27:00,655 - INFO - 	                   (24, 0.0),
+2026-08-19 23:27:00,655 - INFO - 	                   (25, 0.0),
+2026-08-19 23:27:00,655 - INFO - 	                   (26, 0.0),
+2026-08-19 23:27:00,655 - INFO - 	                   (27, 0.0)],
+2026-08-19 23:27:00,655 - INFO - 	 'topsis_kept': [(1, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (2, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (3, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (4, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (5, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (6, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (7, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (8, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (9, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (10, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (11, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (12, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (13, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (14, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (15, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (16, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (17, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (18, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (19, 56),
+2026-08-19 23:27:00,655 - INFO - 	                 (20, 56),
+2026-08-19 23:27:00,656 - INFO - 	                 (21, 56),
+2026-08-19 23:27:00,656 - INFO - 	                 (22, 56),
+2026-08-19 23:27:00,656 - INFO - 	                 (23, 56),
+2026-08-19 23:27:00,656 - INFO - 	                 (24, 56),
+2026-08-19 23:27:00,656 - INFO - 	                 (25, 56),
+2026-08-19 23:27:00,656 - INFO - 	                 (26, 56),
+2026-08-19 23:27:00,656 - INFO - 	                 (27, 56)],
+2026-08-19 23:27:00,656 - INFO - 	 'train_loss': [(1, 8.754191207358682),
+2026-08-19 23:27:00,656 - INFO - 	                (2, 8.401364665757521),
+2026-08-19 23:27:00,656 - INFO - 	                (3, 8.128966010905033),
+2026-08-19 23:27:00,656 - INFO - 	                (4, 7.903391076859817),
+2026-08-19 23:27:00,656 - INFO - 	                (5, 7.651786453597747),
+2026-08-19 23:27:00,656 - INFO - 	                (6, 7.461396810945633),
+2026-08-19 23:27:00,656 - INFO - 	                (7, 7.267139663833197),
+2026-08-19 23:27:00,656 - INFO - 	                (8, 7.056481092476637),
+2026-08-19 23:27:00,656 - INFO - 	                (9, 6.885145184391677),
+2026-08-19 23:27:00,656 - INFO - 	                (10, 6.724134932759162),
+2026-08-19 23:27:00,656 - INFO - 	                (11, 6.570913093983177),
+2026-08-19 23:27:00,656 - INFO - 	                (12, 6.392837363698124),
+2026-08-19 23:27:00,657 - INFO - 	                (13, 6.298240840841996),
+2026-08-19 23:27:00,657 - INFO - 	                (14, 6.071028293272065),
+2026-08-19 23:27:00,657 - INFO - 	                (15, 5.992598622622768),
+2026-08-19 23:27:00,657 - INFO - 	                (16, 5.69712633586214),
+2026-08-19 23:27:00,657 - INFO - 	                (17, 5.617876180605601),
+2026-08-19 23:27:00,657 - INFO - 	                (18, 5.359872825898199),
+2026-08-19 23:27:00,657 - INFO - 	                (19, 5.295656787447186),
+2026-08-19 23:27:00,657 - INFO - 	                (20, 5.029167998597949),
+2026-08-19 23:27:00,657 - INFO - 	                (21, 4.9336583045289455),
+2026-08-19 23:27:00,657 - INFO - 	                (22, 4.716691166557712),
+2026-08-19 23:27:00,657 - INFO - 	                (23, 4.6218927550900935),
+2026-08-19 23:27:00,657 - INFO - 	                (24, 4.41848355932068),
+2026-08-19 23:27:00,657 - INFO - 	                (25, 4.287591225104683),
+2026-08-19 23:27:00,657 - INFO - 	                (26, 4.141177108607613),
+2026-08-19 23:27:00,657 - INFO - 	                (27, 3.973251379834666)]}
+2026-08-19 23:27:00,657 - INFO - 	History (metrics, centralized):
+2026-08-19 23:27:00,657 - INFO - 	{'accuracy': [(1, 0.8163914217981723),
+2026-08-19 23:27:00,657 - INFO - 	              (2, 0.8613264488554555),
+2026-08-19 23:27:00,657 - INFO - 	              (3, 0.881335165279699),
+2026-08-19 23:27:00,657 - INFO - 	              (4, 0.9239003862134739),
+2026-08-19 23:27:00,657 - INFO - 	              (5, 0.9052174484436415),
+2026-08-19 23:27:00,657 - INFO - 	              (6, 0.9321997567794206),
+2026-08-19 23:27:00,657 - INFO - 	              (7, 0.9127527564756865),
+2026-08-19 23:27:00,657 - INFO - 	              (8, 0.9342938611513487),
+2026-08-19 23:27:00,658 - INFO - 	              (9, 0.9076215505694196),
+2026-08-19 23:27:00,658 - INFO - 	              (10, 0.9389041965231427),
+2026-08-19 23:27:00,658 - INFO - 	              (11, 0.9097525707771243),
+2026-08-19 23:27:00,658 - INFO - 	              (12, 0.9445151892111636),
+2026-08-19 23:27:00,658 - INFO - 	              (13, 0.9110711091643896),
+2026-08-19 23:27:00,658 - INFO - 	              (14, 0.9449034723535281),
+2026-08-19 23:27:00,658 - INFO - 	              (15, 0.9076899758572816),
+2026-08-19 23:27:00,658 - INFO - 	              (16, 0.9340882280377393),
+2026-08-19 23:27:00,658 - INFO - 	              (17, 0.9081149843020767),
+2026-08-19 23:27:00,658 - INFO - 	              (18, 0.9366108419046942),
+2026-08-19 23:27:00,658 - INFO - 	              (19, 0.9100218658449472),
+2026-08-19 23:27:00,658 - INFO - 	              (20, 0.9326176678570793),
+2026-08-19 23:27:00,658 - INFO - 	              (21, 0.8999745899966516),
+2026-08-19 23:27:00,658 - INFO - 	              (22, 0.9265479899553678),
+2026-08-19 23:27:00,658 - INFO - 	              (23, 0.8952875173197788),
+2026-08-19 23:27:00,658 - INFO - 	              (24, 0.9219626620852288),
+2026-08-19 23:27:00,658 - INFO - 	              (25, 0.889326133808568),
+2026-08-19 23:27:00,658 - INFO - 	              (26, 0.9130585148625894),
+2026-08-19 23:27:00,658 - INFO - 	              (27, 0.8874960133874444)],
+2026-08-19 23:27:00,658 - INFO - 	 'macro_f1': [(1, 0.10401341244400869),
+2026-08-19 23:27:00,658 - INFO - 	              (2, 0.10613091548706845),
+2026-08-19 23:27:00,658 - INFO - 	              (3, 0.1101911568138402),
+2026-08-19 23:27:00,658 - INFO - 	              (4, 0.11487779919232828),
+2026-08-19 23:27:00,658 - INFO - 	              (5, 0.11197303163851974),
+2026-08-19 23:27:00,658 - INFO - 	              (6, 0.11559219718203341),
+2026-08-19 23:27:00,659 - INFO - 	              (7, 0.11188018126077474),
+2026-08-19 23:27:00,659 - INFO - 	              (8, 0.11464972525960432),
+2026-08-19 23:27:00,659 - INFO - 	              (9, 0.11068622118676835),
+2026-08-19 23:27:00,659 - INFO - 	              (10, 0.11483929154217581),
+2026-08-19 23:27:00,659 - INFO - 	              (11, 0.11061482977292864),
+2026-08-19 23:27:00,659 - INFO - 	              (12, 0.11555230678156264),
+2026-08-19 23:27:00,659 - INFO - 	              (13, 0.11061249111916828),
+2026-08-19 23:27:00,659 - INFO - 	              (14, 0.11541938233661482),
+2026-08-19 23:27:00,659 - INFO - 	              (15, 0.11016922693735673),
+2026-08-19 23:27:00,659 - INFO - 	              (16, 0.11344550877969255),
+2026-08-19 23:27:00,659 - INFO - 	              (17, 0.11018575174085506),
+2026-08-19 23:27:00,659 - INFO - 	              (18, 0.11380860588921718),
+2026-08-19 23:27:00,659 - INFO - 	              (19, 0.11037009624469805),
+2026-08-19 23:27:00,659 - INFO - 	              (20, 0.11318771303863347),
+2026-08-19 23:27:00,659 - INFO - 	              (21, 0.10931309835221084),
+2026-08-19 23:27:00,659 - INFO - 	              (22, 0.11234235365381388),
+2026-08-19 23:27:00,659 - INFO - 	              (23, 0.10882926633910377),
+2026-08-19 23:27:00,659 - INFO - 	              (24, 0.11175443056360725),
+2026-08-19 23:27:00,659 - INFO - 	              (25, 0.10825346853360956),
+2026-08-19 23:27:00,659 - INFO - 	              (26, 0.11069007247877743),
+2026-08-19 23:27:00,659 - INFO - 	              (27, 0.10808261804035281)],
+2026-08-19 23:27:00,659 - INFO - 	 'macro_precision': [(1, 0.11268899431141782),
+2026-08-19 23:27:00,659 - INFO - 	                     (2, 0.11217497510142167),
+2026-08-19 23:27:00,659 - INFO - 	                     (3, 0.11374525503236294),
+2026-08-19 23:27:00,659 - INFO - 	                     (4, 0.11492975908550612),
+2026-08-19 23:27:00,660 - INFO - 	                     (5, 0.11391236594882621),
+2026-08-19 23:27:00,660 - INFO - 	                     (6, 0.11505280402269519),
+2026-08-19 23:27:00,660 - INFO - 	                     (7, 0.11362375889832875),
+2026-08-19 23:27:00,660 - INFO - 	                     (8, 0.11445927519180782),
+2026-08-19 23:27:00,660 - INFO - 	                     (9, 0.1131528571015349),
+2026-08-19 23:27:00,660 - INFO - 	                     (10, 0.11442757457284289),
+2026-08-19 23:27:00,660 - INFO - 	                     (11, 0.1130558785303387),
+2026-08-19 23:27:00,660 - INFO - 	                     (12, 0.11465627791623954),
+2026-08-19 23:27:00,660 - INFO - 	                     (13, 0.11301609541064875),
+2026-08-19 23:27:00,660 - INFO - 	                     (14, 0.11457226890870402),
+2026-08-19 23:27:00,660 - INFO - 	                     (15, 0.11290741652362914),
+2026-08-19 23:27:00,660 - INFO - 	                     (16, 0.11381913115670894),
+2026-08-19 23:27:00,660 - INFO - 	                     (17, 0.1129121995307305),
+2026-08-19 23:27:00,660 - INFO - 	                     (18, 0.11395303554267461),
+2026-08-19 23:27:00,660 - INFO - 	                     (19, 0.11292914917457142),
+2026-08-19 23:27:00,660 - INFO - 	                     (20, 0.11373533822915055),
+2026-08-19 23:27:00,660 - INFO - 	                     (21, 0.11269652493646547),
+2026-08-19 23:27:00,660 - INFO - 	                     (22, 0.11348908768123683),
+2026-08-19 23:27:00,660 - INFO - 	                     (23, 0.11258067166129601),
+2026-08-19 23:27:00,660 - INFO - 	                     (24, 0.11331019101106832),
+2026-08-19 23:27:00,660 - INFO - 	                     (25, 0.1124706777598518),
+2026-08-19 23:27:00,660 - INFO - 	                     (26, 0.11302368875368425),
+2026-08-19 23:27:00,660 - INFO - 	                     (27, 0.11243905691252773)],
+2026-08-19 23:27:00,660 - INFO - 	 'macro_recall': [(1, 0.1490826423425507),
+2026-08-19 23:27:00,660 - INFO - 	                  (2, 0.13334125067621808),
+2026-08-19 23:27:00,660 - INFO - 	                  (3, 0.16058658336651835),
+2026-08-19 23:27:00,661 - INFO - 	                  (4, 0.15704916207536523),
+2026-08-19 23:27:00,661 - INFO - 	                  (5, 0.1621703802430606),
+2026-08-19 23:27:00,661 - INFO - 	                  (6, 0.16414267963196272),
+2026-08-19 23:27:00,661 - INFO - 	                  (7, 0.1615550896800203),
+2026-08-19 23:27:00,661 - INFO - 	                  (8, 0.16311144563835392),
+2026-08-19 23:27:00,661 - INFO - 	                  (9, 0.16004837801048505),
+2026-08-19 23:27:00,661 - INFO - 	                  (10, 0.16308510121868042),
+2026-08-19 23:27:00,661 - INFO - 	                  (11, 0.15978420669905413),
+2026-08-19 23:27:00,661 - INFO - 	                  (12, 0.16353651787819742),
+2026-08-19 23:27:00,661 - INFO - 	                  (13, 0.15977023391609335),
+2026-08-19 23:27:00,661 - INFO - 	                  (14, 0.16351074945727037),
+2026-08-19 23:27:00,661 - INFO - 	                  (15, 0.15934583009011824),
+2026-08-19 23:27:00,661 - INFO - 	                  (16, 0.16226618675595417),
+2026-08-19 23:27:00,661 - INFO - 	                  (17, 0.15937195660603745),
+2026-08-19 23:27:00,661 - INFO - 	                  (18, 0.1625418137602948),
+2026-08-19 23:27:00,661 - INFO - 	                  (19, 0.15956881154696775),
+2026-08-19 23:27:00,661 - INFO - 	                  (20, 0.16209178055862078),
+2026-08-19 23:27:00,661 - INFO - 	                  (21, 0.1584480650233936),
+2026-08-19 23:27:00,661 - INFO - 	                  (22, 0.16141438124704632),
+2026-08-19 23:27:00,661 - INFO - 	                  (23, 0.1579154582869583),
+2026-08-19 23:27:00,661 - INFO - 	                  (24, 0.16090139625686253),
+2026-08-19 23:27:00,661 - INFO - 	                  (25, 0.1572468788385403),
+2026-08-19 23:27:00,661 - INFO - 	                  (26, 0.15990524200029413),
+2026-08-19 23:27:00,661 - INFO - 	                  (27, 0.15704378134662986)],
+2026-08-19 23:27:00,661 - INFO - 	 'micro_f1': [(1, 0.8163914217981723),
+2026-08-19 23:27:00,662 - INFO - 	              (2, 0.8613264488554555),
+2026-08-19 23:27:00,662 - INFO - 	              (3, 0.881335165279699),
+2026-08-19 23:27:00,662 - INFO - 	              (4, 0.9239003862134739),
+2026-08-19 23:27:00,662 - INFO - 	              (5, 0.9052174484436415),
+2026-08-19 23:27:00,662 - INFO - 	              (6, 0.9321997567794206),
+2026-08-19 23:27:00,662 - INFO - 	              (7, 0.9127527564756865),
+2026-08-19 23:27:00,662 - INFO - 	              (8, 0.9342938611513487),
+2026-08-19 23:27:00,662 - INFO - 	              (9, 0.9076215505694196),
+2026-08-19 23:27:00,662 - INFO - 	              (10, 0.9389041965231427),
+2026-08-19 23:27:00,662 - INFO - 	              (11, 0.9097525707771243),
+2026-08-19 23:27:00,662 - INFO - 	              (12, 0.9445151892111636),
+2026-08-19 23:27:00,662 - INFO - 	              (13, 0.9110711091643896),
+2026-08-19 23:27:00,662 - INFO - 	              (14, 0.9449034723535281),
+2026-08-19 23:27:00,662 - INFO - 	              (15, 0.9076899758572816),
+2026-08-19 23:27:00,662 - INFO - 	              (16, 0.9340882280377393),
+2026-08-19 23:27:00,662 - INFO - 	              (17, 0.9081149843020767),
+2026-08-19 23:27:00,662 - INFO - 	              (18, 0.9366108419046942),
+2026-08-19 23:27:00,662 - INFO - 	              (19, 0.9100218658449472),
+2026-08-19 23:27:00,662 - INFO - 	              (20, 0.9326176678570793),
+2026-08-19 23:27:00,662 - INFO - 	              (21, 0.8999745899966516),
+2026-08-19 23:27:00,662 - INFO - 	              (22, 0.9265479899553678),
+2026-08-19 23:27:00,662 - INFO - 	              (23, 0.8952875173197788),
+2026-08-19 23:27:00,662 - INFO - 	              (24, 0.9219626620852288),
+2026-08-19 23:27:00,662 - INFO - 	              (25, 0.889326133808568),
+2026-08-19 23:27:00,662 - INFO - 	              (26, 0.9130585148625894),
+2026-08-19 23:27:00,663 - INFO - 	              (27, 0.8874960133874444)],
+2026-08-19 23:27:00,663 - INFO - 	 'micro_precision': [(1, 0.8163914217981723),
+2026-08-19 23:27:00,663 - INFO - 	                     (2, 0.8613264488554555),
+2026-08-19 23:27:00,663 - INFO - 	                     (3, 0.881335165279699),
+2026-08-19 23:27:00,663 - INFO - 	                     (4, 0.9239003862134739),
+2026-08-19 23:27:00,663 - INFO - 	                     (5, 0.9052174484436415),
+2026-08-19 23:27:00,663 - INFO - 	                     (6, 0.9321997567794206),
+2026-08-19 23:27:00,663 - INFO - 	                     (7, 0.9127527564756865),
+2026-08-19 23:27:00,663 - INFO - 	                     (8, 0.9342938611513487),
+2026-08-19 23:27:00,663 - INFO - 	                     (9, 0.9076215505694196),
+2026-08-19 23:27:00,663 - INFO - 	                     (10, 0.9389041965231427),
+2026-08-19 23:27:00,663 - INFO - 	                     (11, 0.9097525707771243),
+2026-08-19 23:27:00,663 - INFO - 	                     (12, 0.9445151892111636),
+2026-08-19 23:27:00,663 - INFO - 	                     (13, 0.9110711091643896),
+2026-08-19 23:27:00,663 - INFO - 	                     (14, 0.9449034723535281),
+2026-08-19 23:27:00,663 - INFO - 	                     (15, 0.9076899758572816),
+2026-08-19 23:27:00,663 - INFO - 	                     (16, 0.9340882280377393),
+2026-08-19 23:27:00,663 - INFO - 	                     (17, 0.9081149843020767),
+2026-08-19 23:27:00,663 - INFO - 	                     (18, 0.9366108419046942),
+2026-08-19 23:27:00,663 - INFO - 	                     (19, 0.9100218658449472),
+2026-08-19 23:27:00,663 - INFO - 	                     (20, 0.9326176678570793),
+2026-08-19 23:27:00,663 - INFO - 	                     (21, 0.8999745899966516),
+2026-08-19 23:27:00,663 - INFO - 	                     (22, 0.9265479899553678),
+2026-08-19 23:27:00,664 - INFO - 	                     (23, 0.8952875173197788),
+2026-08-19 23:27:00,664 - INFO - 	                     (24, 0.9219626620852288),
+2026-08-19 23:27:00,664 - INFO - 	                     (25, 0.889326133808568),
+2026-08-19 23:27:00,664 - INFO - 	                     (26, 0.9130585148625894),
+2026-08-19 23:27:00,664 - INFO - 	                     (27, 0.8874960133874444)],
+2026-08-19 23:27:00,664 - INFO - 	 'micro_recall': [(1, 0.8163914217981723),
+2026-08-19 23:27:00,664 - INFO - 	                  (2, 0.8613264488554555),
+2026-08-19 23:27:00,664 - INFO - 	                  (3, 0.881335165279699),
+2026-08-19 23:27:00,664 - INFO - 	                  (4, 0.9239003862134739),
+2026-08-19 23:27:00,664 - INFO - 	                  (5, 0.9052174484436415),
+2026-08-19 23:27:00,664 - INFO - 	                  (6, 0.9321997567794206),
+2026-08-19 23:27:00,664 - INFO - 	                  (7, 0.9127527564756865),
+2026-08-19 23:27:00,664 - INFO - 	                  (8, 0.9342938611513487),
+2026-08-19 23:27:00,664 - INFO - 	                  (9, 0.9076215505694196),
+2026-08-19 23:27:00,664 - INFO - 	                  (10, 0.9389041965231427),
+2026-08-19 23:27:00,664 - INFO - 	                  (11, 0.9097525707771243),
+2026-08-19 23:27:00,664 - INFO - 	                  (12, 0.9445151892111636),
+2026-08-19 23:27:00,664 - INFO - 	                  (13, 0.9110711091643896),
+2026-08-19 23:27:00,664 - INFO - 	                  (14, 0.9449034723535281),
+2026-08-19 23:27:00,664 - INFO - 	                  (15, 0.9076899758572816),
+2026-08-19 23:27:00,664 - INFO - 	                  (16, 0.9340882280377393),
+2026-08-19 23:27:00,664 - INFO - 	                  (17, 0.9081149843020767),
+2026-08-19 23:27:00,665 - INFO - 	                  (18, 0.9366108419046942),
+2026-08-19 23:27:00,665 - INFO - 	                  (19, 0.9100218658449472),
+2026-08-19 23:27:00,665 - INFO - 	                  (20, 0.9326176678570793),
+2026-08-19 23:27:00,665 - INFO - 	                  (21, 0.8999745899966516),
+2026-08-19 23:27:00,665 - INFO - 	                  (22, 0.9265479899553678),
+2026-08-19 23:27:00,665 - INFO - 	                  (23, 0.8952875173197788),
+2026-08-19 23:27:00,665 - INFO - 	                  (24, 0.9219626620852288),
+2026-08-19 23:27:00,665 - INFO - 	                  (25, 0.889326133808568),
+2026-08-19 23:27:00,665 - INFO - 	                  (26, 0.9130585148625894),
+2026-08-19 23:27:00,665 - INFO - 	                  (27, 0.8874960133874444)],
+2026-08-19 23:27:00,665 - INFO - 	 'weighted_f1': [(1, 0.8933680333366895),
+2026-08-19 23:27:00,665 - INFO - 	                 (2, 0.9195838995824204),
+2026-08-19 23:27:00,665 - INFO - 	                 (3, 0.9308635686733926),
+2026-08-19 23:27:00,665 - INFO - 	                 (4, 0.954182660448371),
+2026-08-19 23:27:00,665 - INFO - 	                 (5, 0.9440412989358672),
+2026-08-19 23:27:00,665 - INFO - 	                 (6, 0.9586613329172168),
+2026-08-19 23:27:00,665 - INFO - 	                 (7, 0.9481810595745538),
+2026-08-19 23:27:00,665 - INFO - 	                 (8, 0.9597770204047374),
+2026-08-19 23:27:00,665 - INFO - 	                 (9, 0.9453536932350957),
+2026-08-19 23:27:00,665 - INFO - 	                 (10, 0.9622545078099927),
+2026-08-19 23:27:00,665 - INFO - 	                 (11, 0.946499386191372),
+2026-08-19 23:27:00,665 - INFO - 	                 (12, 0.9652398095508442),
+2026-08-19 23:27:00,665 - INFO - 	                 (13, 0.9472547150144365),
+2026-08-19 23:27:00,665 - INFO - 	                 (14, 0.9654413654536462),
+2026-08-19 23:27:00,665 - INFO - 	                 (15, 0.9454722013662975),
+2026-08-19 23:27:00,665 - INFO - 	                 (16, 0.9597103608511292),
+2026-08-19 23:27:00,665 - INFO - 	                 (17, 0.9458164414893641),
+2026-08-19 23:27:00,666 - INFO - 	                 (18, 0.9611699463637117),
+2026-08-19 23:27:00,666 - INFO - 	                 (19, 0.9468342656312795),
+2026-08-19 23:27:00,666 - INFO - 	                 (20, 0.959040860228328),
+2026-08-19 23:27:00,666 - INFO - 	                 (21, 0.9413425454487505),
+2026-08-19 23:27:00,666 - INFO - 	                 (22, 0.9559083315194746),
+2026-08-19 23:27:00,666 - INFO - 	                 (23, 0.9387375428131464),
+2026-08-19 23:27:00,666 - INFO - 	                 (24, 0.9534118241733093),
+2026-08-19 23:27:00,666 - INFO - 	                 (25, 0.9354470004360198),
+2026-08-19 23:27:00,666 - INFO - 	                 (26, 0.948571099650134),
+2026-08-19 23:27:00,666 - INFO - 	                 (27, 0.9344094608886276)],
+2026-08-19 23:27:00,666 - INFO - 	 'weighted_precision': [(1, 0.988302982312404),
+2026-08-19 23:27:00,666 - INFO - 	                        (2, 0.9873736479261344),
+2026-08-19 23:27:00,666 - INFO - 	                        (3, 0.988254970527163),
+2026-08-19 23:27:00,666 - INFO - 	                        (4, 0.9879648030031402),
+2026-08-19 23:27:00,666 - INFO - 	                        (5, 0.9882270769029804),
+2026-08-19 23:27:00,666 - INFO - 	                        (6, 0.9883260823131059),
+2026-08-19 23:27:00,666 - INFO - 	                        (7, 0.9883243533627248),
+2026-08-19 23:27:00,666 - INFO - 	                        (8, 0.9883671509827843),
+2026-08-19 23:27:00,666 - INFO - 	                        (9, 0.9882622697544078),
+2026-08-19 23:27:00,666 - INFO - 	                        (10, 0.9884496354460938),
+2026-08-19 23:27:00,666 - INFO - 	                        (11, 0.9882322653101752),
+2026-08-19 23:27:00,666 - INFO - 	                        (12, 0.9885053092253203),
+2026-08-19 23:27:00,666 - INFO - 	                        (13, 0.9883178751997801),
+2026-08-19 23:27:00,666 - INFO - 	                        (14, 0.988506924083595),
+2026-08-19 23:27:00,667 - INFO - 	                        (15, 0.9884491651068337),
+2026-08-19 23:27:00,667 - INFO - 	                        (16, 0.9884962430514823),
+2026-08-19 23:27:00,667 - INFO - 	                        (17, 0.9886958213406252),
+2026-08-19 23:27:00,667 - INFO - 	                        (18, 0.9887512267779813),
+2026-08-19 23:27:00,667 - INFO - 	                        (19, 0.9886492534439771),
+2026-08-19 23:27:00,667 - INFO - 	                        (20, 0.9887383526688115),
+2026-08-19 23:27:00,667 - INFO - 	                        (21, 0.9886629537123357),
+2026-08-19 23:27:00,667 - INFO - 	                        (22, 0.9889730871505763),
+2026-08-19 23:27:00,667 - INFO - 	                        (23, 0.9886169669863043),
+2026-08-19 23:27:00,667 - INFO - 	                        (24, 0.9888987723881449),
+2026-08-19 23:27:00,667 - INFO - 	                        (25, 0.9886487354255504),
+2026-08-19 23:27:00,667 - INFO - 	                        (26, 0.9888379252042893),
+2026-08-19 23:27:00,667 - INFO - 	                        (27, 0.988606457678755)],
+2026-08-19 23:27:00,667 - INFO - 	 'weighted_recall': [(1, 0.8163914217981723),
+2026-08-19 23:27:00,667 - INFO - 	                     (2, 0.8613264488554555),
+2026-08-19 23:27:00,667 - INFO - 	                     (3, 0.881335165279699),
+2026-08-19 23:27:00,667 - INFO - 	                     (4, 0.9239003862134739),
+2026-08-19 23:27:00,667 - INFO - 	                     (5, 0.9052174484436415),
+2026-08-19 23:27:00,667 - INFO - 	                     (6, 0.9321997567794206),
+2026-08-19 23:27:00,667 - INFO - 	                     (7, 0.9127527564756865),
+2026-08-19 23:27:00,667 - INFO - 	                     (8, 0.9342938611513487),
+2026-08-19 23:27:00,667 - INFO - 	                     (9, 0.9076215505694196),
+2026-08-19 23:27:00,667 - INFO - 	                     (10, 0.9389041965231427),
+2026-08-19 23:27:00,667 - INFO - 	                     (11, 0.9097525707771243),
+2026-08-19 23:27:00,667 - INFO - 	                     (12, 0.9445151892111636),
+2026-08-19 23:27:00,668 - INFO - 	                     (13, 0.9110711091643896),
+2026-08-19 23:27:00,668 - INFO - 	                     (14, 0.9449034723535281),
+2026-08-19 23:27:00,668 - INFO - 	                     (15, 0.9076899758572816),
+2026-08-19 23:27:00,668 - INFO - 	                     (16, 0.9340882280377393),
+2026-08-19 23:27:00,668 - INFO - 	                     (17, 0.9081149843020767),
+2026-08-19 23:27:00,668 - INFO - 	                     (18, 0.9366108419046942),
+2026-08-19 23:27:00,668 - INFO - 	                     (19, 0.9100218658449472),
+2026-08-19 23:27:00,668 - INFO - 	                     (20, 0.9326176678570793),
+2026-08-19 23:27:00,668 - INFO - 	                     (21, 0.8999745899966516),
+2026-08-19 23:27:00,668 - INFO - 	                     (22, 0.9265479899553678),
+2026-08-19 23:27:00,668 - INFO - 	                     (23, 0.8952875173197788),
+2026-08-19 23:27:00,668 - INFO - 	                     (24, 0.9219626620852288),
+2026-08-19 23:27:00,668 - INFO - 	                     (25, 0.889326133808568),
+2026-08-19 23:27:00,668 - INFO - 	                     (26, 0.9130585148625894),
+2026-08-19 23:27:00,668 - INFO - 	                     (27, 0.8874960133874444)]}
+2026-08-19 23:27:00,668 - INFO - 
+2026-08-19 23:27:00,673 - INFO - Nap global test: /kaggle/input/datasets/tongxuanvu/100clientiov/global_test_data.pt
+2026-08-19 23:27:02,720 - INFO - Global test goc: n=42048683
+2026-08-19 23:27:04,581 - INFO - Task 3: loc ve lop 0-10 -> n=41995397
+2026-08-19 23:27:04,581 - INFO - Danh gia moi round tren n=41995397 mau (dtype=float16)
+2026-08-19 23:27:04,593 - INFO - ===== Task 3: 80 client, 30 round =====
+2026-08-19 23:27:04,593 - WARNING - DEPRECATED FEATURE: flwr.simulation.start_simulation() is deprecated.
+	Instead, use the `flwr run` CLI command to start a local simulation in your Flower app, as shown for example below:
+
+		$ flwr new  # Create a new Flower app from a template
+
+		$ flwr run  # Run the Flower app in Simulation Mode
+
+	Using `start_simulation()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+2026-08-19 23:27:04,593 - INFO - Starting Flower simulation, config: num_rounds=30, no round_timeout
+2026-08-19 23:27:16,991 - INFO - Flower VCE: Ray initialized with resources: {'object_store_memory': 8321517158.0, 'memory': 19416873370.0, 'node:172.19.2.2': 1.0, 'CPU': 4.0, 'node:__internal_head__': 1.0, 'GPU': 2.0, 'accelerator_type:T4': 1.0}
+2026-08-19 23:27:16,992 - INFO - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+2026-08-19 23:27:16,992 - INFO - Flower VCE: Resources for each Virtual Client: {'num_cpus': 1.0, 'num_gpus': 0.5}
+2026-08-19 23:27:17,012 - INFO - Flower VCE: Creating VirtualClientEngineActorPool with 4 actors
+2026-08-19 23:27:17,015 - INFO - [INIT]
+2026-08-19 23:27:17,015 - INFO - Using initial global parameters provided by strategy
+2026-08-19 23:27:17,015 - INFO - Starting evaluation of initial global parameters
+2026-08-19 23:27:17,018 - INFO - Evaluation returned no results (`None`)
+2026-08-19 23:27:17,018 - INFO - 
+2026-08-19 23:27:17,018 - INFO - [ROUND 1]
+2026-08-19 23:27:17,018 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-19 23:27:36,422 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-19 23:27:36,582 - INFO - [Round 1] TOPSIS giu 64/80 | C_i 0.0458..0.9864
+2026-08-19 23:27:36,723 - INFO - [Round 1] 9 cum (Eq.14) | giu 45/64 update | diem Krum 1.074e-02..2.961e-01
+2026-08-19 23:27:36,728 - INFO - [Round 93] luu checkpoint -> out_full/checkpoints/round_093.pth
+2026-08-19 23:44:43,815 - INFO - [Round 93] loss=0.3721 acc=0.8798 | micro P/R/F1=0.8798/0.8798/0.8798 | macro P/R/F1=0.0919/0.1278/0.0878 | weighted P/R/F1=0.9885/0.8798/0.9300
+2026-08-19 23:44:43,817 - INFO - fit progress: (1, 0.37212306201620754, {'accuracy': 0.8797578458420098, 'micro_precision': 0.8797578458420098, 'micro_recall': 0.8797578458420098, 'micro_f1': 0.8797578458420098, 'macro_precision': 0.09189208245763919, 'macro_recall': 0.12779334944586415, 'macro_f1': 0.08784855435395628, 'weighted_precision': 0.988490328171041, 'weighted_recall': 0.8797578458420098, 'weighted_f1': 0.9300293861766225}, 1046.7991013859973)
+2026-08-19 23:44:43,817 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-19 23:44:43,818 - INFO - 
+2026-08-19 23:44:43,818 - INFO - [ROUND 2]
+2026-08-19 23:44:43,818 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-19 23:44:44,902 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-19 23:44:45,054 - INFO - [Round 2] TOPSIS giu 64/80 | C_i 0.0426..0.9915
+2026-08-19 23:44:45,186 - INFO - [Round 2] 9 cum (Eq.14) | giu 45/64 update | diem Krum 1.485e-02..3.645e-01
+2026-08-19 23:44:45,191 - INFO - [Round 94] luu checkpoint -> out_full/checkpoints/round_094.pth
+2026-08-20 00:01:51,972 - INFO - [Round 94] loss=0.3835 acc=0.9038 | micro P/R/F1=0.9038/0.9038/0.9038 | macro P/R/F1=0.0923/0.1300/0.0898 | weighted P/R/F1=0.9887/0.9038/0.9435
+2026-08-20 00:01:51,974 - INFO - fit progress: (2, 0.38345028193046043, {'accuracy': 0.9038059814031524, 'micro_precision': 0.9038059814031524, 'micro_recall': 0.9038059814031524, 'micro_f1': 0.9038059814031524, 'macro_precision': 0.09227100795859942, 'macro_recall': 0.1299949990269802, 'macro_f1': 0.08975751183845088, 'weighted_precision': 0.9886792149726795, 'weighted_recall': 0.9038059814031524, 'weighted_f1': 0.9434531707004079}, 2074.955939960997)
+2026-08-20 00:01:51,974 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-20 00:01:51,974 - INFO - 
+2026-08-20 00:01:51,974 - INFO - [ROUND 3]
+2026-08-20 00:01:51,975 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-20 00:01:53,089 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-20 00:01:53,235 - INFO - [Round 3] TOPSIS giu 64/80 | C_i 0.0391..0.9925
+2026-08-20 00:01:53,363 - INFO - [Round 3] 9 cum (Eq.14) | giu 45/64 update | diem Krum 1.414e-02..3.818e-01
+2026-08-20 00:01:53,367 - INFO - [Round 95] luu checkpoint -> out_full/checkpoints/round_095.pth
+2026-08-20 00:18:58,086 - INFO - [Round 95] loss=0.3871 acc=0.8912 | micro P/R/F1=0.8912/0.8912/0.8912 | macro P/R/F1=0.0920/0.1288/0.0887 | weighted P/R/F1=0.9882/0.8912/0.9363
+2026-08-20 00:19:01,435 - INFO - Luu out_full/confusion_matrix_task3.csv
+2026-08-20 00:19:01,436 - INFO - Luu out_full/confusion_matrix_task3_normalized.csv
+2026-08-20 00:19:11,429 - INFO - Luu out_full/classification_report_task3.txt
+                 precision    recall  f1-score   support
+
+         Benign     0.9951    0.8957    0.9428  41700592
+            DoS     0.0170    0.5215    0.0330    145129
+         double     0.0000    0.0000    0.0000     12413
+  force-neutral     0.0000    0.0000    0.0000      5744
+        fuzzing     0.0000    0.0000    0.0000     67321
+       interval     0.0000    0.0000    0.0000     40542
+            rpm     0.0000    0.0000    0.0000      5043
+  rpm-accessory     0.0000    0.0000    0.0000      3146
+          speed     0.0000    0.0000    0.0000      7471
+speed-accessory     0.0000    0.0000    0.0000      2257
+     standstill     0.0000    0.0000    0.0000      5739
+
+       accuracy                         0.8912  41995397
+      macro avg     0.0920    0.1288    0.0887  41995397
+   weighted avg     0.9882    0.8912    0.9363  41995397
+
+2026-08-20 00:19:11,953 - INFO - Luu out_full/confusion_matrix_task3.png
+2026-08-20 00:19:11,954 - INFO - fit progress: (3, 0.3871140521781614, {'accuracy': 0.8912363657378927, 'micro_precision': 0.8912363657378927, 'micro_recall': 0.8912363657378927, 'micro_f1': 0.8912363657378927, 'macro_precision': 0.09200995858364434, 'macro_recall': 0.12884288015498438, 'macro_f1': 0.0887064725102298, 'weighted_precision': 0.9881544009320112, 'weighted_recall': 0.8912363657378927, 'weighted_f1': 0.9362864754071978}, 3114.9364310959972)
+2026-08-20 00:19:11,955 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-20 00:19:11,955 - INFO - 
+2026-08-20 00:19:11,955 - INFO - [ROUND 4]
+2026-08-20 00:19:11,955 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-20 00:19:13,074 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-20 00:19:13,227 - INFO - [Round 4] TOPSIS giu 64/80 | C_i 0.0367..0.9929
+2026-08-20 00:19:13,356 - INFO - [Round 4] 9 cum (Eq.14) | giu 45/64 update | diem Krum 1.882e-02..5.684e-01
+2026-08-20 00:19:13,361 - INFO - [Round 96] luu checkpoint -> out_full/checkpoints/round_096.pth
+2026-08-20 00:36:18,800 - INFO - [Round 96] loss=0.3888 acc=0.9060 | micro P/R/F1=0.9060/0.9060/0.9060 | macro P/R/F1=0.0922/0.1302/0.0899 | weighted P/R/F1=0.9877/0.9060/0.9442
+2026-08-20 00:36:18,801 - INFO - fit progress: (4, 0.3887985911873228, {'accuracy': 0.9059681469376275, 'micro_precision': 0.9059681469376275, 'micro_recall': 0.9059681469376275, 'micro_f1': 0.9059681469376275, 'macro_precision': 0.09223591941664754, 'macro_recall': 0.13019294912715232, 'macro_f1': 0.0899159943589397, 'weighted_precision': 0.9877214926204219, 'weighted_recall': 0.9059681469376275, 'weighted_f1': 0.9441994659746437}, 4141.783511230999)
+2026-08-20 00:36:18,802 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-20 00:36:18,802 - INFO - 
+2026-08-20 00:36:18,802 - INFO - [ROUND 5]
+2026-08-20 00:36:18,802 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-20 00:36:19,938 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-20 00:36:20,081 - INFO - [Round 5] TOPSIS giu 64/80 | C_i 0.0341..0.9920
+2026-08-20 00:36:20,210 - INFO - [Round 5] 9 cum (Eq.14) | giu 45/64 update | diem Krum 2.563e-02..5.707e-01
+2026-08-20 00:36:20,214 - INFO - [Round 97] luu checkpoint -> out_full/checkpoints/round_097.pth
+2026-08-20 00:53:27,715 - INFO - [Round 97] loss=0.4152 acc=0.9057 | micro P/R/F1=0.9057/0.9057/0.9057 | macro P/R/F1=0.0922/0.1302/0.0899 | weighted P/R/F1=0.9877/0.9057/0.9440
+2026-08-20 00:53:27,717 - INFO - fit progress: (5, 0.4152333261218988, {'accuracy': 0.9056992603260782, 'micro_precision': 0.9056992603260782, 'micro_recall': 0.9056992603260782, 'micro_f1': 0.9056992603260782, 'macro_precision': 0.0922374306470405, 'macro_recall': 0.13016968028195783, 'macro_f1': 0.08989242078519237, 'weighted_precision': 0.9876930281478036, 'weighted_recall': 0.9056992603260782, 'weighted_f1': 0.944039495029352}, 5170.6989429219975)
+2026-08-20 00:53:27,717 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-20 00:53:27,717 - INFO - 
+2026-08-20 00:53:27,717 - INFO - [ROUND 6]
+2026-08-20 00:53:27,717 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-20 00:53:28,750 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-20 00:53:28,899 - INFO - [Round 6] TOPSIS giu 64/80 | C_i 0.0353..0.9912
+2026-08-20 00:53:29,077 - INFO - [Round 6] 9 cum (Eq.14) | giu 45/64 update | diem Krum 2.465e-02..5.151e-01
+2026-08-20 00:53:29,082 - INFO - [Round 98] luu checkpoint -> out_full/checkpoints/round_098.pth
+2026-08-20 01:10:43,939 - INFO - [Round 98] loss=0.4074 acc=0.9121 | micro P/R/F1=0.9121/0.9121/0.9121 | macro P/R/F1=0.0924/0.1308/0.0905 | weighted P/R/F1=0.9878/0.9121/0.9476
+2026-08-20 01:10:43,941 - INFO - fit progress: (6, 0.40743329505402787, {'accuracy': 0.9121301555977671, 'micro_precision': 0.9121301555977671, 'micro_recall': 0.9121301555977671, 'micro_f1': 0.9121301555977671, 'macro_precision': 0.09237891157356351, 'macro_recall': 0.13075844018166471, 'macro_f1': 0.09046975395161133, 'weighted_precision': 0.9877725329276926, 'weighted_recall': 0.9121301555977671, 'weighted_f1': 0.9475778890354755}, 6206.922860268998)
+2026-08-20 01:10:43,941 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-20 01:10:43,941 - INFO - 
+2026-08-20 01:10:43,941 - INFO - [ROUND 7]
+2026-08-20 01:10:43,942 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-20 01:10:44,959 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-20 01:10:45,101 - INFO - [Round 7] TOPSIS giu 64/80 | C_i 0.0349..0.9850
+2026-08-20 01:10:45,225 - INFO - [Round 7] 9 cum (Eq.14) | giu 45/64 update | diem Krum 2.015e-02..5.153e-01
+2026-08-20 01:10:45,230 - INFO - [Round 99] luu checkpoint -> out_full/checkpoints/round_099.pth
+2026-08-20 01:27:55,656 - INFO - [Round 99] loss=0.4276 acc=0.9385 | micro P/R/F1=0.9385/0.9385/0.9385 | macro P/R/F1=0.0933/0.1332/0.0934 | weighted P/R/F1=0.9879/0.9385/0.9618
+2026-08-20 01:27:55,658 - INFO - fit progress: (7, 0.4276169966421255, {'accuracy': 0.9385185476398759, 'micro_precision': 0.9385185476398759, 'micro_recall': 0.9385185476398759, 'micro_f1': 0.9385185476398759, 'macro_precision': 0.0932849392459393, 'macro_recall': 0.1331743444058454, 'macro_f1': 0.09340084964169339, 'weighted_precision': 0.9879389886794464, 'weighted_recall': 0.9385185476398759, 'weighted_f1': 0.9617985801209761}, 7238.640200065001)
+2026-08-20 01:27:55,658 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-20 01:27:55,659 - INFO - 
+2026-08-20 01:27:55,659 - INFO - [ROUND 8]
+2026-08-20 01:27:55,659 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-20 01:27:56,773 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-20 01:27:56,921 - INFO - [Round 8] TOPSIS giu 64/80 | C_i 0.0373..0.9935
+2026-08-20 01:27:57,050 - INFO - [Round 8] 9 cum (Eq.14) | giu 45/64 update | diem Krum 2.285e-02..5.027e-01
+2026-08-20 01:27:57,056 - INFO - [Round 100] luu checkpoint -> out_full/checkpoints/round_100.pth
+2026-08-20 01:45:10,089 - INFO - [Round 100] loss=0.4228 acc=0.9168 | micro P/R/F1=0.9168/0.9168/0.9168 | macro P/R/F1=0.0925/0.1312/0.0909 | weighted P/R/F1=0.9878/0.9168/0.9501
+2026-08-20 01:45:13,291 - INFO - Luu out_full/confusion_matrix_task3.csv
+2026-08-20 01:45:13,291 - INFO - Luu out_full/confusion_matrix_task3_normalized.csv
+2026-08-20 01:45:22,937 - INFO - Luu out_full/classification_report_task3.txt
+                 precision    recall  f1-score   support
+
+         Benign     0.9947    0.9214    0.9567  41700592
+            DoS     0.0226    0.5215    0.0433    145129
+         double     0.0000    0.0000    0.0000     12413
+  force-neutral     0.0000    0.0000    0.0000      5744
+        fuzzing     0.0001    0.0000    0.0000     67321
+       interval     0.0000    0.0000    0.0000     40542
+            rpm     0.0000    0.0000    0.0000      5043
+  rpm-accessory     0.0000    0.0000    0.0000      3146
+          speed     0.0000    0.0000    0.0000      7471
+speed-accessory     0.0000    0.0000    0.0000      2257
+     standstill     0.0000    0.0000    0.0000      5739
+
+       accuracy                         0.9168  41995397
+      macro avg     0.0925    0.1312    0.0909  41995397
+   weighted avg     0.9878    0.9168    0.9501  41995397
+
+2026-08-20 01:45:23,430 - INFO - Luu out_full/confusion_matrix_task3.png
+2026-08-20 01:45:23,431 - INFO - fit progress: (8, 0.42283185377337695, {'accuracy': 0.9167713547272812, 'micro_precision': 0.9167713547272812, 'micro_recall': 0.9167713547272812, 'micro_f1': 0.9167713547272812, 'macro_precision': 0.0924954193074382, 'macro_recall': 0.13118335021651506, 'macro_f1': 0.09091240439997791, 'weighted_precision': 0.987838270083057, 'weighted_recall': 0.9167713547272812, 'weighted_f1': 0.9501218322178299}, 8286.413276397998)
+2026-08-20 01:45:23,431 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-20 01:45:23,432 - INFO - 
+2026-08-20 01:45:23,432 - INFO - [ROUND 9]
+2026-08-20 01:45:23,432 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-20 01:45:24,801 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-20 01:45:24,955 - INFO - [Round 9] TOPSIS giu 64/80 | C_i 0.0337..0.9956
+2026-08-20 01:45:25,081 - INFO - [Round 9] 9 cum (Eq.14) | giu 45/64 update | diem Krum 2.223e-02..4.983e-01
+2026-08-20 01:45:25,085 - INFO - [Round 101] luu checkpoint -> out_full/checkpoints/round_101.pth
+2026-08-20 02:02:38,709 - INFO - [Round 101] loss=0.4279 acc=0.9621 | micro P/R/F1=0.9621/0.9621/0.9621 | macro P/R/F1=0.0941/0.1224/0.0958 | weighted P/R/F1=0.9876/0.9621/0.9742
+2026-08-20 02:02:38,711 - INFO - fit progress: (9, 0.4279083904900993, {'accuracy': 0.9621023942219191, 'micro_precision': 0.9621023942219191, 'micro_recall': 0.9621023942219191, 'micro_f1': 0.9621023942219191, 'macro_precision': 0.09406050513394094, 'macro_recall': 0.12243174385974803, 'macro_f1': 0.09577203448041939, 'weighted_precision': 0.9875897947164184, 'weighted_recall': 0.9621023942219191, 'weighted_f1': 0.9741901489674092}, 9321.692993339002)
+2026-08-20 02:02:38,711 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-20 02:02:38,711 - INFO - 
+2026-08-20 02:02:38,711 - INFO - [ROUND 10]
+2026-08-20 02:02:38,712 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-20 02:02:39,811 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-20 02:02:39,958 - INFO - [Round 10] TOPSIS giu 64/80 | C_i 0.0376..0.9889
+2026-08-20 02:02:40,077 - INFO - [Round 10] 9 cum (Eq.14) | giu 45/64 update | diem Krum 2.122e-02..4.557e-01
+2026-08-20 02:02:40,083 - INFO - [Round 102] luu checkpoint -> out_full/checkpoints/round_102.pth
+2026-08-20 02:20:10,647 - INFO - [Round 102] loss=0.4255 acc=0.9323 | micro P/R/F1=0.9323/0.9323/0.9323 | macro P/R/F1=0.0930/0.1326/0.0926 | weighted P/R/F1=0.9880/0.9323/0.9585
+2026-08-20 02:20:10,649 - INFO - fit progress: (10, 0.4254516319543527, {'accuracy': 0.9322916747280661, 'micro_precision': 0.9322916747280661, 'micro_recall': 0.9322916747280661, 'micro_f1': 0.9322916747280661, 'macro_precision': 0.09301054021417109, 'macro_recall': 0.13260561131836435, 'macro_f1': 0.09258226646462425, 'weighted_precision': 0.9880467971555472, 'weighted_recall': 0.9322916747280661, 'weighted_f1': 0.9585428989686056}, 10373.630707273998)
+2026-08-20 02:20:10,649 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-20 02:20:10,649 - INFO - 
+2026-08-20 02:20:10,649 - INFO - [ROUND 11]
+2026-08-20 02:20:10,649 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-20 02:20:11,772 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-20 02:20:11,921 - INFO - [Round 11] TOPSIS giu 64/80 | C_i 0.0323..0.9949
+2026-08-20 02:20:12,051 - INFO - [Round 11] 9 cum (Eq.14) | giu 45/64 update | diem Krum 1.793e-02..4.892e-01
+2026-08-20 02:20:12,056 - INFO - [Round 103] luu checkpoint -> out_full/checkpoints/round_103.pth
+2026-08-20 02:37:56,707 - INFO - [Round 103] loss=0.4251 acc=0.9572 | micro P/R/F1=0.9572/0.9572/0.9572 | macro P/R/F1=0.0907/0.0917/0.0897 | weighted P/R/F1=0.9863/0.9572/0.9715
+2026-08-20 02:37:56,708 - INFO - fit progress: (11, 0.4251115694169729, {'accuracy': 0.9572442903682992, 'micro_precision': 0.9572442903682992, 'micro_recall': 0.9572442903682992, 'micro_f1': 0.9572442903682992, 'macro_precision': 0.090701018468185, 'macro_recall': 0.09167081439554342, 'macro_f1': 0.08966623770730765, 'weighted_precision': 0.9863413752285467, 'weighted_recall': 0.9572442903682992, 'weighted_f1': 0.9715159290364275}, 11439.690430173996)
+2026-08-20 02:37:56,709 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-20 02:37:56,709 - INFO - 
+2026-08-20 02:37:56,709 - INFO - [ROUND 12]
+2026-08-20 02:37:56,709 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-20 02:37:57,865 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-20 02:37:58,035 - INFO - [Round 12] TOPSIS giu 64/80 | C_i 0.0351..0.9973
+2026-08-20 02:37:58,167 - INFO - [Round 12] 9 cum (Eq.14) | giu 45/64 update | diem Krum 2.452e-02..4.473e-01
+2026-08-20 02:37:58,172 - INFO - [Round 104] luu checkpoint -> out_full/checkpoints/round_104.pth
+2026-08-20 02:55:23,829 - INFO - [Round 104] loss=0.4006 acc=0.9554 | micro P/R/F1=0.9554/0.9554/0.9554 | macro P/R/F1=0.0945/0.1352/0.0962 | weighted P/R/F1=0.9882/0.9554/0.9708
+2026-08-20 02:55:23,831 - INFO - fit progress: (12, 0.4006231448585948, {'accuracy': 0.9554032552662854, 'micro_precision': 0.9554032552662854, 'micro_recall': 0.9554032552662854, 'micro_f1': 0.9554032552662854, 'macro_precision': 0.0944702048563289, 'macro_recall': 0.1351795967542435, 'macro_f1': 0.09622907038164659, 'weighted_precision': 0.988210322885976, 'weighted_recall': 0.9554032552662854, 'weighted_f1': 0.9707950069366189}, 12486.812851448001)
+2026-08-20 02:55:23,831 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-20 02:55:23,831 - INFO - 
+2026-08-20 02:55:23,831 - INFO - [ROUND 13]
+2026-08-20 02:55:23,831 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-20 02:55:24,976 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-20 02:55:25,138 - INFO - [Round 13] TOPSIS giu 64/80 | C_i 0.0326..0.9967
+2026-08-20 02:55:25,268 - INFO - [Round 13] 9 cum (Eq.14) | giu 45/64 update | diem Krum 2.483e-02..4.771e-01
+2026-08-20 02:55:25,273 - INFO - [Round 105] luu checkpoint -> out_full/checkpoints/round_105.pth
+2026-08-20 03:12:33,028 - INFO - [Round 105] loss=0.4221 acc=0.9550 | micro P/R/F1=0.9550/0.9550/0.9550 | macro P/R/F1=0.0906/0.0912/0.0895 | weighted P/R/F1=0.9863/0.9550/0.9704
+2026-08-20 03:12:36,381 - INFO - Luu out_full/confusion_matrix_task3.csv
+2026-08-20 03:12:36,381 - INFO - Luu out_full/confusion_matrix_task3_normalized.csv
+2026-08-20 03:12:45,921 - INFO - Luu out_full/classification_report_task3.txt
+                 precision    recall  f1-score   support
+
+         Benign     0.9933    0.9616    0.9772  41700592
+            DoS     0.0038    0.0416    0.0070    145129
+         double     0.0000    0.0000    0.0000     12413
+  force-neutral     0.0000    0.0000    0.0000      5744
+        fuzzing     0.0001    0.0000    0.0000     67321
+       interval     0.0000    0.0000    0.0000     40542
+            rpm     0.0000    0.0000    0.0000      5043
+  rpm-accessory     0.0000    0.0000    0.0000      3146
+          speed     0.0000    0.0000    0.0000      7471
+speed-accessory     0.0000    0.0000    0.0000      2257
+     standstill     0.0000    0.0000    0.0000      5739
+
+       accuracy                         0.9550  41995397
+      macro avg     0.0906    0.0912    0.0895  41995397
+   weighted avg     0.9863    0.9550    0.9704  41995397
+
+2026-08-20 03:12:46,443 - INFO - Luu out_full/confusion_matrix_task3.png
+2026-08-20 03:12:46,444 - INFO - fit progress: (13, 0.42209204271294765, {'accuracy': 0.9550319050442599, 'micro_precision': 0.9550319050442599, 'micro_recall': 0.9550319050442599, 'micro_f1': 0.9550319050442599, 'macro_precision': 0.09064938740381961, 'macro_recall': 0.09120973894983798, 'macro_f1': 0.08947337469225941, 'weighted_precision': 0.9863234738665797, 'weighted_recall': 0.9550319050442599, 'weighted_f1': 0.9703689118516237}, 13529.426461581996)
+2026-08-20 03:12:46,445 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-20 03:12:46,445 - INFO - 
+2026-08-20 03:12:46,445 - INFO - [ROUND 14]
+2026-08-20 03:12:46,445 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-20 03:12:47,527 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-20 03:12:47,676 - INFO - [Round 14] TOPSIS giu 64/80 | C_i 0.0377..0.9970
+2026-08-20 03:12:47,805 - INFO - [Round 14] 9 cum (Eq.14) | giu 45/64 update | diem Krum 1.932e-02..4.433e-01
+2026-08-20 03:12:47,809 - INFO - [Round 106] luu checkpoint -> out_full/checkpoints/round_106.pth
+2026-08-20 03:29:56,408 - INFO - [Round 106] loss=0.4194 acc=0.9513 | micro P/R/F1=0.9513/0.9513/0.9513 | macro P/R/F1=0.0926/0.1155/0.0928 | weighted P/R/F1=0.9874/0.9513/0.9686
+2026-08-20 03:29:56,410 - INFO - fit progress: (14, 0.4194066365102576, {'accuracy': 0.9513097590195421, 'micro_precision': 0.9513097590195421, 'micro_recall': 0.9513097590195421, 'micro_f1': 0.9513097590195421, 'macro_precision': 0.09263526903793405, 'macro_recall': 0.1154713287432569, 'macro_f1': 0.09279210328179845, 'weighted_precision': 0.9874301933215408, 'weighted_recall': 0.9513097590195421, 'weighted_f1': 0.9685877276548052}, 14559.391881670996)
+2026-08-20 03:29:56,410 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-20 03:29:56,410 - INFO - 
+2026-08-20 03:29:56,410 - INFO - [ROUND 15]
+2026-08-20 03:29:56,410 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-20 03:29:57,434 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-20 03:29:57,572 - INFO - [Round 15] TOPSIS giu 64/80 | C_i 0.0307..0.9967
+2026-08-20 03:29:57,701 - INFO - [Round 15] 9 cum (Eq.14) | giu 45/64 update | diem Krum 2.592e-02..4.845e-01
+2026-08-20 03:29:57,706 - INFO - [Round 107] luu checkpoint -> out_full/checkpoints/round_107.pth
+2026-08-20 03:47:03,688 - INFO - [Round 107] loss=0.4357 acc=0.9368 | micro P/R/F1=0.9368/0.9368/0.9368 | macro P/R/F1=0.0906/0.0906/0.0885 | weighted P/R/F1=0.9863/0.9368/0.9609
+2026-08-20 03:47:03,689 - INFO - fit progress: (15, 0.435651234571008, {'accuracy': 0.9368468882434902, 'micro_precision': 0.9368468882434902, 'micro_recall': 0.9368468882434902, 'micro_f1': 0.9368468882434902, 'macro_precision': 0.09060361986259198, 'macro_recall': 0.0906277935964651, 'macro_f1': 0.08853099297398005, 'weighted_precision': 0.9863476981900551, 'weighted_recall': 0.9368468882434902, 'weighted_f1': 0.9608787060196567}, 15586.671520683001)
+2026-08-20 03:47:03,690 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-20 03:47:03,690 - INFO - 
+2026-08-20 03:47:03,690 - INFO - [ROUND 16]
+2026-08-20 03:47:03,690 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-20 03:47:04,762 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-20 03:47:04,907 - INFO - [Round 16] TOPSIS giu 64/80 | C_i 0.0374..0.9982
+2026-08-20 03:47:05,039 - INFO - [Round 16] 9 cum (Eq.14) | giu 45/64 update | diem Krum 2.137e-02..4.254e-01
+2026-08-20 03:47:05,043 - INFO - [Round 108] luu checkpoint -> out_full/checkpoints/round_108.pth
+2026-08-20 04:04:12,883 - INFO - [Round 108] loss=0.4468 acc=0.8969 | micro P/R/F1=0.8969/0.8969/0.8969 | macro P/R/F1=0.0912/0.1054/0.0876 | weighted P/R/F1=0.9870/0.8969/0.9394
+2026-08-20 04:04:12,885 - INFO - fit progress: (16, 0.4467615270503007, {'accuracy': 0.8969354188984092, 'micro_precision': 0.8969354188984092, 'micro_recall': 0.8969354188984092, 'micro_f1': 0.8969354188984092, 'macro_precision': 0.09117965024315523, 'macro_recall': 0.10536705101049991, 'macro_f1': 0.08757846350308217, 'weighted_precision': 0.9870259580265154, 'weighted_recall': 0.8969354188984092, 'weighted_f1': 0.9393855313800349}, 16615.867094942998)
+2026-08-20 04:04:12,885 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-20 04:04:12,885 - INFO - 
+2026-08-20 04:04:12,885 - INFO - [ROUND 17]
+2026-08-20 04:04:12,886 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-20 04:04:13,881 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-20 04:04:14,025 - INFO - [Round 17] TOPSIS giu 64/80 | C_i 0.0283..0.9965
+2026-08-20 04:04:14,148 - INFO - [Round 17] 9 cum (Eq.14) | giu 45/64 update | diem Krum 2.472e-02..4.586e-01
+2026-08-20 04:04:14,154 - INFO - [Round 109] luu checkpoint -> out_full/checkpoints/round_109.pth
+2026-08-20 04:21:20,122 - INFO - [Round 109] loss=0.4483 acc=0.9134 | micro P/R/F1=0.9134/0.9134/0.9134 | macro P/R/F1=0.0905/0.0888/0.0873 | weighted P/R/F1=0.9863/0.9134/0.9484
+2026-08-20 04:21:20,123 - INFO - fit progress: (17, 0.44830837444969357, {'accuracy': 0.9134183205840393, 'micro_precision': 0.9134183205840393, 'micro_recall': 0.9134183205840393, 'micro_f1': 0.9134183205840393, 'macro_precision': 0.09052018324655434, 'macro_recall': 0.08882359197000986, 'macro_f1': 0.08725268983990826, 'weighted_precision': 0.9862920431312681, 'weighted_recall': 0.9134183205840393, 'weighted_f1': 0.9483629318068467}, 17643.105368939)
+2026-08-20 04:21:20,123 - INFO - configure_evaluate: no clients selected, skipping evaluation
+2026-08-20 04:21:20,124 - INFO - 
+2026-08-20 04:21:20,124 - INFO - [ROUND 18]
+2026-08-20 04:21:20,124 - INFO - configure_fit: strategy sampled 80 clients (out of 80)
+2026-08-20 04:21:21,142 - INFO - aggregate_fit: received 80 results and 0 failures
+2026-08-20 04:21:21,275 - INFO - [Round 18] TOPSIS giu 64/80 | C_i 0.0358..0.9985
+2026-08-20 04:21:21,399 - INFO - [Round 18] 9 cum (Eq.14) | giu 45/64 update | diem Krum 2.327e-02..4.413e-01
+2026-08-20 04:21:21,404 - INFO - [Round 110] luu checkpoint -> out_full/checkpoints/round_110.pth
