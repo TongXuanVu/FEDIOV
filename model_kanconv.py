@@ -136,9 +136,12 @@ class KANConvNet(nn.Module):
     (B,31) -> (B,1,31) -> KANConv 16 -> pool -> KANConv 32 -> pool -> GAP -> KAN head
     """
 
-    def __init__(self, input_len=INPUT_LEN, num_classes=NUM_GLOBAL_CLASSES,
+    def __init__(self, input_len=None, num_classes=None,
                  dropout=0.15, width=(16, 32), grid_size=5, spline_order=3,
                  basis="fourier"):
+        # None -> lay LUC GOI; tham so mac dinh bi chot luc `def`
+        input_len = INPUT_LEN if input_len is None else input_len
+        num_classes = NUM_GLOBAL_CLASSES if num_classes is None else num_classes
         super().__init__()
         c1, c2 = width
         self.input_len = input_len
