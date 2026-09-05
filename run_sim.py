@@ -50,6 +50,18 @@ import common as C                                        # noqa: E402
 import server_iov as S                                    # noqa: E402  (dung lai strategy)
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+# Ray workers are separate processes and do not reliably inherit the
+# driver's current working directory. Keep the repository importable before
+# Flower deserializes the client factory (which imports common.py).
+RAY_RUNTIME_ENV = {
+    "working_dir": ROOT,
+    "env_vars": {
+        "PYTHONPATH": os.pathsep.join(
+            part for part in (ROOT, os.environ.get("PYTHONPATH", ""))
+            if part
+        )
+    },
+}
 IS_P4 = os.path.exists(os.path.join(ROOT, "models_sdn.py"))     # SDN-FL IDS
 IS_P2 = os.path.exists(os.path.join(ROOT, "model_kanconv.py"))  # FedIoV
 IS_P3 = os.path.exists(os.path.join(ROOT, "generator.py"))      # IoVFD
@@ -358,6 +370,9 @@ def main():
             strategy=strategy,
             client_resources={"num_cpus": args.actor_cpus,
                               "num_gpus": args.actor_gpus},
+            # Make top-level modules (common, client_iov, model_kanconv, ...)
+            # available in Ray's ClientAppActor process, not only in the driver.
+            ray_init_args={"runtime_env": RAY_RUNTIME_ENV},
         )
         start_round += remaining
 
