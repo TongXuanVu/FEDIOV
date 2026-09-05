@@ -423,10 +423,13 @@ def main():
                         "(Eq.16: 'a Fourier-based encoding'); "
                         "spline = ban cu (efficient-kan)")
     p.add_argument("--data-dir", type=str, default=DEFAULT_DATA_DIR)
+    p.add_argument("--fed-subdir", type=str, default="federated_data",
+                   choices=["federated_data", "federated_data_fewshot",
+                            "federated_data_10shot"])
     p.add_argument("--out-dir", type=str, default=DEFAULT_OUT_DIR)
     p.add_argument("--address", type=str, default="0.0.0.0:8082")
     p.add_argument("--test-samples", type=int, default=1_000_000)
-    p.add_argument("--task", type=int, default=None, choices=range(C.NUM_TASKS))
+    p.add_argument("--task", type=int, default=None)
     p.add_argument("--ckpt", type=str, default=None)
     p.add_argument("--cm-every", type=int, default=0,
                    help="Ghi confusion matrix moi N round (0 = chi cuoi task)")
@@ -435,6 +438,10 @@ def main():
 
     os.makedirs(args.out_dir, exist_ok=True)
     C.setup_logging(os.path.join(args.out_dir, "server.log"))
+    C.set_fed_subdir(args.fed_subdir)
+    C.init_dataset(args.data_dir, args.fed_subdir)
+    if args.task is not None and not 0 <= args.task < C.NUM_TASKS:
+        raise ValueError(f"Task {args.task} ngoai pham vi 0..{C.NUM_TASKS - 1}")
     torch.manual_seed(args.seed)
     np.random.seed(args.seed)
 
@@ -442,7 +449,7 @@ def main():
     logger.info(f"Thiet bi: {device} | che do: {args.mode} | "
                 f"strategy: {args.strategy} | task: {args.task}")
 
-    model = KANConvNet(INPUT_LEN, NUM_GLOBAL_CLASSES, args.dropout,
+    model = KANConvNet(C.INPUT_LEN, C.NUM_GLOBAL_CLASSES, args.dropout,
                        tuple(args.width), args.grid_size, args.spline_order).to(device)
     logger.info(f"KANConvNet params: "
                 f"{sum(q.numel() for q in model.parameters() if q.requires_grad):,}")

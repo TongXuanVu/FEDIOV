@@ -110,7 +110,7 @@ class FedIoVClient(fl.client.NumPyClient):
         self.loader = C.make_loader(x, y, batch_size, shuffle=True)
         self.n_samples = len(y)
 
-        self.model = KANConvNet(INPUT_LEN, NUM_GLOBAL_CLASSES, dropout,
+        self.model = KANConvNet(C.INPUT_LEN, C.NUM_GLOBAL_CLASSES, dropout,
                                 width, grid_size, spline_order, basis).to(device)
         self.criterion = FocalLoss(alpha=C.make_focal_alpha(y).to(device), gamma=2.0)
         if attack != "none":
@@ -224,6 +224,9 @@ def main():
     p = argparse.ArgumentParser(description="P2 FedIoV Flower client")
     p.add_argument("--client-id", type=int, required=True)
     p.add_argument("--data-dir", type=str, default=DEFAULT_DATA_DIR)
+    p.add_argument("--fed-subdir", type=str, default="federated_data",
+                   choices=["federated_data", "federated_data_fewshot",
+                            "federated_data_10shot"])
     p.add_argument("--server", type=str, default="127.0.0.1:8082")
     p.add_argument("--max-samples", type=int, default=200_000)
     p.add_argument("--batch-size", type=int, default=256)
@@ -252,11 +255,15 @@ def main():
     p.add_argument("--local-val", type=float, default=0.0,
                    help="Ty le du lieu client giu lai lam validation CUC BO. "
                         ">0 moi do duoc tac dung cua Eq.15 (Bang 6 cua bai)")
-    p.add_argument("--task", type=int, default=None, choices=range(C.NUM_TASKS))
+    p.add_argument("--task", type=int, default=None)
     p.add_argument("--seed", type=int, default=42)
     args = p.parse_args()
 
     C.setup_logging()
+    C.set_fed_subdir(args.fed_subdir)
+    C.init_dataset(args.data_dir, args.fed_subdir)
+    if args.task is not None and not 0 <= args.task < C.NUM_TASKS:
+        raise ValueError(f"Task {args.task} ngoai pham vi 0..{C.NUM_TASKS - 1}")
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     client = FedIoVClient(args.client_id, args.data_dir, device, args.max_samples,
                           args.batch_size, args.task, args.lr, args.dropout,
