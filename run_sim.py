@@ -285,11 +285,11 @@ def main():
 
     args.attackers = {c: args.attack for c in args.attack_ids}
     if IS_P2:
-        model = build_model(args.arch, NUM_GLOBAL_CLASSES, args.dropout,
+        model = build_model(args.arch, C.NUM_GLOBAL_CLASSES, args.dropout,
                             width=tuple(args.width), grid_size=args.grid_size,
                             spline_order=args.spline_order).to(device)
     else:
-        model = build_model(args.arch, NUM_GLOBAL_CLASSES, args.dropout,
+        model = build_model(args.arch, C.NUM_GLOBAL_CLASSES, args.dropout,
                             args.hidden, args.layers).to(device)
     ckpt_dir = os.path.join(args.out_dir, f"checkpoints{sfx_arch}")
 

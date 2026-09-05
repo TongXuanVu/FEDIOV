@@ -99,7 +99,7 @@ def evaluate_individual(ind, data, device, proxy_epochs, seed):
     xtr, ytr, xva, yva = data
     torch.manual_seed(seed)
 
-    model = KANConvNet(INPUT_LEN, NUM_GLOBAL_CLASSES, hp["dropout"],
+    model = KANConvNet(C.INPUT_LEN, C.NUM_GLOBAL_CLASSES, hp["dropout"],
                        hp["width"], hp["grid_size"], 3, "fourier").to(device)
     crit = FocalLoss(alpha=C.make_focal_alpha(ytr).to(device), gamma=2.0)
     # DUNG CHUNG ham voi client_iov.py — neu tach doi, GA se do mot thu va
@@ -137,14 +137,21 @@ def main():
     p.add_argument("--max-samples", type=int, default=60_000,
                    help="Tren MOI client, truoc khi gop")
     p.add_argument("--val-size", type=float, default=0.2)
-    p.add_argument("--task", type=int, default=None, choices=range(C.NUM_TASKS))
+    p.add_argument("--task", type=int, default=None)
     p.add_argument("--data-dir", type=str, default=DEFAULT_DATA_DIR)
+    p.add_argument("--fed-subdir", type=str, default="federated_data",
+                   choices=["federated_data", "federated_data_fewshot",
+                            "federated_data_10shot"])
     p.add_argument("--out-dir", type=str, default=DEFAULT_OUT_DIR)
     p.add_argument("--seed", type=int, default=42)
     args = p.parse_args()
 
     os.makedirs(args.out_dir, exist_ok=True)
     C.setup_logging(os.path.join(args.out_dir, "ga_search.log"))
+    C.set_fed_subdir(args.fed_subdir)
+    C.init_dataset(args.data_dir, args.fed_subdir)
+    if args.task is not None and not 0 <= args.task < C.NUM_TASKS:
+        raise ValueError(f"Task {args.task} ngoai pham vi 0..{C.NUM_TASKS - 1}")
     rng = np.random.default_rng(args.seed)
     torch.manual_seed(args.seed)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
