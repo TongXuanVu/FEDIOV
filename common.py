@@ -556,7 +556,34 @@ def append_csv_row(path: str, row: List):
 
 def log_and_save_metrics(rnd: int, m: Dict[str, float], csv_file: str):
     logger.info(format_metrics(rnd, m))
-    append_csv_row(csv_file, [rnd] + [round(m[k], 6) for k in METRIC_KEYS])
+    row = [rnd] + [round(m[k], 6) for k in METRIC_KEYS]
+    os.makedirs(os.path.dirname(os.path.abspath(csv_file)) or ".", exist_ok=True)
+    if not os.path.exists(csv_file):
+        with open(csv_file, "w", newline="", encoding="utf-8") as f:
+            w = csv.writer(f)
+            w.writerow(CSV_HEADER)
+            w.writerow(row)
+        return
+
+    # A process can stop after checkpointing but before evaluation is flushed.
+    # Resume then evaluates the same absolute round again; replace that row
+    # instead of appending a duplicate metric.
+    with open(csv_file, newline="", encoding="utf-8") as f:
+        rows = list(csv.reader(f))
+    if not rows:
+        rows = [CSV_HEADER]
+    replaced = False
+    for i in range(1, len(rows)):
+        if rows[i] and rows[i][0] == str(rnd):
+            rows[i] = row
+            replaced = True
+            break
+    if not replaced:
+        rows.append(row)
+    tmp = f"{csv_file}.tmp"
+    with open(tmp, "w", newline="", encoding="utf-8") as f:
+        csv.writer(f).writerows(rows)
+    os.replace(tmp, csv_file)
 
 
 # ----------------------------------------------------------------------------
@@ -638,8 +665,13 @@ def save_checkpoint(ckpt_dir: str, rnd: int, state_dict, extra: Optional[Dict] =
     if extra:
         payload.update(extra)
     path = os.path.join(ckpt_dir, f"round_{rnd:03d}.pth")
-    torch.save(payload, path)
-    torch.save(payload, os.path.join(ckpt_dir, "latest.pth"))
+    round_tmp = f"{path}.tmp"
+    latest = os.path.join(ckpt_dir, "latest.pth")
+    latest_tmp = f"{latest}.tmp"
+    torch.save(payload, round_tmp)
+    os.replace(round_tmp, path)
+    torch.save(payload, latest_tmp)
+    os.replace(latest_tmp, latest)
     logger.info(f"[Round {rnd}] luu checkpoint -> {path}")
     return path
 

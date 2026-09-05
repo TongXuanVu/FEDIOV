@@ -249,6 +249,10 @@ def main():
     logger.info(f"GPU cho moi actor: {args.actor_gpus} "
                 f"({torch.cuda.device_count()} GPU / {os.cpu_count()} CPU)")
 
+    # Resolve before constructing the strategy. Ray actors use ROOT as their
+    # working directory, but checkpoint/evaluation writes must stay in the
+    # driver's requested output directory.
+    args.out_dir = os.path.abspath(args.out_dir)
     os.makedirs(args.out_dir, exist_ok=True)
     # Trang thai cuc bo cho Eq.15 (P2). Ray tao lai client moi round nen phai
     # luu ra dia; --restart phai xoa, khong thi round 1 cua lan chay moi se
