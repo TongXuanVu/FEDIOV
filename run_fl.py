@@ -61,12 +61,12 @@ STANDALONE = os.path.exists(os.path.join(ROOT, "server_iov.py"))
 
 def clients_with_data(data_dir, client_ids, task):
     """Loc ra nhung client co file .pt cho task nay (task=None -> can it nhat 1 file)."""
-    fed = os.path.join(data_dir, "federated_data")
+    fed = os.path.join(data_dir, C.FED_SUBDIR)
     ok = []
     for cid in client_ids:
         if task is None:
             has = (any(os.path.exists(os.path.join(fed, f"client_{cid}_task_{t}.pt"))
-                       for t in range(1, NUM_TASKS + 1))
+                       for t in range(1, C.NUM_TASKS + 1))
                    or os.path.exists(os.path.join(fed, f"client_{cid}.pt")))
         else:
             has = os.path.exists(os.path.join(fed, f"client_{cid}_task_{task + 1}.pt"))
@@ -171,6 +171,7 @@ def run_one_task(pdir, port, args, task, mode, client_ids, rounds):
     server_cmd = [PY, "server_iov.py", "--mode", mode, "--address", addr,
                   "--rounds", str(rounds), "--num-clients", str(len(client_ids)),
                   "--data-dir", args.data_dir, "--out-dir", args.out_dir,
+                  "--fed-subdir", args.fed_subdir,
                   "--local-epochs", str(args.local_epochs),
                   "--test-samples", str(args.test_samples)]
     if task is not None:
@@ -188,6 +189,7 @@ def run_one_task(pdir, port, args, task, mode, client_ids, rounds):
     for cid in client_ids:
         cmd = [PY, "client_iov.py", "--client-id", str(cid), "--server", addr,
                "--data-dir", args.data_dir, "--max-samples", str(args.max_samples),
+               "--fed-subdir", args.fed_subdir,
                "--batch-size", str(args.batch_size)]
         if task is not None:
             cmd += ["--task", str(task)]
@@ -220,6 +222,9 @@ def main():
                    help="Chi can khi chay trong monorepo Rebuild-IOV; "
                         "repo doc lap tu nhan dien")
     p.add_argument("--data-dir", type=str, required=True)
+    p.add_argument("--fed-subdir", type=str, default="federated_data",
+                   choices=["federated_data", "federated_data_fewshot",
+                            "federated_data_10shot"])
     p.add_argument("--out-dir", type=str, default=None,
                    help="Mac dinh: <project>/out")
     p.add_argument("--clients", type=int, default=10,
@@ -277,14 +282,13 @@ def main():
     args.out_dir = os.path.abspath(args.out_dir or os.path.join(pdir, "out"))
     args.data_dir = os.path.abspath(args.data_dir)
     os.makedirs(args.out_dir, exist_ok=True)
-
-    if not os.path.isdir(os.path.join(args.data_dir, "federated_data")):
-        sys.exit(f"Khong thay {args.data_dir}/federated_data — sai --data-dir?")
+    C.set_fed_subdir(args.fed_subdir)
+    C.init_dataset(args.data_dir, args.fed_subdir)
 
     if args.tasks.strip().lower() == "none":
         tasks = [None]
     elif args.tasks.strip().lower() == "all":
-        tasks = list(range(NUM_TASKS))
+        tasks = list(range(C.NUM_TASKS))
     else:
         tasks = [int(t) for t in args.tasks.replace(" ", "").split(",")]
 

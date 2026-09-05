@@ -85,6 +85,7 @@ NUM_GLOBAL_CLASSES = 13
 INPUT_LEN = 31
 NUM_TASKS = 5
 TASK_INCREMENTS = [3, 3, 3, 2, 2]          # giong AFSIC-IoV / FedLiTeCAN
+IOV_TASK_INCREMENTS = [3, 3, 3, 2, 2]
 
 TEN_BO = "iov"          # "iov" | "iot"
 _LABEL_LUT = None       # np.ndarray: nhan goc -> nhan tuan tu, hoac None
@@ -98,16 +99,43 @@ def _doc_task_mapping(data_dir, fed_subdir=None):
     task phi tuan tu nen bat buoc phai remap.
     """
     if fed_subdir is None: fed_subdir = FED_SUBDIR
-    for p in (os.path.join(data_dir, "task_mapping_label_ids.json"),
-              os.path.join(data_dir, fed_subdir, "task_mapping_label_ids.json"),
-              os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                           "task_mapping_label_ids.json")):
+    repo_root = os.path.dirname(os.path.abspath(__file__))
+    candidates = (
+        os.path.join(data_dir, "task_mapping_label_ids.json"),
+        os.path.join(data_dir, fed_subdir, "task_mapping_label_ids.json"),
+        os.path.join(repo_root, "task_mapping_label_ids.json"),
+        os.path.join(repo_root, "data", "task_mapping_label_ids.json"),
+    )
+    seen = set()
+    for p in candidates:
+        if p in seen:
+            continue
+        seen.add(p)
         if os.path.exists(p):
             with open(p, encoding="utf-8") as f:
                 d = json.load(f)
             if isinstance(d, list) and d and isinstance(d[0], list):
-                return d, p
+                return [[int(label) for label in task] for task in d], p
+            raise ValueError(
+                f"Mapping {p} phai la list cac list label goc theo task")
     return None, None
+
+
+def _max_dataset_label(data_dir, fed_subdir):
+    """Tim nhan lon nhat trong toan bo shard va tap test."""
+    paths = []
+    for root in (os.path.join(data_dir, fed_subdir), data_dir):
+        paths.extend(glob.glob(os.path.join(root, "client_*.pt")))
+    for path in (os.path.join(data_dir, "global_test_data.pt"),
+                 os.path.join(data_dir, fed_subdir, "global_test_data.pt")):
+        if os.path.exists(path):
+            paths.append(path)
+    maximum = -1
+    for path in dict.fromkeys(paths):
+        _, labels = _read_pt(path)
+        if labels.size:
+            maximum = max(maximum, int(labels.max()))
+    return maximum
 
 
 def _do_so_dac_trung(data_dir, fed_subdir):
@@ -149,23 +177,27 @@ def init_dataset(data_dir, fed_subdir=None):
     FED_SUBDIR = fed_subdir
     n_feat, nguon = _do_so_dac_trung(data_dir, fed_subdir)
 
-    y_max = -1
-    t = os.path.join(data_dir, "global_test_data.pt")
-    t2 = os.path.join(data_dir, fed_subdir, "global_test_data.pt")
-    if os.path.exists(t2):
-        t = t2
-    if os.path.exists(t):
-        _, yy = _read_pt(t)
-        y_max = int(np.asarray(yy).max())
+    y_max = _max_dataset_label(data_dir, fed_subdir)
 
     mapping, map_file = _doc_task_mapping(data_dir, fed_subdir)
-    dung_remap = mapping is not None and y_max >= 13
+    dung_remap = y_max >= 13
+
+    if dung_remap and mapping is None:
+        raise ValueError(
+            f"Phat hien label goc lon ({y_max}) trong du lieu IoT nhung khong "
+            "tim thay task_mapping_label_ids.json. Dat file trong data_dir, "
+            "fed_subdir, thu muc repo, hoac repo/data; khong the dung profile IoV.")
 
     if dung_remap:
         TASK_LABELS = mapping
         TASK_INCREMENTS = [len(t_) for t_ in mapping]
         NUM_TASKS = len(mapping)
         phang = [c for t_ in mapping for c in t_]
+        if len(set(phang)) != len(phang) or any(c < 0 for c in phang):
+            raise ValueError(f"Mapping {map_file} chua label goc hop le, khong trung")
+        if y_max > max(phang):
+            raise ValueError(
+                f"Label goc {y_max} khong co trong mapping {map_file}")
         NUM_GLOBAL_CLASSES = len(phang)
         lut = np.full(max(phang) + 1, -1, dtype=np.int64)
         for moi, goc in enumerate(phang):
@@ -173,6 +205,9 @@ def init_dataset(data_dir, fed_subdir=None):
         _LABEL_LUT = lut
         TEN_BO = "iot"
     else:
+        NUM_GLOBAL_CLASSES = 13
+        NUM_TASKS = 5
+        TASK_INCREMENTS = list(IOV_TASK_INCREMENTS)
         TASK_LABELS, _LABEL_LUT, TEN_BO = None, None, "iov"
         if mapping is not None:
             logger.warning(
