@@ -53,15 +53,34 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 # Ray workers are separate processes and do not reliably inherit the
 # driver's current working directory. Keep the repository importable before
 # Flower deserializes the client factory (which imports common.py).
-RAY_RUNTIME_ENV = {
-    "working_dir": ROOT,
-    "env_vars": {
-        "PYTHONPATH": os.pathsep.join(
-            part for part in (ROOT, os.environ.get("PYTHONPATH", ""))
-            if part
-        )
-    },
-}
+def ray_runtime_env():
+    """Dict MOI cho moi lan start_simulation — TUYET DOI khong dung lai object cu.
+
+    Ray SUA TAI CHO dict nay: sau lan init dau tien no thay "working_dir" bang
+    URI goi da tai len ("gcs://_ray_pkg_<hash>.zip"). Neu ta truyen lai chinh
+    object do o task sau, Ray khong dong goi lai ma di tai cai URI cu — goi ay
+    da bi GCS thu hoi (mac dinh 600s) nen MOI actor chet voi
+    RuntimeEnvSetupError. Trieu chung: task dau chay tot, tu task thu hai tro di
+    "0 results and N failures" suot, va ca log chi co DUNG MOT ma _ray_pkg_.
+    Ba repo kia khong dinh vi chung tao dict moi moi lan goi.
+
+    "excludes" giu goi chi con ma nguon (~vai tram KB thay vi vai chuc MB):
+    logs/ va out*/ phinh them moi round, tai len lau thi cang de dinh dung
+    canh tranh da noi o tren.
+    """
+    return {
+        "runtime_env": {
+            "working_dir": ROOT,
+            "excludes": [".git", "logs", "out", "out_*", "*.pth", "*.pt",
+                         "*.pkl", "*.png", "*.npz"],
+            "env_vars": {
+                "PYTHONPATH": os.pathsep.join(
+                    part for part in (ROOT, os.environ.get("PYTHONPATH", ""))
+                    if part
+                )
+            },
+        }
+    }
 IS_P4 = os.path.exists(os.path.join(ROOT, "models_sdn.py"))     # SDN-FL IDS
 IS_P2 = os.path.exists(os.path.join(ROOT, "model_kanconv.py"))  # FedIoV
 IS_P3 = os.path.exists(os.path.join(ROOT, "generator.py"))      # IoVFD
@@ -376,7 +395,7 @@ def main():
                               "num_gpus": args.actor_gpus},
             # Make top-level modules (common, client_iov, model_kanconv, ...)
             # available in Ray's ClientAppActor process, not only in the driver.
-            ray_init_args={"runtime_env": RAY_RUNTIME_ENV},
+            ray_init_args=ray_runtime_env(),
         )
         start_round += remaining
 
